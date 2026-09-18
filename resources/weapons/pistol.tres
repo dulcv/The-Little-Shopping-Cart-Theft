@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dyewtvdurpqdx"]
+
+[ext_resource type="PackedScene" uid="uid://cxwbv2lkh8mqo" path="res://scenes/weapons/bullet.tscn" id="1_i4ekl"]
+[ext_resource type="Script" uid="uid://qecw7f2gwko6" path="res://scripts/systems/weapons/weapon_data.gd" id="1_weapon_script"]
+[ext_resource type="Texture2D" uid="uid://b175cqnmld88l" path="res://assets/sprites/guns/Pistol.png" id="2_pistol_tex"]
+[ext_resource type="AudioStream" uid="uid://b080c834wklly" path="res://assets/audio/sfx/guns/pistol.mp3" id="3_pistol_sound"]
+
+[resource]
+script = ExtResource("1_weapon_script")
+id = "pistol"
+weapon_name = "Pistola"
+description = "Arma corta semiautomática de calibre estándar. Confiable y de buena precisión."
+sprite = ExtResource("2_pistol_tex")
+sprite_region = Rect2(0, 0, 10, 6)
+damage = 15
+bullet_speed = 420.0
+fire_rate = 0.28
+spread_degrees = 1.5
+bullet_lifetime = 1.5
+fire_sound = ExtResource("3_pistol_sound")

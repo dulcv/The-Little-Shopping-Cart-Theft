@@ -2,12 +2,17 @@
 
 [ext_resource type="SpriteFrames" uid="uid://cpuabko7vhbrl" path="res://scenes/characters/player/player1_sprite_frames.tres" id="1_7uws0"]
 [ext_resource type="Script" uid="uid://b86friopbhx41" path="res://scenes/characters/player/player.gd" id="1_t61fv"]
+[ext_resource type="PackedScene" uid="uid://b8y4g7kpmg31q" path="res://scenes/weapons/weapon.tscn" id="3_weapon"]
+[ext_resource type="Resource" path="res://resources/weapons/pistol.tres" id="4_pistol"]
+[ext_resource type="AudioStream" uid="uid://cb7eik1vvvfsb" path="res://assets/audio/sfx/guns/hit.mp3" id="5_hit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enuon"]
 size = Vector2(18, 19)
 
 [node name="Player" type="CharacterBody2D" unique_id=411640119]
+collision_layer = 2
 script = ExtResource("1_t61fv")
+starting_weapon = ExtResource("4_pistol")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2073402188]
 position = Vector2(0, 0.5)
@@ -19,6 +24,13 @@ sprite_frames = ExtResource("1_7uws0")
 animation = &"run"
 frame = 2
 frame_progress = 0.38617736
+
+[node name="Weapon" parent="." unique_id=1939751598 instance=ExtResource("3_weapon")]
+position = Vector2(6, 2)
+
+[node name="MeleeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hit")
+max_polyphony = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=249515513]
 position_smoothing_enabled = true

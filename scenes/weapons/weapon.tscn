@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b8y4g7kpmg31q"]
+
+[ext_resource type="Script" uid="uid://dy85t52ir83yv" path="res://scripts/systems/weapons/weapon.gd" id="1_weapon_script"]
+[ext_resource type="Texture2D" uid="uid://c5av1ct140xf1" path="res://assets/sprites/guns/Extras/Shot.png" id="2_shot_tex"]
+
+[node name="Weapon" type="Node2D" unique_id=1321665459]
+script = ExtResource("1_weapon_script")
+
+[node name="WeaponSprite" type="Sprite2D" parent="." unique_id=32226790]
+texture_filter = 1
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=2101790687]
+position = Vector2(16, 0)
+
+[node name="MuzzleFlash" type="Sprite2D" parent="." unique_id=973594883]
+visible = false
+texture_filter = 1
+texture = ExtResource("2_shot_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 3, 3)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=874617807]
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="." unique_id=792231538]
+wait_time = 0.05
+one_shot = true
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="." unique_id=997078578]
+max_polyphony = 3

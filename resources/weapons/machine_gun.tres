@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/weapons/weapon_data.gd" id="1_weapon_script"]
+[ext_resource type="Texture2D" uid="uid://1vpqn03b7nb1" path="res://assets/sprites/guns/MachineGun.png" id="2_mg_tex"]
+[ext_resource type="AudioStream" uid="uid://qk3488uwc1f4" path="res://assets/audio/sfx/guns/machinegun.mp3" id="3_mg_sound"]
+
+[resource]
+script = ExtResource("1_weapon_script")
+id = "machine_gun"
+weapon_name = "Ametralladora"
+description = "Arma pesada de alta cadencia de fuego. Ráfagas devastadoras con dispersión moderada."
+sprite = ExtResource("2_mg_tex")
+sprite_region = Rect2(0, 0, 26, 8)
+hold_offset = Vector2(3, 2)
+muzzle_offset = Vector2(17, 0)
+damage = 8
+bullet_speed = 490.0
+fire_rate = 0.08
+is_automatic = true
+spread_degrees = 7.0
+bullets_per_shot = 1
+bullet_lifetime = 2.0
+max_ammo = -1
+current_ammo = -1
+fire_sound = ExtResource("3_mg_sound")
