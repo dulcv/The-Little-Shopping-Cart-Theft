@@ -11,6 +11,9 @@ extends Area2D
 
 var direction: Vector2 = Vector2.RIGHT
 var _lifetime_elapsed: float = 0.0
+## Nodo a ignorar (ej. el vehículo propio al disparar en drive-by):
+## la bala lo atraviesa sin dañarlo ni destruirse.
+var ignore_root: Node = null
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -24,13 +27,15 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
 
-## Inicializa las propiedades del proyectil desde el arma que lo dispara
-func setup(p_direction: Vector2, p_speed: float, p_damage: int, p_is_enemy: bool = false) -> void:
+## Inicializa las propiedades del proyectil desde el arma que lo dispara.
+## p_ignore: nodo que la bala debe atravesar (vehículo propio, etc.).
+func setup(p_direction: Vector2, p_speed: float, p_damage: int, p_is_enemy: bool = false, p_ignore: Node = null) -> void:
 	direction = p_direction.normalized()
 	rotation = direction.angle()
 	speed = p_speed
 	damage = p_damage
 	is_enemy_bullet = p_is_enemy
+	ignore_root = p_ignore
 	_apply_collision_layers()
 
 func _apply_collision_layers() -> void:
@@ -41,10 +46,10 @@ func _apply_collision_layers() -> void:
 	# Capa 5: Balas_Enemigos (bit 4 -> 16)
 	if is_enemy_bullet:
 		collision_layer = 1 << 4 # Balas_Enemigos
-		collision_mask = (1 << 0) | (1 << 1) # Choca con Mundo y Player
+		collision_mask = (1 << 0) | (1 << 1) | (1 << 6) # Mundo, Player y Vehiculos
 	else:
 		collision_layer = 1 << 3 # Balas_Player
-		collision_mask = (1 << 0) | (1 << 2) # Choca con Mundo y Enemigos
+		collision_mask = (1 << 0) | (1 << 2) | (1 << 6) # Mundo, Enemigos y Vehiculos
 
 func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
@@ -53,13 +58,27 @@ func _physics_process(delta: float) -> void:
 	if _lifetime_elapsed >= max_lifetime:
 		queue_free()
 
+func _is_ignored(node: Node) -> bool:
+	if ignore_root == null or node == null:
+		return false
+	if not is_instance_valid(ignore_root):
+		ignore_root = null
+		return false
+	return node == ignore_root or node.get_parent() == ignore_root
+
 func _on_body_entered(body: Node2D) -> void:
+	# La bala nace solapando al vehículo propio: atravesarlo sin dañarlo.
+	if _is_ignored(body):
+		return
 	# Aplica daño si el objetivo tiene la función take_damage
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
+	# Ignora las áreas del vehículo propio (EnterArea/RamArea).
+	if _is_ignored(area):
+		return
 	# Para compatibilidad con sistemas basados en Hurtbox
 	if area.has_method("take_damage"):
 		area.take_damage(damage)

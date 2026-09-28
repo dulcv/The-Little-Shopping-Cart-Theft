@@ -12,6 +12,9 @@ signal weapon_equipped(data: WeaponData)
 
 @export var weapon_data: WeaponData
 @export var is_enemy: bool = false
+## Nodo que las balas deben atravesar sin dañar (vehículo propio en drive-by).
+## Lo asigna el conductor (player.gd) al entrar/salir del coche.
+var ignore_root: Node = null
 
 var aim_direction: Vector2 = Vector2.RIGHT
 
@@ -137,7 +140,7 @@ func shoot() -> bool:
 				var final_dir: Vector2 = aim_direction.rotated(spread_rad)
 				
 				bullet_instance.global_position = muzzle.global_position
-				bullet_instance.setup(final_dir, weapon_data.bullet_speed, weapon_data.damage, is_enemy)
+				bullet_instance.setup(final_dir, weapon_data.bullet_speed, weapon_data.damage, is_enemy, ignore_root)
 				
 				# Agregar la bala al árbol principal para que su movimiento sea independiente del arma
 				var spawn_root: Node = get_tree().current_scene

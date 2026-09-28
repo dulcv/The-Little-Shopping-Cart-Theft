@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://bm3nyp612o4m6"]
+
+[ext_resource type="Script" uid="uid://cqd21nav7ff1f" path="res://scripts/systems/vehicles/vehicle.gd" id="1_vehicle"]
+[ext_resource type="Script" uid="uid://b7aftboir88ue" path="res://scripts/systems/vehicles/vehicle_radio.gd" id="2_radio"]
+[ext_resource type="AudioStream" uid="uid://b456ilh7bmem6" path="res://assets/audio/sfx/auto/choque.mp3" id="3_crash"]
+[ext_resource type="AudioStream" uid="uid://bacymgry2pb3m" path="res://assets/audio/sfx/auto/abrir_puerta.mp3" id="4_door"]
+[ext_resource type="AudioStream" uid="uid://calxl4n6m0twb" path="res://assets/audio/sfx/auto/claxon.mp3" id="5_horn"]
+[ext_resource type="AudioStream" uid="uid://bm56e714pujdn" path="res://assets/audio/sfx/auto/encendido.mp3" id="6_ignition"]
+[ext_resource type="AudioStream" uid="uid://5hv6rosy5mcq" path="res://assets/audio/sfx/auto/reversa.mp3" id="7_reverse"]
+[ext_resource type="AudioStream" uid="uid://b7h5yury4tweg" path="res://assets/audio/sfx/auto/sirena_policias.mp3" id="8_siren"]
+[ext_resource type="SpriteFrames" uid="uid://4lal3icr37my" path="res://resources/vehicles/coche_azul_sprite_frames.tres" id="9_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(30, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enter"]
+size = Vector2(52, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ram"]
+size = Vector2(40, 22)
+
+[node name="Vehicle" type="CharacterBody2D" unique_id=1101286895]
+collision_layer = 64
+collision_mask = 71
+script = ExtResource("1_vehicle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068607858]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Visual" type="Node2D" parent="." unique_id=1708440327]
+
+[node name="CarSprite" type="AnimatedSprite2D" parent="Visual" unique_id=1915300270]
+sprite_frames = ExtResource("9_frames")
+animation = &"retroceder_humo"
+
+[node name="EnterArea" type="Area2D" parent="." unique_id=710873788]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea" unique_id=1828780104]
+shape = SubResource("RectangleShape2D_enter")
+
+[node name="RamArea" type="Area2D" parent="." unique_id=669373815]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RamArea" unique_id=665964447]
+shape = SubResource("RectangleShape2D_ram")
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="." unique_id=1240417105]
+position = Vector2(10, 0)
+emitting = false
+amount = 12
+lifetime = 0.8
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_max = 2.0
+color = Color(0.5, 0.5, 0.5, 0.7)
+
+[node name="FireParticles" type="CPUParticles2D" parent="." unique_id=2098183257]
+position = Vector2(10, 0)
+emitting = false
+amount = 16
+lifetime = 0.5
+direction = Vector2(0, -1)
+gravity = Vector2(0, -30)
+initial_velocity_min = 15.0
+initial_velocity_max = 40.0
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+color = Color(1, 0.45, 0.1, 1)
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="." unique_id=1499543574]
+volume_db = -14.0
+
+[node name="CrashSound" type="AudioStreamPlayer2D" parent="." unique_id=192974210]
+stream = ExtResource("3_crash")
+max_polyphony = 2
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=200485929]
+stream = ExtResource("3_crash")
+volume_db = 4.0
+pitch_scale = 0.5
+
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="." unique_id=748724037]
+stream = ExtResource("4_door")
+max_polyphony = 2
+
+[node name="HornSound" type="AudioStreamPlayer2D" parent="." unique_id=1698507391]
+stream = ExtResource("5_horn")
+max_polyphony = 2
+
+[node name="IgnitionSound" type="AudioStreamPlayer2D" parent="." unique_id=865139699]
+stream = ExtResource("6_ignition")
+
+[node name="ReverseSound" type="AudioStreamPlayer2D" parent="." unique_id=1971816024]
+stream = ExtResource("7_reverse")
+volume_db = -8.0
+
+[node name="SirenSound" type="AudioStreamPlayer2D" parent="." unique_id=305048068]
+stream = ExtResource("8_siren")
+volume_db = -10.0
+
+[node name="RadioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=765548808]
+volume_db = -6.0
+
+[node name="Radio" type="Node" parent="." unique_id=318012515]
+script = ExtResource("2_radio")
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1077600029]
+z_index = 10
+offset_left = -40.0
+offset_top = -28.0
+offset_right = -40.0
+offset_bottom = -28.0
+text = "HP"

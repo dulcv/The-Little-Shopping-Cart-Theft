@@ -3,6 +3,9 @@ extends CharacterBody2D
 const SPEED = 100.0 # Velocidad de paso
 const RUN_SPEED = 150.0 # Velocidad aumentada al correr
 const DOUBLE_TAP_TIME = 0.3 # Tiempo máximo (segundos) entre toques para activar carrera
+## Combate cuerpo a cuerpo: también abolla coches (grupo "vehicles") y enemigos.
+const MELEE_DAMAGE = 8
+const MELEE_RANGE = 36.0
 
 const DIRECTION_KEYS := {    
 	KEY_W: "up",
@@ -39,6 +42,9 @@ var active_run_dir: String = ""
 var last_pressed_dir: String = ""
 var last_dir_press_time: float = -1.0
 var last_facing_dir: Vector2 = Vector2.RIGHT
+## Sistema de vehículos: coche actual (conduciendo) y cercano (para entrar con E).
+var current_vehicle: Vehicle = null
+var nearby_vehicle: Vehicle = null
 ## Anclaje base del arma según la dirección (sin balanceo de animación).
 ## `_apply_weapon_bob()` le suma el BODY_BOB del frame actual cada tick.
 var _weapon_base_pos: Vector2 = Vector2(6, 2)
@@ -79,6 +85,38 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	# Si va conduciendo: sigue al coche, E para salir, Espacio/Click dispara
+	# en drive-by desde la ventanilla izquierda (jugador y arma ocultos).
+	if current_vehicle != null:
+		if is_instance_valid(current_vehicle):
+			global_position = current_vehicle.global_position
+			velocity = Vector2.ZERO
+			move_and_slide()
+			if has_weapon():
+				var fwd := Vector2.RIGHT.rotated(current_vehicle.rotation)
+				var left := Vector2.UP.rotated(current_vehicle.rotation)
+				var half_w := 9.0
+				if current_vehicle.vehicle_data:
+					half_w = current_vehicle.vehicle_data.body_size.y * 0.5
+				# Boca a la izquierda del coche, un poco adelantada.
+				_weapon_base_pos = left * (half_w + 5.0) + fwd * 4.0
+				weapon.ignore_root = current_vehicle
+				weapon.set_aim_direction(fwd)
+				var trigger_pressed := Input.is_action_pressed("attack") or Input.is_action_pressed("shoot")
+				var trigger_just_pressed := Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("shoot")
+				if trigger_pressed or trigger_just_pressed:
+					weapon.handle_trigger(trigger_pressed, trigger_just_pressed)
+			if Input.is_action_just_pressed("interact"):
+				current_vehicle.exit()
+		else:
+			current_vehicle = null
+		return
+
+	_update_nearby_vehicle()
+	if Input.is_action_just_pressed("interact") and nearby_vehicle != null:
+		nearby_vehicle.enter(self)
+		return
+
 	# Gestión de combate unificada con tecla de ataque (Espacio):
 	# - Con arma: dispara proyectiles
 	# - Sin arma: ejecuta ataque cuerpo a cuerpo
@@ -95,6 +133,7 @@ func _physics_process(_delta: float) -> void:
 			velocity = Vector2.ZERO
 			animated_sprite.play("attack")
 			_play_melee_sound()
+			_deal_melee_hit()
 			move_and_slide()
 			return
 
@@ -247,6 +286,27 @@ func unequip_weapon() -> WeaponData:
 func has_weapon() -> bool:
 	return weapon != null and weapon.weapon_data != null
 
+## Golpe cuerpo a cuerpo: daña lo que esté delante (coches y enemigos).
+## Sin esto los puños solo eran animación + sonido.
+func _deal_melee_hit() -> void:
+	var facing := last_facing_dir
+	if facing == Vector2.ZERO:
+		facing = Vector2.RIGHT
+	for group in ["vehicles", "enemies"]:
+		for node in get_tree().get_nodes_in_group(group):
+			if node == self or not (node is Node2D):
+				continue
+			var target := node as Node2D
+			var to := target.global_position - global_position
+			var dist := to.length()
+			if dist > MELEE_RANGE:
+				continue
+			# Debe estar delante; pegado al morro vale en cualquier dirección.
+			if dist > 16.0 and to.normalized().dot(facing) < 0.1:
+				continue
+			if node.has_method("take_damage"):
+				node.take_damage(MELEE_DAMAGE)
+
 ## Reproduce el sonido del golpe cuerpo a cuerpo (hit.mp3).
 func _play_melee_sound() -> void:
 	if melee_sound == null:
@@ -258,3 +318,35 @@ func _play_melee_sound() -> void:
 func take_damage(_amount: int) -> void:
 	# Hook para sistema de salud y animaciones de impacto (Fase 6)
 	pass
+
+# ------------------------------------------------------------------
+# API de vehículos (la llama Vehicle.enter/exit)
+# ------------------------------------------------------------------
+
+## Busca el coche libre más cercano (radio 44 px) para entrar con E.
+func _update_nearby_vehicle() -> void:
+	nearby_vehicle = null
+	var best := 44.0
+	for node in get_tree().get_nodes_in_group("vehicles"):
+		if node is Vehicle and (node as Vehicle).can_be_entered():
+			var d := global_position.distance_to((node as Node2D).global_position)
+			if d < best:
+				best = d
+				nearby_vehicle = node as Vehicle
+
+func on_enter_vehicle(vehicle: Vehicle) -> void:
+	current_vehicle = vehicle
+	# Se oculta todo (pollo + arma); el drive-by sigue operativo.
+	visible = false
+	if weapon:
+		weapon.ignore_root = vehicle
+	$CollisionShape2D.set_deferred("disabled", true)
+	velocity = Vector2.ZERO
+
+func on_exit_vehicle(pos: Vector2) -> void:
+	global_position = pos
+	current_vehicle = null
+	visible = true
+	if weapon:
+		weapon.ignore_root = null
+	$CollisionShape2D.set_deferred("disabled", false)

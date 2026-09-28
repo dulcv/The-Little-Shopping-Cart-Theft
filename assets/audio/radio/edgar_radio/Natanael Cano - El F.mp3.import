@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wuyj7c4jjbwi"
+path="res://.godot/imported/Natanael Cano - El F.mp3-bbd66f2da30225489a1cd4392c7a3a92.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/radio/edgar_radio/Natanael Cano - El F.mp3"
+dest_files=["res://.godot/imported/Natanael Cano - El F.mp3-bbd66f2da30225489a1cd4392c7a3a92.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
