@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cxwbv2lkh8mqo" path="res://scenes/weapons/bullet.tscn" id="1_i4ekl"]
 [ext_resource type="Script" uid="uid://qecw7f2gwko6" path="res://scripts/systems/weapons/weapon_data.gd" id="1_weapon_script"]
 [ext_resource type="Texture2D" uid="uid://b175cqnmld88l" path="res://assets/sprites/guns/Pistol.png" id="2_pistol_tex"]
-[ext_resource type="AudioStream" uid="uid://b080c834wklly" path="res://assets/audio/sfx/guns/pistol.mp3" id="3_pistol_sound"]
+[ext_resource type="AudioStream" uid="uid://dsd2gwq1ua6vm" path="res://assets/audio/sfx/guns/pistol.mp3" id="3_pistol_sound"]
 
 [resource]
 script = ExtResource("1_weapon_script")

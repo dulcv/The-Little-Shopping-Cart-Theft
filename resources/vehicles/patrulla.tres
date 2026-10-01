@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="VehicleData" format=3]
 
 [ext_resource type="Script" path="res://scripts/systems/vehicles/vehicle_data.gd" id="1_vehicle"]
-[ext_resource type="SpriteFrames" path="res://resources/vehicles/coche_azul_sprite_frames.tres" id="2_frames"]
+[ext_resource type="SpriteFrames" path="res://resources/vehicles/patrulla_sprite_frames.tres" id="2_frames"]
 [ext_resource type="AudioStream" uid="uid://b456ilh7bmem6" path="res://assets/audio/sfx/auto/choque.mp3" id="3_crash"]
 [ext_resource type="AudioStream" uid="uid://bacymgry2pb3m" path="res://assets/audio/sfx/auto/abrir_puerta.mp3" id="4_door"]
 [ext_resource type="AudioStream" uid="uid://calxl4n6m0twb" path="res://assets/audio/sfx/auto/claxon.mp3" id="5_horn"]
@@ -14,7 +14,7 @@
 script = ExtResource("1_vehicle")
 id = "patrulla"
 vehicle_name = "Patrulla"
-description = "Rápido pero frágil. Ideal para persecuciones. Textura propia pendiente: usa la azul teñida."
+description = "Rápido pero frágil. Ideal para persecuciones. Sprites propios + sirena."
 max_speed = 280.0
 reverse_speed = 100.0
 accel = 340.0
@@ -26,7 +26,9 @@ ram_damage = 20
 crash_min_speed = 120.0
 crash_factor = 14.0
 sprite_frames = ExtResource("2_frames")
-sprite_tint = Color(0.82, 0.88, 1, 1)
+enable_paint_shader = false
+paint_color = Color(0.85, 0.85, 0.88, 1)
+use_random_paint = false
 crash_sound = ExtResource("3_crash")
 explosion_sound = ExtResource("3_crash")
 door_sound = ExtResource("4_door")
@@ -35,5 +37,6 @@ ignition_sound = ExtResource("6_ign")
 ignition_alt_sound = ExtResource("7_ign2")
 reverse_sound = ExtResource("8_rev")
 siren_sound = ExtResource("9_siren")
+siren_enabled = true
 body_color = Color(0.9, 0.9, 0.95, 1)
 body_size = Vector2(30, 20)

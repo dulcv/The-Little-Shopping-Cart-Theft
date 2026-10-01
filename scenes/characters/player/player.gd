@@ -50,6 +50,10 @@ var nearby_vehicle: Vehicle = null
 var _weapon_base_pos: Vector2 = Vector2(6, 2)
 
 func _ready() -> void:
+	# Top-down: sin este modo el CharacterBody trata los laterales como
+	# suelo/techo y se queda pegado al deslizar por muros y coches.
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	safe_margin = 0.1
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	if weapon:
 		weapon.set_aim_direction(last_facing_dir)

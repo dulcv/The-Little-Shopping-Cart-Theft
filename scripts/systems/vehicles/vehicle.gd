@@ -21,6 +21,21 @@ enum DamageState { PRISTINE, SMOKING, CRITICAL, WRECKED }
 
 @export var vehicle_data: VehicleData
 
+## Shader de repintado (opción A): solo tiñe la carrocería azul.
+const PAINT_SHADER: Shader = preload("res://assets/shaders/vehicle_paint.gdshader")
+## Paleta default para variedad de tráfico (si el .tres no trae la suya).
+const DEFAULT_PAINT_PALETTE: Array[Color] = [
+	Color(0.3, 0.55, 0.9),   # azul original
+	Color(0.9, 0.16, 0.16),  # rojo
+	Color(0.95, 0.75, 0.15), # amarillo taxi
+	Color(0.2, 0.7, 0.3),    # verde
+	Color(0.6, 0.3, 0.85),   # morado
+	Color(0.9, 0.45, 0.15),  # naranja
+	Color(0.85, 0.85, 0.88), # blanco
+	Color(0.15, 0.15, 0.18), # negro
+	Color(0.5, 0.5, 0.55),   # gris
+]
+
 var current_hp: int = 100
 var max_hp: int = 100
 var damage_state: int = DamageState.PRISTINE
@@ -28,6 +43,10 @@ var damage_state: int = DamageState.PRISTINE
 var speed: float = 0.0
 var driver: Node2D = null
 var is_wrecked: bool = false
+## Color de pintura actualmente aplicado por shader.
+var current_paint: Color = Color(0.3, 0.55, 0.9)
+## Interruptor de sirena de esta instancia (se inicializa desde vehicle_data).
+var siren_on: bool = false
 
 var _crash_cooldown: float = 0.0
 var _ram_cooldown: float = 0.0
@@ -68,6 +87,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				radio.next_station()
 		elif event.is_action_pressed("horn") or _is_key(event, KEY_H):
 			play_horn()
+		elif event.is_action_pressed("siren") or _is_key(event, KEY_G):
+			toggle_siren()
 
 ## Compara tecla física/lógica (vale para layouts que no reportan physical).
 func _is_key(event: InputEvent, code: Key) -> bool:
@@ -90,6 +111,11 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	add_to_group("vehicles")
+	# Top-down: evita que el coche (y el jugador al rozarlo) se quede
+	# pegado al deslizar por laterales. Sin esto el motor clasifica el
+	# contacto como suelo/techo y frena en seco.
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	safe_margin = 0.1
 	_apply_collision_layers()
 	if vehicle_data:
 		_setup_from_data()
@@ -112,11 +138,18 @@ func _apply_collision_layers() -> void:
 func _setup_from_data() -> void:
 	max_hp = vehicle_data.max_hp
 	current_hp = max_hp
+	siren_on = vehicle_data.siren_enabled
 	if car_sprite:
 		if vehicle_data.sprite_frames:
 			car_sprite.sprite_frames = vehicle_data.sprite_frames
-		car_sprite.modulate = vehicle_data.sprite_tint
 		car_sprite.speed_scale = vehicle_data.sprite_speed_scale
+		# Legacy: si un .tres viejo solo trae sprite_tint, se respeta como
+		# modulate para no romperlo. El shader es el repintado principal.
+		if vehicle_data.sprite_tint != Color.WHITE:
+			car_sprite.modulate = vehicle_data.sprite_tint
+		else:
+			car_sprite.modulate = Color.WHITE
+		_apply_paint()
 	# Los .tres solo traen stream si el coche tiene sonido propio;
 	# si es null se conserva el default de vehicle.tscn (sfx/auto/).
 	if vehicle_data.engine_sound and engine_sound:
@@ -136,6 +169,51 @@ func _setup_from_data() -> void:
 		reverse_sound.stream = vehicle_data.reverse_sound
 	if vehicle_data.siren_sound and siren_sound:
 		siren_sound.stream = vehicle_data.siren_sound
+
+# ------------------------------------------------------------------
+# Pintura por shader (opción A)
+# ------------------------------------------------------------------
+
+## Elige el color inicial según vehicle_data y crea el ShaderMaterial único.
+func _apply_paint() -> void:
+	if car_sprite == null or vehicle_data == null:
+		return
+	# Coches con librea propia (ej. patrulla): sin shader, sprite tal cual.
+	if not vehicle_data.enable_paint_shader:
+		car_sprite.material = null
+		car_sprite.modulate = vehicle_data.sprite_tint
+		current_paint = Color.WHITE
+		return
+	var col: Color = vehicle_data.paint_color
+	if vehicle_data.use_random_paint:
+		col = pick_random_paint()
+	# Compat: si el .tres no define paint (azul default) pero sí sprite_tint
+	# legacy, se usa el tint como pintura para no perder patrulla/camioneta viejos.
+	if not vehicle_data.use_random_paint and _is_default_blue(col) \
+			and vehicle_data.sprite_tint != Color.WHITE:
+		col = vehicle_data.sprite_tint
+	set_paint_color(col)
+
+## Aplica un color de carrocería en runtime (tráfico, garaje, debug).
+## Crea un ShaderMaterial propio por coche para no compartir color entre instancias.
+func set_paint_color(col: Color) -> void:
+	current_paint = col
+	if car_sprite == null:
+		return
+	# Material único por instancia: si se compartiera, todos cambiarían de color.
+	var mat := ShaderMaterial.new()
+	mat.shader = PAINT_SHADER
+	mat.set_shader_parameter("paint_color", col)
+	car_sprite.material = mat
+
+## Color aleatorio de la paleta del .tres (o de la default si viene vacía).
+func pick_random_paint() -> Color:
+	if vehicle_data != null and not vehicle_data.paint_palette.is_empty():
+		return vehicle_data.paint_palette[randi() % vehicle_data.paint_palette.size()]
+	return DEFAULT_PAINT_PALETTE[randi() % DEFAULT_PAINT_PALETTE.size()]
+
+func _is_default_blue(col: Color) -> bool:
+	return col.is_equal_approx(Color(0.3, 0.55, 0.9))
 
 # ------------------------------------------------------------------
 # Conductor: jugador o NPC
@@ -259,10 +337,11 @@ func _drive(delta: float, throttle: float, steer: float) -> void:
 	speed = move_toward(speed, target, rate * delta)
 
 	# Freno de mano: aparcado o destruido = clavado, nadie lo empuja.
+	# Sin move_and_slide: antes vibraba con el jugador en contacto y lo
+	# atrapaba al pasar por debajo. Quieto actúa como muro estático.
 	if is_wrecked or driver == null:
 		speed = 0.0
-		velocity = velocity.move_toward(Vector2.ZERO, vehicle_data.brake * 2.0 * delta)
-		move_and_slide()
+		velocity = Vector2.ZERO
 		return
 
 	# Solo gira si hay movimiento (y menos marcha atrás)
@@ -446,11 +525,12 @@ func _update_reverse_sound() -> void:
 		if reverse_sound.playing:
 			reverse_sound.stop()
 
-## La patrulla lleva sirena sonando mientras está en servicio.
+## Sirena en loop mientras hay conductor, no está destruido y el .tres
+## trae siren_enabled = true (ej. patrulla). Interruptor en runtime con set_siren_enabled().
 func _update_siren_sound() -> void:
 	if siren_sound == null:
 		return
-	var on := driver != null and not is_wrecked and _is_police()
+	var on := driver != null and not is_wrecked and is_siren_enabled()
 	if on:
 		if not siren_sound.playing:
 			siren_sound.play()
@@ -458,8 +538,21 @@ func _update_siren_sound() -> void:
 		if siren_sound.playing:
 			siren_sound.stop()
 
-func _is_police() -> bool:
-	return vehicle_data != null and vehicle_data.id == "patrulla"
+func is_siren_enabled() -> bool:
+	return siren_on
+
+## Interruptor de sirena en runtime (ej. patrulla NPC que inicia persecución).
+## Usa variable de instancia para no mutar el .tres compartido.
+func set_siren_enabled(on: bool) -> void:
+	siren_on = on
+	_update_siren_sound()
+
+## G (conductor jugador): alterna la sirena si el coche la equipa
+## (siren_enabled en el .tres, ej. patrulla). En un sedán no hace nada.
+func toggle_siren() -> void:
+	if vehicle_data == null or not vehicle_data.siren_enabled:
+		return
+	set_siren_enabled(not siren_on)
 
 func _play_crash_sound(impact: float) -> void:
 	if crash_sound == null:

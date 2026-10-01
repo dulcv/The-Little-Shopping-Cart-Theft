@@ -44,10 +44,21 @@ extends Resource
 ## avanzar_critico, retroceder_critico, explosion.
 ## Si es null se usa el fallback de color (coches sin textura todavía).
 @export var sprite_frames: SpriteFrames
-## Tin­te temporal para reutilizar una textura en varios coches
-## (ej. patrulla/camioneta usan la azul hasta tener la suya).
+## Tinte legacy (modulate). Se mantiene por compatibilidad, pero el
+## repintado principal lo hace el shader vehicle_paint.gdshader.
 @export var sprite_tint: Color = Color.WHITE
 @export var sprite_speed_scale: float = 1.0
+
+@export_group("Pintura (shader vehicle_paint)")
+## Si false, no se aplica shader (coches con librea propia, ej. patrulla).
+@export var enable_paint_shader: bool = true
+## Color de carrocería aplicado por shader (solo píxeles azules).
+## Vidrios/llantas/humo/explosión no se tiñen.
+@export var paint_color: Color = Color(0.3, 0.55, 0.9)
+## Si true, cada instancia elige un color aleatorio de paint_palette al spawnear.
+@export var use_random_paint: bool = false
+## Paleta para variedad de tráfico. Si está vacía se usa la default de vehicle.gd.
+@export var paint_palette: Array[Color] = []
 
 @export_group("Audio")
 ## Todos opcionales: si es null, vehicle.gd usa el default de sfx/auto/.
@@ -62,6 +73,8 @@ extends Resource
 @export var ignition_alt_sound: AudioStream
 @export var reverse_sound: AudioStream
 @export var siren_sound: AudioStream
+## Interruptor de sirena: si true, suena en loop mientras hay conductor y no está destruido.
+@export var siren_enabled: bool = false
 
 @export_group("Fallback (coches sin textura)")
 @export var body_color: Color = Color(0.3, 0.55, 0.9)
