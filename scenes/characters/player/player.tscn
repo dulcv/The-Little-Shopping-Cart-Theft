@@ -3,7 +3,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cpuabko7vhbrl" path="res://scenes/characters/player/player1_sprite_frames.tres" id="1_7uws0"]
 [ext_resource type="Script" uid="uid://b86friopbhx41" path="res://scenes/characters/player/player.gd" id="1_t61fv"]
 [ext_resource type="PackedScene" uid="uid://b8y4g7kpmg31q" path="res://scenes/weapons/weapon.tscn" id="3_weapon"]
-[ext_resource type="Resource" path="res://resources/weapons/pistol.tres" id="4_pistol"]
+[ext_resource type="Resource" uid="uid://dyewtvdurpqdx" path="res://resources/weapons/pistol.tres" id="4_pistol"]
 [ext_resource type="AudioStream" uid="uid://cb7eik1vvvfsb" path="res://assets/audio/sfx/guns/hit.mp3" id="5_hit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enuon"]
@@ -22,14 +22,14 @@ shape = SubResource("RectangleShape2D_enuon")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=393972347]
 texture_filter = 1
 sprite_frames = ExtResource("1_7uws0")
-animation = &"run"
-frame = 2
-frame_progress = 0.38617736
+animation = &"idle_down"
+frame = 1
+frame_progress = 0.22330022
 
 [node name="Weapon" parent="." unique_id=1939751598 instance=ExtResource("3_weapon")]
 position = Vector2(6, 2)
 
-[node name="MeleeSound" type="AudioStreamPlayer2D" parent="."]
+[node name="MeleeSound" type="AudioStreamPlayer2D" parent="." unique_id=2075222443]
 stream = ExtResource("5_hit")
 max_polyphony = 2
 

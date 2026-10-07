@@ -1,12 +1,12 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dm6jv8x1c2enl"]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/avanzar_critico.png" id="1_acr"]
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/avanzar_humo.png" id="1_ahu"]
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/avanzar.png" id="1_av"]
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/explosion.png" id="1_exp"]
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/retroceder_critico.png" id="1_rcr"]
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/retroceder.png" id="1_re"]
-[ext_resource type="Texture2D" path="res://assets/sprites/vehicles/patrulla/retroceder_humo.png" id="1_rhu"]
+[ext_resource type="Texture2D" uid="uid://cs02g6vh4i3ne" path="res://assets/sprites/vehicles/patrulla/avanzar_critico.png" id="1_acr"]
+[ext_resource type="Texture2D" uid="uid://u1el8d2rfenp" path="res://assets/sprites/vehicles/patrulla/avanzar_humo.png" id="1_ahu"]
+[ext_resource type="Texture2D" uid="uid://culs8pfq4tdc0" path="res://assets/sprites/vehicles/patrulla/avanzar.png" id="1_av"]
+[ext_resource type="Texture2D" uid="uid://binyqcdwp8026" path="res://assets/sprites/vehicles/patrulla/explosion.png" id="1_exp"]
+[ext_resource type="Texture2D" uid="uid://dmgadmfhanyms" path="res://assets/sprites/vehicles/patrulla/retroceder_critico.png" id="1_rcr"]
+[ext_resource type="Texture2D" uid="uid://l044gdm21ewt" path="res://assets/sprites/vehicles/patrulla/retroceder.png" id="1_re"]
+[ext_resource type="Texture2D" uid="uid://cdnt4x3tycp7r" path="res://assets/sprites/vehicles/patrulla/retroceder_humo.png" id="1_rhu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nh0g4"]
 atlas = ExtResource("1_av")

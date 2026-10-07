@@ -19,13 +19,22 @@ const DIRECTION_KEYS := {
 }
 
 ## Balanceo vertical del cuerpo dibujado dentro de cada frame del sprite
-## (medido del arte: el pollo baja/sube 1 px según el frame). El arma suma
+## (medido del arte con bounding box por frame). El arma suma
 ## este mismo desplazamiento para no parecer flotante.
 ## Clave = nombre de animación, valor = offset Y por frame.
+## Medido: idle [2,2,3,3,3], idle_up [1,1,2,2] (baja 1), idle_down
+## bot [19,19,18,18] (SUBE 1 -> negativo), walk [2,1,1,2],
+## walk_up top [1,0,1,0] (alterno), walk_down bot [19,20,19,20] (alterno).
 const BODY_BOB := {
 	&"idle": [0, 0, 1, 1, 1],
+	&"idle_up": [0, 0, 1, 1],
+	&"idle_down": [0, 0, -1, -1],
 	&"walk": [0, -1, -1, 0],
 	&"run": [0, -1, -1, 0],
+	&"walk_up": [0, -1, 0, -1],
+	&"run_up": [0, -1, 0, -1],
+	&"walk_down": [0, 1, 0, 1],
+	&"run_down": [0, 1, 0, 1],
 }
 
 @export_group("Equipamiento")
@@ -183,22 +192,40 @@ func _physics_process(_delta: float) -> void:
 	if direction:
 		if is_running:
 			velocity = direction * RUN_SPEED
-			animated_sprite.play("run")
+			animated_sprite.play(_get_vertical_anim(&"run_up", &"run_down", &"run"))
 		else:
 			velocity = direction * SPEED
-			animated_sprite.play("walk")
+			animated_sprite.play(_get_vertical_anim(&"walk_up", &"walk_down", &"walk"))
 
-		# Voltea el sprite horizontalmente según la dirección
+		# Vista lateral: volteo horizontal. Vista vertical (up/down): se
+		# resetean los volteos para que la vista trasera/frontal de
+		# walking_up.png se vea centrada y no invertida.
 		if direction.x != 0.0:
 			animated_sprite.flip_h = direction.x < 0.0
+			animated_sprite.flip_v = false
+		else:
+			animated_sprite.flip_h = false
+			animated_sprite.flip_v = false
 	else:
-		# Detiene al personaje inmediatamente al soltar los controles
+		# Detiene al personaje inmediatamente al soltar los controles.
+		# Idle direccional: usa idle_up / idle_down si mira en vertical.
 		velocity = Vector2.ZERO
 		is_running = false
 		active_run_dir = ""
-		animated_sprite.play("idle")
+		animated_sprite.play(_get_vertical_anim(&"idle_up", &"idle_down", &"idle"))
 
 	move_and_slide()
+
+## Elige la animación de desplazamiento según el eje del movimiento.
+## Vertical: usa walk_up/run_up al subir y reutiliza esos mismos frames
+## al bajar (walk_down/run_down). Sin volteo vertical (flip_v) porque
+## invertiría cabeza/patas; se resetean los flips para una vista limpia.
+func _get_vertical_anim(up_anim: StringName, down_anim: StringName, side_anim: StringName) -> StringName:
+	if last_facing_dir.y < -0.4:
+		return up_anim
+	if last_facing_dir.y > 0.4:
+		return down_anim
+	return side_anim
 
 func _is_dir_pressed(dir: String) -> bool:
 	match dir:
@@ -219,8 +246,9 @@ func _on_animation_finished() -> void:
 ## Ajusta la profundidad visual (Z-index / behind parent) y el anclaje del arma según la dirección.
 ## El pollo mide ~20x21 px (vista lateral, pico a la derecha, ala en X=±6).
 ## El agarre lateral va a Y≈2 (pecho/ala, por debajo del pico y la barbilla)
-## para que el cañón no tape la cara; arriba Y≈-3 (detrás de la cabeza),
-## abajo Y≈3 (por delante del cuerpo).
+## para que el cañón no tape la cara; en vertical (up/down) el arma va
+## DETRÁS del cuerpo (up Y≈-3, down Y≈3, más tuck en armas largas) para
+## que el cuerpo del arma quede tapado y solo asome el cañón.
 ## El origen del nodo Weapon es el punto de agarre (empuñadura/gatillo del
 ## arma, NO la culata trasera): cada arma define su agarre con hold_offset
 ## según su tamaño, así la culata larga de los rifles queda apoyada dentro
@@ -229,8 +257,18 @@ func _update_weapon_visual_depth() -> void:
 	if not weapon:
 		return
 
-	# Al mirar hacia arriba, el arma se dibuja detrás de la cabeza del pollo
-	if last_facing_dir.y < -0.4:
+	# El arma siempre visible en las 4 direcciones (ya hay sprites
+	# verticales del pollo). Sin early-return: antes se ocultaba en
+	# vertical y al volver a horizontal no se recolocaba hasta moverse.
+	weapon.visible = weapon.weapon_data != null
+	if weapon.weapon_data == null:
+		return
+
+	# En vertical (up/down) el arma va DETRÁS del pollo para que el
+	# cuerpo del arma quede tapado y solo asome el cañón por arriba
+	# (up) o por abajo (down). En lateral va delante.
+	var is_vertical := last_facing_dir.y < -0.4 or last_facing_dir.y > 0.4
+	if is_vertical:
 		weapon.show_behind_parent = true
 	else:
 		weapon.show_behind_parent = false
@@ -239,6 +277,12 @@ func _update_weapon_visual_depth() -> void:
 	# quede sobre el ala correspondiente y no flotando fuera del sprite.
 	# (El movimiento es de 4 direcciones, pero se conservan las ramas
 	# diagonales por si alguna otra entidad reutiliza esta lógica.)
+	# En vertical las armas largas se hunden un poco (+tuck) para que el
+	# cuerpo largo quede tapado tras el pollo y solo asome el cañón.
+	# tuck = 0 en pistola (muzzle 9px), ~+2.7 en rifle (muzzle 18px).
+	var tuck := 0.0
+	if is_vertical and weapon.weapon_data != null:
+		tuck = clampf((float(weapon.weapon_data.muzzle_offset.x) - 9.0) * 0.3, 0.0, 3.0)
 	var pos := Vector2.ZERO
 	if last_facing_dir.x > 0.4:
 		pos.x = 6.0
@@ -248,9 +292,9 @@ func _update_weapon_visual_depth() -> void:
 		pos.x = 0.0
 
 	if last_facing_dir.y < -0.4:
-		pos.y = -3.0
+		pos.y = -3.0 + tuck
 	elif last_facing_dir.y > 0.4:
-		pos.y = 3.0
+		pos.y = 3.0 + tuck
 	else:
 		pos.y = 2.0
 
@@ -283,7 +327,9 @@ func equip_weapon(data: WeaponData) -> void:
 ## Desequipa el arma actual y la retorna
 func unequip_weapon() -> WeaponData:
 	if weapon:
-		return weapon.unequip_weapon()
+		var prev := weapon.unequip_weapon()
+		_update_weapon_visual_depth()
+		return prev
 	return null
 
 ## Comprueba si el personaje tiene un arma lista para disparar
@@ -353,4 +399,12 @@ func on_exit_vehicle(pos: Vector2) -> void:
 	visible = true
 	if weapon:
 		weapon.ignore_root = null
+		# El drive-by dejó _weapon_base_pos / rotación apuntando al
+		# frente del coche; si no se restaura aquí, el arma aparece
+		# desplazada hasta que el jugador vuelve a moverse.
+		weapon.set_aim_direction(last_facing_dir)
+		_update_weapon_visual_depth()
+	# Refresca el idle direccional (idle_up/idle_down) tras salir.
+	if animated_sprite and not is_attacking:
+		animated_sprite.play(_get_vertical_anim(&"idle_up", &"idle_down", &"idle"))
 	$CollisionShape2D.set_deferred("disabled", false)

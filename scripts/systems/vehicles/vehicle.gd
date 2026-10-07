@@ -236,6 +236,9 @@ func enter(body: Node2D) -> bool:
 	speed = 0.0
 	driver_entered.emit(driver)
 	_play_door()
+	# Si se reentra rápido, el encendido anterior puede seguir sonando:
+	# se corta y se relanza para no solapar dos instancias.
+	_stop_ignition()
 	_play_ignition()
 	if radio:
 		radio.start()
@@ -257,6 +260,9 @@ func exit() -> void:
 		exiting.on_exit_vehicle(exit_pos)
 	driver_exited.emit(exiting)
 	_play_door()
+	# Al salir, el encendido (one-shot de ~1-2 s) no debe seguir sonando:
+	# en entradas/salidas rápidas quedaba colgado por un tiempo.
+	_stop_ignition()
 	if radio:
 		radio.stop()
 	_update_engine_sound()
@@ -577,6 +583,11 @@ func _play_ignition() -> void:
 		ignition_sound.stream = vehicle_data.ignition_sound
 	ignition_sound.pitch_scale = randf_range(0.95, 1.05)
 	ignition_sound.play()
+
+## Corta el sonido de encendido (salida rápida o reentrada).
+func _stop_ignition() -> void:
+	if ignition_sound and ignition_sound.playing:
+		ignition_sound.stop()
 
 func play_horn() -> void:
 	if horn_sound == null or is_wrecked:
