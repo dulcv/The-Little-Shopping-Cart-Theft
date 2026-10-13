@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NPCVariant" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/npcs/npc_variant.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "gallo_negro"
+plume_color = Color(0.12, 0.11, 0.14, 1)
+spot_color = Color(0.35, 0.1, 0.1, 1)
+spot_amount = 0.25
+scale_mult = 1.15
+speed_mult = 1.2
+max_hp = 50
+money_min = 10
+money_max = 30
+dialogue_pool = Array[String](["gallo_amenaza", "gallo_pelea"])

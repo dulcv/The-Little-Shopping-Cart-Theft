@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NPCVariant" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/npcs/npc_variant.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "civil"
+plume_color = Color(1, 1, 1, 1)
+spot_color = Color(0.4, 0.25, 0.15, 1)
+spot_amount = 0.4
+scale_mult = 1.0
+speed_mult = 1.0
+max_hp = 30
+money_min = 5
+money_max = 20
+dialogue_pool = Array[String](["civil_saludo", "civil_rumor"])

@@ -82,3 +82,21 @@ func equip_weapon(data: WeaponData) -> void  # ya existe en player.gd
 ## Grupos Godot
 
 - `"vehicles"` (ya usado por `npc_driver.gd`), `"npcs"`, `"enemies"`, `"police"`, `"pickups"`.
+
+## Añadido trama v1 (Dúo + Evidencias + Doble alerta)
+
+```gdscript
+# GameManager amplía (sin romper selected_character):
+var selected_ids: Array[String] = ["edgar"]
+var is_duo: bool = false  # true = Edgar+Dulce juntos
+signal duo_changed(is_duo: bool)
+# Evidencias:
+signal evidence_added(id: String)
+func add_evidence(ev: EvidenceData) -> void
+func has_evidence(id: String) -> bool
+# Doble notoriedad (guardia = huevos existentes, federacion = nuevo):
+signal federacion_changed(level: int)
+func add_federacion(n: int, reason: String) -> void
+```
+
+`EvidenceData.Kind`: `CASSETTE, LEDGER, PHOTO, FLIGHT_LOG` (ver doc 11). Diálogos usan `PLACEHOLDER_*`.
