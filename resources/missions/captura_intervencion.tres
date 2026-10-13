@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MissionData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/missions/mission_data.gd" id="1_mission_data"]
+
+[resource]
+script = ExtResource("1_mission_data")
+mission_id = "captura_intervencion"
+title = "PLACEHOLDER_titulo"
+description = "PLACEHOLDER_descripcion"
+requisito_evidencia = "ev_flight_pienso"
+zone = "PLACEHOLDER_zona"
+objective = "PLACEHOLDER_objetivo"
+reward_maiz = 30
