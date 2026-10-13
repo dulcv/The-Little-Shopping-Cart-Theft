@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/dialogue/dialogue_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "insulto_gallos"
+lines = Array[Dictionary]([{"emotion": "PLACEHOLDER_emocion_burla", "speaker": "PLACEHOLDER_gallo", "text": "PLACEHOLDER_insulto_gallos_1 {alias}, lárgate de {zona}."}, {"emotion": "PLACEHOLDER_emocion_amenaza", "speaker": "PLACEHOLDER_gallo", "text": "PLACEHOLDER_insulto_gallos_2"}])

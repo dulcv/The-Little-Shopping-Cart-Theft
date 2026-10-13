@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/dialogue/dialogue_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "alto_policia"
+lines = Array[Dictionary]([{"emotion": "PLACEHOLDER_emocion_autoridad", "speaker": "PLACEHOLDER_policia", "text": "PLACEHOLDER_alto_policia_1 ¡Alto ahí, {alias}! Esto es {zona}."}, {"emotion": "PLACEHOLDER_emocion_orden", "speaker": "PLACEHOLDER_policia", "text": "PLACEHOLDER_alto_policia_2"}])
