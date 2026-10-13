@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bofh2c754p1ov"
-path="res://.godot/imported/Sprite-ChickenAttack-Sheet.png-35c4c1ba78cf9e0345db38b46337ca5e.ctex"
+uid="uid://8ni81rbx7bub"
+path="res://.godot/imported/EdgarWalking.png-accce2860f146375375a6e8588d0d8c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/player/Sprite-ChickenAttack-Sheet.png"
-dest_files=["res://.godot/imported/Sprite-ChickenAttack-Sheet.png-35c4c1ba78cf9e0345db38b46337ca5e.ctex"]
+source_file="res://assets/sprites/characters/Edgar/EdgarWalking.png"
+dest_files=["res://.godot/imported/EdgarWalking.png-accce2860f146375375a6e8588d0d8c9.ctex"]
 
 [params]
 
