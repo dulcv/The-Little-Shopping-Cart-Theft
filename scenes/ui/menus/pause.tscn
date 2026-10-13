@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/menus/pause.gd" id="1_pause"]
+[ext_resource type="Font" path="res://assets/fonts/BoldPixels.ttf" id="2_font"]
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_pause")
+
+[node name="Panel" type="Control" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+text = "PLACEHOLDER_pausa"
+horizontal_alignment = 1
+
+[node name="Center" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Center"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BtnResume" type="Button" parent="Panel/Center/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_seguir"
+
+[node name="BtnQuit" type="Button" parent="Panel/Center/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_salir_menu"

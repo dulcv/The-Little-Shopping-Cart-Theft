@@ -1,0 +1,91 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="Font" path="res://assets/fonts/BoldPixels.ttf" id="2_font"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="TopLeft" type="VBoxContainer" parent="."]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 80.0
+theme_override_constants/separation = 2
+
+[node name="HPBar" type="ProgressBar" parent="TopLeft"]
+custom_minimum_size = Vector2(120, 10)
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="TopLeft"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_hp_100_100"
+
+[node name="MoneyLabel" type="Label" parent="TopLeft"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_maiz_0"
+
+[node name="TopRight" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_constants/separation = 2
+
+[node name="EggsLabel" type="Label" parent="TopRight"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_huevos_ooooo"
+horizontal_alignment = 2
+
+[node name="FeathersLabel" type="Label" parent="TopRight"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_plumas_vvvvv"
+horizontal_alignment = 2
+
+[node name="BottomRight" type="VBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -40.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="WeaponLabel" type="Label" parent="BottomRight"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "PLACEHOLDER_arma_ninguna"
+horizontal_alignment = 2
+
+[node name="BottomCenter" type="CenterContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.25
+anchor_top = 1.0
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueLabel" type="Label" parent="BottomCenter"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+horizontal_alignment = 1

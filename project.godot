@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Little Shopping Cart Theft"
-run/main_scene="uid://drb82147etug4"
+run/main_scene="res://scenes/system/boot_root.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
