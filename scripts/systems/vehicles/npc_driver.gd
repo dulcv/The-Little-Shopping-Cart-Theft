@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 	if target:
 		var to: Vector2 = target.global_position - global_position
 		if to.length() < 30.0:
-			target.enter(self)
+			target.enter(self, true)
 			return
 		velocity = to.normalized() * walk_speed
 	else:

@@ -1,13 +1,10 @@
-// Variante de plumaje para pollos NPC (clon del patrón de vehicle_paint.gdshader).
-// Tiñe solo la pluma blanca/gris clara + añade manchas procedurales.
-// Deja intactos pico/patas/cresta (naranjas/rojos saturados) y contornos oscuros.
+// Variante de plumaje para pollos NPC (mismo patrón que vehicle_paint.gdshader).
+// Solo recolorea la pluma blanca/gris clara, deja intactos pico, patas,
+// cresta, contornos, daño y muerte (amarillos/naranjas/rojos saturados).
 // Preserva el sombreado pixel-art transfiriendo S/V relativos al color nuevo.
 shader_type canvas_item;
 
 uniform vec4 plume_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform vec4 spot_color : source_color = vec4(0.4, 0.25, 0.15, 1.0);
-uniform float spot_scale = 12.0;
-uniform float spot_amount : hint_range(0.0, 1.0) = 0.5;
 uniform float plume_amount : hint_range(0.0, 1.0) = 1.0;
 
 // Pluma blanca original: luminancia alta, saturación baja (medido del arte).
@@ -41,12 +38,6 @@ vec3 hsv_to_rgb(vec3 c) {
 	return c.z * mix(vec3(1.0), rgb, c.y);
 }
 
-float hash12(vec2 p) {
-	vec3 p3 = fract(vec3(p.xyx) * 0.1031);
-	p3 += dot(p3, p3.yzx + 33.33);
-	return fract((p3.x + p3.y) * p3.z);
-}
-
 void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
 	vec3 out_rgb = tex.rgb;
@@ -77,14 +68,6 @@ void fragment() {
 			);
 			vec3 repaint = hsv_to_rgb(repaint_hsv);
 			out_rgb = mix(tex.rgb, repaint, clamp(mask * plume_amount, 0.0, 1.0));
-			// Manchas procedurales: celdas hash solo donde hay pluma.
-			if (spot_amount > 0.001) {
-				vec2 cell = floor(UV * spot_scale);
-				float h = hash12(cell);
-				if (h > (1.0 - spot_amount)) {
-					out_rgb = mix(out_rgb, spot_color.rgb, clamp(mask * plume_amount, 0.0, 1.0));
-				}
-			}
 		}
 	}
 	COLOR = vec4(out_rgb, tex.a);

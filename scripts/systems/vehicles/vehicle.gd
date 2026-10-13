@@ -226,7 +226,9 @@ func can_be_entered() -> bool:
 	return not is_wrecked and driver == null
 
 ## Llamado por el jugador/NPC para subir. Retorna false si no se puede.
-func enter(body: Node2D) -> bool:
+## quiet = true: entrada silenciosa de NPC (sin puerta/encendido/radio),
+## para que el tráfico ambiental no suene al spawnear.
+func enter(body: Node2D, quiet: bool = false) -> bool:
 	if not can_be_entered():
 		return false
 	driver = body
@@ -235,6 +237,10 @@ func enter(body: Node2D) -> bool:
 		driver.on_enter_vehicle(self)
 	speed = 0.0
 	driver_entered.emit(driver)
+	if quiet:
+		_update_engine_sound()
+		_update_siren_sound()
+		return true
 	_play_door()
 	# Si se reentra rápido, el encendido anterior puede seguir sonando:
 	# se corta y se relanza para no solapar dos instancias.

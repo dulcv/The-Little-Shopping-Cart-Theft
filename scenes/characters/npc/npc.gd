@@ -43,8 +43,7 @@ func apply_variant(v: NPCVariant) -> void:
 		if is_node_ready():
 			animated_sprite.material = _mat
 	_mat.set_shader_parameter("plume_color", v.plume_color)
-	_mat.set_shader_parameter("spot_color", v.spot_color)
-	_mat.set_shader_parameter("spot_amount", v.spot_amount)
+	_mat.set_shader_parameter("plume_amount", 1.0)
 
 func set_variant(v: NPCVariant) -> void:
 	apply_variant(v)
@@ -199,7 +198,7 @@ func _npc_ai_physics(delta: float) -> void:
 				return
 			_move_toward_point(target_body.global_position, WALK_SPEED * speed_mult, delta)
 			if global_position.distance_to(target_body.global_position) < 24.0:
-				if target_body.has_method("enter") and target_body.call("enter", self):
+				if target_body.has_method("enter") and target_body.call("enter", self, true):
 					_enter_state(NPCState.DRIVE)
 				else:
 					_enter_state(NPCState.IDLE)

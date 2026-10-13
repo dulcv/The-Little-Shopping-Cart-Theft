@@ -1,4 +1,7 @@
-# 02 — Shader Pollos NPC (Agente-Shader)
+# 02 — Shader Pollos NPC (Agente-Shader) — v2 sin manchas
+
+> Clonar patrón de `assets/shaders/vehicle_paint.gdshader:1-68` para pollos. Reutilizar `player1_sprite_frames.tres`, NO duplicar sprites.
+> NOTA v2: se eliminaron las manchas procedurales a petición de diseño; el shader SOLO tiñe la pluma (igual que los coches). Los campos `spot_*` de `NPCVariant` quedan reservados sin uso.
 
 > Clonar patrón de `assets/shaders/vehicle_paint.gdshader:1-68` para pollos. Reutilizar `player1_sprite_frames.tres`, NO duplicar sprites.
 
@@ -17,9 +20,6 @@ Un `chicken_variant.gdshader` que tiña la pluma blanca del pollo + añada manch
 ```glsl
 shader_type canvas_item;
 uniform vec4 plume_color : source_color = vec4(1,1,1,1);
-uniform vec4 spot_color : source_color = vec4(0.4,0.25,0.15,1);
-uniform float spot_scale = 12.0;
-uniform float spot_amount : hint_range(0,1) = 0.5;
 uniform float plume_amount : hint_range(0,1) = 1.0;
 // excluir pico/naranja: si r domina y g medio -> mask=0
 ```
