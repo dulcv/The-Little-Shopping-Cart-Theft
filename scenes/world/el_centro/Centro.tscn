@@ -1043,3 +1043,46 @@ position = Vector2(-162, 20)
 [node name="Vehicle" parent="." unique_id=1483089763 instance=ExtResource("5_7nacd")]
 position = Vector2(307, 22)
 vehicle_data = ExtResource("6_sedan")
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="PlayerSpawn" type="Marker2D" parent="Spawns"]
+position = Vector2(-162, 20)
+
+[node name="CarSpawns" type="Node2D" parent="Spawns"]
+
+[node name="CarSpawn_01" type="Marker2D" parent="Spawns/CarSpawns"]
+position = Vector2(307, 22)
+
+[node name="CarSpawn_02" type="Marker2D" parent="Spawns/CarSpawns"]
+position = Vector2(207, 22)
+
+[node name="PedSpawns" type="Node2D" parent="Spawns"]
+
+[node name="PedSpawn_01" type="Marker2D" parent="Spawns/PedSpawns"]
+position = Vector2(-130, 84)
+
+[node name="PedSpawn_02" type="Marker2D" parent="Spawns/PedSpawns"]
+position = Vector2(-30, 84)
+
+[node name="PedSpawn_03" type="Marker2D" parent="Spawns/PedSpawns"]
+position = Vector2(70, 84)
+
+[node name="PedSpawn_04" type="Marker2D" parent="Spawns/PedSpawns"]
+position = Vector2(170, 84)
+
+[node name="WeaponSpawns" type="Node2D" parent="Spawns"]
+
+[node name="WeaponSpawn_01" type="Marker2D" parent="Spawns/WeaponSpawns"]
+position = Vector2(-50, -60)
+
+[node name="WeaponSpawn_02" type="Marker2D" parent="Spawns/WeaponSpawns"]
+position = Vector2(150, -60)
+
+[node name="PoliceSpawn" type="Marker2D" parent="Spawns"]
+position = Vector2(400, 100)
+
+[node name="Zones" type="Node2D" parent="."]
+
+[node name="WantedClearZone" type="Marker2D" parent="Zones"]
+position = Vector2(0, -150)

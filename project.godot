@@ -75,3 +75,11 @@ siren={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+
+[autoload]
+
+GameManager="*res://scripts/systems/core/game_manager.gd"
+SaveManager="*res://scripts/systems/core/save_manager.gd"
+SceneLoader="*res://scripts/systems/core/scene_loader.gd"
+AudioManager="*res://scripts/systems/core/audio_manager.gd"
+UIManager="*res://scripts/systems/core/ui_manager.gd"
