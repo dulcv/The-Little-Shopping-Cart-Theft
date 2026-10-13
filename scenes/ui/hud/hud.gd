@@ -64,7 +64,7 @@ func bind_player(body: Node) -> void:
 	if body.has_signal("health_changed"):
 		body.connect("health_changed", _set_hp)
 		_bound_health = body
-	var weapon := body.get("weapon")
+	var weapon: Variant = body.get("weapon")
 	if weapon != null and (weapon as Object).has_signal("weapon_equipped"):
 		(weapon as Object).connect("weapon_equipped", _on_weapon_equipped)
 	_refresh_weapon_from(body)

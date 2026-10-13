@@ -6,11 +6,11 @@ extends Node
 signal menu_opened(menu_name: String)
 signal menu_closed(menu_name: String)
 
-var hud: CanvasItem = null
+var hud: CanvasLayer = null
 var _menu_stack: Array[CanvasItem] = []
 
 
-func set_hud(node: CanvasItem) -> void:
+func set_hud(node: CanvasLayer) -> void:
 	hud = node
 
 
