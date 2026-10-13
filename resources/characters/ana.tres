@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/core/character_data.gd" id="1_chardata"]
+[ext_resource type="SpriteFrames" uid="uid://cpuabko7vhbrl" path="res://scenes/characters/player/player1_sprite_frames.tres" id="2_player_frames"]
+[ext_resource type="Resource" uid="uid://dyewtvdurpqdx" path="res://resources/weapons/pistol.tres" id="3_pistol"]
+
+[resource]
+script = ExtResource("1_chardata")
+id = "ana"
+display_name = "Ana"
+alias_llamado = "Voz"
+sprite_frames = ExtResource("2_player_frames")
+max_hp = 100
+speed_mult = 1.0
+starting_weapon = ExtResource("3_pistol")
+description = "Contacto AIA por radio. Ficha placeholder con sprite base del pollo; no jugable en v1."
