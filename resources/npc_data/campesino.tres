@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NPCVariant" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/npcs/npc_variant.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "campesino"
+plume_color = Color(0.75, 0.6, 0.4, 1)
+spot_color = Color(0.4, 0.25, 0.15, 1)
+spot_amount = 0.55
+scale_mult = 1.0
+speed_mult = 0.95
+max_hp = 35
+money_min = 5
+money_max = 15
+dialogue_pool = Array[String](["PLACEHOLDER_campesino_saludo", "PLACEHOLDER_campesino_rumor"])
