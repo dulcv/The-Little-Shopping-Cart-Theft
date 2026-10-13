@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/weapons/weapon_pickup.gd" id="1_weapon_pickup"]
+[ext_resource type="Resource" path="res://resources/weapons/pistol.tres" id="2_pistol"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_weapon"]
+radius = 10.0
+
+[node name="WeaponPickup" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_weapon_pickup")
+data = ExtResource("2_pistol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_weapon")

@@ -41,6 +41,15 @@ const BODY_BOB := {
 ## Arma inicial equipada al iniciar la escena (opcional)
 @export var starting_weapon: WeaponData
 
+## Salud (docs/08-09, PLACEHOLDER): contrato take_damage/heal/is_dead.
+signal health_changed(current: int, maximum: int)
+signal died(who: Node2D, killer: Node)
+
+@export_group("Salud")
+@export var max_hp: int = 100
+var hp: int = 100
+var _dead: bool = false
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var weapon: Weapon = $Weapon
 @onready var melee_sound: AudioStreamPlayer2D = $MeleeSound
@@ -62,6 +71,7 @@ func _ready() -> void:
 	# Top-down: sin este modo el CharacterBody trata los laterales como
 	# suelo/techo y se queda pegado al deslizar por muros y coches.
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	hp = max_hp
 	safe_margin = 0.1
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	if weapon:
@@ -364,10 +374,39 @@ func _play_melee_sound() -> void:
 	melee_sound.pitch_scale = randf_range(0.96, 1.04)
 	melee_sound.play()
 
-## Receptor de daño para proyectiles y ataques
-func take_damage(_amount: int) -> void:
-	# Hook para sistema de salud y animaciones de impacto (Fase 6)
-	pass
+## Receptor de daño para proyectiles y ataques (contrato docs/09).
+func take_damage(amount: int) -> void:
+	if _dead:
+		return
+	hp = maxi(hp - int(amount), 0)
+	health_changed.emit(hp, max_hp)
+	_play_anim_if_exists(&"damage")
+	if hp <= 0:
+		_die(null)
+
+func heal(amount: int) -> void:
+	if _dead:
+		return
+	hp = mini(hp + int(amount), max_hp)
+	health_changed.emit(hp, max_hp)
+
+func is_dead() -> bool:
+	return _dead or hp <= 0
+
+## PLACEHOLDER: muerte sin queue_free (wanted_dead/HUD lo gestionan otros).
+func _die(killer: Node) -> void:
+	if _dead:
+		return
+	_dead = true
+	_play_anim_if_exists(&"die")
+	$CollisionShape2D.set_deferred("disabled", true)
+	died.emit(self, killer)
+
+## Reproduce la animación solo si existe en el SpriteFrames (damage/die).
+func _play_anim_if_exists(anim: StringName) -> void:
+	if animated_sprite and animated_sprite.sprite_frames \
+			and animated_sprite.sprite_frames.has_animation(anim):
+		animated_sprite.play(anim)
 
 # ------------------------------------------------------------------
 # API de vehículos (la llama Vehicle.enter/exit)
