@@ -27,7 +27,7 @@ func _ready() -> void:
 	_player = _find_player()
 	# PLACEHOLDER: si no hay variantes asignadas, intenta cargar las 5 de npc_data.
 	if variant_pool.is_empty():
-		for id in ["civil", "gallos_negros", "guardia", "policia", "campesino"]:
+		for id in ["civil", "gallo_negro", "guardia", "policia", "campesino"]:
 			var v := load("res://resources/npc_data/%s.tres" % id) as NPCVariant
 			if v:
 				variant_pool.append(v)
@@ -36,8 +36,9 @@ func _collect_spawns() -> void:
 	var root := get_tree().current_scene
 	if root == null:
 		return
-	var ped_node := root.get_node_or_null("Spawns/PedSpawns")
-	var car_node := root.get_node_or_null("Spawns/CarSpawns")
+	# Centro cuelga de EscenaPrincipal: búsqueda recursiva (no ruta fija).
+	var ped_node := root.find_child("PedSpawns", true, false)
+	var car_node := root.find_child("CarSpawns", true, false)
 	if ped_node:
 		for c in ped_node.get_children():
 			if c is Marker2D:
@@ -66,7 +67,7 @@ func _find_player() -> Node2D:
 		return p
 	var root := get_tree().current_scene
 	if root:
-		var n := root.get_node_or_null("Player") as Node2D
+		var n := root.find_child("Player", true, false) as Node2D
 		if n:
 			return n
 	return null

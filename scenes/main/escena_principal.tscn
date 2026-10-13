@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://drb82147etug4"]
 
 [ext_resource type="PackedScene" uid="uid://d0t7drx7fle67" path="res://scenes/world/el_centro/Centro.tscn" id="1_56fcf"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud/hud.tscn" id="2_hud"]
 
 [node name="EscenaPrincipal" type="Node2D" unique_id=2014129854]
 
 [node name="Centro" parent="." unique_id=2003240719 instance=ExtResource("1_56fcf")]
 position = Vector2(-139, -1068)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

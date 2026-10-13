@@ -1,9 +1,7 @@
-class_name WantedSystem
 extends Node
 
 ## Scaffolding de doble notoriedad (doc 11, extiende doc 07 sin romperlo).
-## Autoload-ready: registrar como Autoload "WantedSystem" en project.godot
-## (NO hacerlo en este commit). Todo texto visible = PLACEHOLDER_*.
+## Autoload "WantedSystem" (SIN class_name: ocultaría el singleton, ver game_manager.gd).
 
 signal guardia_changed(level: int)
 signal federacion_changed(level: int)

@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://bm3nyp612o4m6" path="res://scenes/vehicles/vehicle.tscn" id="1_vehicle"]
+[ext_resource type="Resource" path="res://resources/vehicles/sedan.tres" id="2_sedan"]
+
+[node name="TrafficCar" instance=ExtResource("1_vehicle")]
+vehicle_data = ExtResource("2_sedan")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EvidenceData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/evidence/evidence_data.gd" id="1_evidence"]
+
+[resource]
+script = ExtResource("1_evidence")
+id = "ev_cassette_radio"
+kind = 0
+title = "PLACEHOLDER_cinta_radio"
+description = "PLACEHOLDER_cinta_revela_casa_seguridad"
+district = "el_centro"
+unlocks_mission = "ledger_centro"
+target_id = ""

@@ -22,6 +22,9 @@ SaveManager="*res://scripts/systems/core/save_manager.gd"
 SceneLoader="*res://scripts/systems/core/scene_loader.gd"
 AudioManager="*res://scripts/systems/core/audio_manager.gd"
 UIManager="*res://scripts/systems/core/ui_manager.gd"
+WantedSystem="*res://scripts/systems/police/wanted_system.gd"
+MissionManager="*res://scripts/systems/missions/mission_manager.gd"
+DialogueSystem="*res://scripts/systems/dialogue/dialogue_system.gd"
 
 [display]
 

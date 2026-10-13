@@ -6,5 +6,5 @@
 [node name="PoliciaNPC" instance=ExtResource("1_npc") groups=["police"]]
 faction = "policia"
 display_name = "PLACEHOLDER_policia"
-dialogue_id = "PLACEHOLDER_alto_policia"
+dialogue_id = "alto_policia"
 metadata/starting_weapon = ExtResource("2_pistol")

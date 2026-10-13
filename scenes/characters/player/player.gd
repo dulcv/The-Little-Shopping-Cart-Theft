@@ -140,6 +140,11 @@ func _physics_process(_delta: float) -> void:
 		nearby_vehicle.enter(self)
 		return
 
+	# Hablar con NPC cercano (E): usa DialogueSystem (Autoload).
+	if Input.is_action_just_pressed("interact"):
+		if _try_talk_to_npc():
+			return
+
 	# Gestión de combate unificada con tecla de ataque (Espacio):
 	# - Con arma: dispara proyectiles
 	# - Sin arma: ejecuta ataque cuerpo a cuerpo
@@ -422,6 +427,32 @@ func _update_nearby_vehicle() -> void:
 			if d < best:
 				best = d
 				nearby_vehicle = node as Vehicle
+
+## Habla con el NPC vivo más cercano (radio 44 px) vía DialogueSystem.
+## Devuelve true si inició un diálogo.
+func _try_talk_to_npc() -> bool:
+	var ds := get_node_or_null("/root/DialogueSystem")
+	if ds == null or not ds.has_method("start_dialogue"):
+		return false
+	if ds.has_method("is_dialogue_active") and bool(ds.call("is_dialogue_active")):
+		return false
+	var best: Node2D = null
+	var best_d := 44.0
+	for n in get_tree().get_nodes_in_group("npcs"):
+		if n == self or not (n is Node2D):
+			continue
+		if not n.has_method("talk"):
+			continue
+		if n.has_method("is_dead") and bool(n.call("is_dead")):
+			continue
+		var d: float = (n as Node2D).global_position.distance_to(global_position)
+		if d < best_d:
+			best_d = d
+			best = n
+	if best == null:
+		return false
+	best.call("talk")
+	return true
 
 func on_enter_vehicle(vehicle: Vehicle) -> void:
 	current_vehicle = vehicle

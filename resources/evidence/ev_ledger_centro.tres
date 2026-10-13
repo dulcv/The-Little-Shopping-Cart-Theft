@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EvidenceData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/evidence/evidence_data.gd" id="1_evidence"]
+
+[resource]
+script = ExtResource("1_evidence")
+id = "ev_ledger_centro"
+kind = 1
+title = "PLACEHOLDER_libreta_contable"
+description = "PLACEHOLDER_libreta_descifrado_E"
+district = "el_centro"
+unlocks_mission = "photo_gallo"
+target_id = ""
