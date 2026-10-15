@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://resources/vehicles/sedan.tres" id="6_sedan"]
 [ext_resource type="Texture2D" uid="uid://qf5c1x5s2bce" path="res://assets/sprites/tiles/el_centro/césped_textura.png" id="7_tcnc2"]
 [ext_resource type="Texture2D" uid="uid://bt5mmqaeru45w" path="res://assets/sprites/tiles/el_centro/arbustos.png" id="8_tcnc2"]
+[ext_resource type="Script" path="res://scripts/world/centro_colisiones.gd" id="7_edcol"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_phhli"]
 texture = ExtResource("1_p6ojd")
@@ -1043,3 +1044,6 @@ position = Vector2(-162, 20)
 [node name="Vehicle" parent="." unique_id=1483089763 instance=ExtResource("5_7nacd")]
 position = Vector2(307, 22)
 vehicle_data = ExtResource("6_sedan")
+
+[node name="EdificiosColision" type="Node2D" parent="."]
+script = ExtResource("7_edcol")
