@@ -11,6 +11,10 @@ extends CharacterBody2D
 var current_vehicle: Vehicle = null
 var wp_index: int = 0
 
+func _ready() -> void:
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	safe_margin = 0.1
+
 func _physics_process(_delta: float) -> void:
 	if current_vehicle != null:
 		if is_instance_valid(current_vehicle):

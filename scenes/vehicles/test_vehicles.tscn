@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yw7l167qr2o8"]
 
-[ext_resource type="PackedScene" path="res://scenes/vehicles/vehicle.tscn" id="1_car"]
+[ext_resource type="PackedScene" uid="uid://bm3nyp612o4m6" path="res://scenes/vehicles/vehicle.tscn" id="1_car"]
 [ext_resource type="Resource" path="res://resources/vehicles/sedan.tres" id="2_sedan"]
 [ext_resource type="Resource" path="res://resources/vehicles/patrulla.tres" id="3_patrulla"]
 [ext_resource type="Resource" path="res://resources/vehicles/camioneta.tres" id="4_camioneta"]
@@ -15,7 +15,15 @@ size = Vector2(320, 16)
 [node name="TestVehicles" type="Node2D" unique_id=1541993540]
 
 [node name="Sedan" parent="." unique_id=624363145 instance=ExtResource("1_car")]
+position = Vector2(100, -60)
+vehicle_data = ExtResource("2_sedan")
+
+[node name="Sedan3" parent="." unique_id=1101286895 instance=ExtResource("1_car")]
 position = Vector2(100, 0)
+vehicle_data = ExtResource("2_sedan")
+
+[node name="Sedan2" parent="." unique_id=1084029416 instance=ExtResource("1_car")]
+position = Vector2(100, 60)
 vehicle_data = ExtResource("2_sedan")
 
 [node name="Patrulla" parent="." unique_id=915704182 instance=ExtResource("1_car")]
@@ -28,32 +36,29 @@ vehicle_data = ExtResource("4_camioneta")
 
 [node name="Player" parent="." unique_id=411640119 instance=ExtResource("5_tt8f2")]
 position = Vector2(40, 0)
-
-# Muro en U a la derecha: acelera hacia +X y estréllate para probar daño por choque.
-[node name="CrashWall" type="StaticBody2D" parent="."]
-position = Vector2(480, 0)
 collision_layer = 1
 collision_mask = 0
 
-[node name="TramoCentral" type="CollisionShape2D" parent="CrashWall"]
+[node name="CrashWall#TramoCentral" type="CollisionShape2D" parent="." unique_id=2012924249]
 shape = SubResource("Wall_long")
 
-[node name="TopeArriba" type="StaticBody2D" parent="."]
+[node name="TopeArriba" type="StaticBody2D" parent="." unique_id=1105797440]
 position = Vector2(400, -120)
-collision_layer = 1
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopeArriba"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopeArriba" unique_id=204760061]
 shape = SubResource("Wall_wide")
 
-[node name="TopeAbajo" type="StaticBody2D" parent="."]
+[node name="TopeAbajo" type="StaticBody2D" parent="." unique_id=1153875547]
 position = Vector2(400, 120)
-collision_layer = 1
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopeAbajo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopeAbajo" unique_id=132681733]
 shape = SubResource("Wall_wide")
 
-[node name="Ayuda" type="Label" parent="."]
-position = Vector2(20, -120)
-text = "E: entrar/salir | WASD/flechas: conducir | R: cambiar radio | H: claxon | Espacio: drive-by | F1: dano 15 | F2: reparar 30. Estrellate contra el muro de la derecha."
+[node name="Ayuda" type="Label" parent="." unique_id=914917606]
+offset_left = 20.0
+offset_top = -120.0
+offset_right = 20.0
+offset_bottom = -120.0
+text = "E: entrar/salir | WASD/flechas: conducir | R: cambiar radio | H: claxon | G: sirena (patrulla) | Espacio: drive-by | F1: dano 15 | F2: reparar 30. Estrellate contra el muro de la derecha."

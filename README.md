@@ -102,7 +102,7 @@ Solo `world/el_centro/Centro.tscn` es funcional: `TileMapLayer Background` (carr
 - [x] Fase 1-4: balas, `WeaponData`, `Weapon`, integración jugador.
 - [ ] Fase 5: `WeaponPickup` (Area2D capa 6, sprite flotante, `E` para equipar/soltar).
 - [ ] Fase 6: `take_damage()` + vida en jugador/NPCs, `Weapon` en enemigos.
-- [ ] **Vehículos (en curso):** `VehicleData.tres` + `vehicle.tscn/gd` (`CharacterBody2D`, sprite `AnimatedSprite2D` con `coche_azul_sprite_frames`: avanzar/retroceder/humo/crítico/explosión; patrulla/camioneta reutilizan la azul teñida hasta tener textura propia), entrar/salir con `E`, conductor jugador/NPC, daño por choques (`velocity` + `get_slide_collision`) y por armas (`take_damage`), niveles (OK/Humo/Crítico/Destruido), sonidos reales (`sfx/auto/`) + claxon (`H`) + sirena en patrulla, radio de 4 estaciones (`R` cambia estación, ver `vehicle_radio.gd`). Controles de prueba en `test_vehicles.tscn`.
+- [ ] **Vehículos (en curso):** `VehicleData.tres` + `vehicle.tscn/gd` (`CharacterBody2D`, sprite `AnimatedSprite2D` con `coche_azul_sprite_frames`: avanzar/retroceder/humo/crítico/explosión; patrulla con sprites propios, camioneta reutiliza la azul con pintura por shader de color aleatorio), entrar/salir con `E`, conductor jugador/NPC, daño por choques (`velocity` + `get_slide_collision`) y por armas (`take_damage`), niveles (OK/Humo/Crítico/Destruido), sonidos reales (`sfx/auto/`) + claxon (`H`) + sirena con interruptor (`siren_enabled` en el `.tres`), radio de 4 estaciones (`R` cambia estación, ver `vehicle_radio.gd`). Controles de prueba en `test_vehicles.tscn`.
 
 ## Cómo ejecutar y probar
 
