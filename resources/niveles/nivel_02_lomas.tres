@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/levels/level_data.gd" id="1_lvl"]
+
+[resource]
+script = ExtResource("1_lvl")
+id = "n2"
+titulo = "La Fiesta del Gallo"
+objetivo = "Cuélate a la fiesta de Don Crestón y planta un micrófono."
+zona_id = "las_lomas"
+escena = "res://scenes/world/las_lomas/LasLomas.tscn"
+pistas_requeridas = Array[String](["invitacion_fiesta", "grabacion_microfono"])

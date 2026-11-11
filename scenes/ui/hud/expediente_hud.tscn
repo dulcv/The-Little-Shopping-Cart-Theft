@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/expediente_hud.gd" id="1_hud"]
+[ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="Style_caja"]
+bg_color = Color(0.08, 0.06, 0.05, 0.75)
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+
+[node name="ExpedienteHUD" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_hud")
+
+[node name="Contador" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 110.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_styles/normal = SubResource("Style_caja")
+text = "Pistas: 0/3"
+
+[node name="Aviso" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 222.0
+offset_right = 460.0
+offset_bottom = 264.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2

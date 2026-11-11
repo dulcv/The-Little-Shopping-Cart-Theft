@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://qf5c1x5s2bce" path="res://assets/sprites/tiles/el_centro/césped_textura.png" id="7_tcnc2"]
 [ext_resource type="Texture2D" uid="uid://bt5mmqaeru45w" path="res://assets/sprites/tiles/el_centro/arbustos.png" id="8_tcnc2"]
 [ext_resource type="Script" path="res://scripts/world/centro_colisiones.gd" id="7_edcol"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/clue_pickup.tscn" id="8_clue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud/expediente_hud.tscn" id="9_hud"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_phhli"]
 texture = ExtResource("1_p6ojd")
@@ -1047,3 +1049,20 @@ vehicle_data = ExtResource("6_sedan")
 
 [node name="EdificiosColision" type="Node2D" parent="."]
 script = ExtResource("7_edcol")
+
+[node name="Pistas" type="Node2D" parent="."]
+z_index = 4
+
+[node name="PistaPluma" parent="Pistas" instance=ExtResource("8_clue")]
+position = Vector2(-162, -330)
+pista_id = "pluma_dorada"
+
+[node name="PistaTicket" parent="Pistas" instance=ExtResource("8_clue")]
+position = Vector2(388, 20)
+pista_id = "ticket_maiz"
+
+[node name="PistaFoto" parent="Pistas" instance=ExtResource("8_clue")]
+position = Vector2(-226, 634)
+pista_id = "foto_kiko"
+
+[node name="ExpedienteHUD" parent="." instance=ExtResource("9_hud")]

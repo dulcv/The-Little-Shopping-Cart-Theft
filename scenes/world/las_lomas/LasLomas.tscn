@@ -1,0 +1,587 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/las_lomas/las_lomas.gd" id="1_lvl"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/characters/npc/guardia_gallo_negro.tscn" id="3_guardia"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/clue_pickup.tscn" id="4_clue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud/expediente_hud.tscn" id="5_hud"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/player/player1_sprite_frames.tres" id="6_frames"]
+[ext_resource type="Script" path="res://scripts/world/las_lomas/microfono_spot.gd" id="7_mic"]
+[ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="8_font"]
+
+[sub_resource type="RectangleShape2D" id="S_BordeN"]
+size = Vector2(992, 16)
+
+[sub_resource type="RectangleShape2D" id="S_BordeS"]
+size = Vector2(992, 16)
+
+[sub_resource type="RectangleShape2D" id="S_BordeO"]
+size = Vector2(16, 672)
+
+[sub_resource type="RectangleShape2D" id="S_BordeE"]
+size = Vector2(16, 672)
+
+[sub_resource type="RectangleShape2D" id="S_MuroN"]
+size = Vector2(700, 8)
+
+[sub_resource type="RectangleShape2D" id="S_MuroO"]
+size = Vector2(8, 470)
+
+[sub_resource type="RectangleShape2D" id="S_MuroE"]
+size = Vector2(8, 470)
+
+[sub_resource type="RectangleShape2D" id="S_MuroS1"]
+size = Vector2(320, 8)
+
+[sub_resource type="RectangleShape2D" id="S_MuroS2"]
+size = Vector2(340, 8)
+
+[sub_resource type="RectangleShape2D" id="S_CasaN"]
+size = Vector2(620, 8)
+
+[sub_resource type="RectangleShape2D" id="S_CasaO"]
+size = Vector2(8, 310)
+
+[sub_resource type="RectangleShape2D" id="S_CasaE"]
+size = Vector2(8, 310)
+
+[sub_resource type="RectangleShape2D" id="S_CasaS1"]
+size = Vector2(280, 8)
+
+[sub_resource type="RectangleShape2D" id="S_CasaS2"]
+size = Vector2(300, 8)
+
+[sub_resource type="RectangleShape2D" id="S_Interior1"]
+size = Vector2(8, 112)
+
+[sub_resource type="RectangleShape2D" id="S_Interior2"]
+size = Vector2(8, 152)
+
+[sub_resource type="RectangleShape2D" id="S_Mesa1"]
+size = Vector2(28, 14)
+
+[sub_resource type="RectangleShape2D" id="S_Mesa2"]
+size = Vector2(28, 14)
+
+[sub_resource type="RectangleShape2D" id="S_Mesa3"]
+size = Vector2(28, 14)
+
+[sub_resource type="RectangleShape2D" id="S_Mesa4"]
+size = Vector2(28, 14)
+
+[sub_resource type="RectangleShape2D" id="S_Mesa5"]
+size = Vector2(28, 14)
+
+[sub_resource type="RectangleShape2D" id="S_PlantaGrande"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="S_Escritorio"]
+size = Vector2(40, 16)
+
+[sub_resource type="RectangleShape2D" id="S_Arbusto1"]
+size = Vector2(24, 16)
+
+[sub_resource type="RectangleShape2D" id="S_Arbusto2"]
+size = Vector2(24, 16)
+
+[sub_resource type="RectangleShape2D" id="S_Arbusto3"]
+size = Vector2(24, 16)
+
+[sub_resource type="RectangleShape2D" id="S_Reja"]
+size = Vector2(40, 8)
+
+[sub_resource type="CircleShape2D" id="S_portero"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="S_mic"]
+radius = 22.0
+
+[node name="LasLomas" type="Node2D"]
+script = ExtResource("1_lvl")
+
+[node name="Pisos" type="Node2D" parent="."]
+z_index = -10
+
+[node name="Pasto" type="ColorRect" parent="Pisos"]
+offset_left = -480.0
+offset_top = -320.0
+offset_right = 480.0
+offset_bottom = 320.0
+color = Color(0.32, 0.55, 0.28, 1)
+mouse_filter = 2
+
+[node name="Calle" type="ColorRect" parent="Pisos"]
+offset_left = -480.0
+offset_top = 220.0
+offset_right = 480.0
+offset_bottom = 320.0
+color = Color(0.3, 0.3, 0.32, 1)
+mouse_filter = 2
+
+[node name="Banqueta" type="ColorRect" parent="Pisos"]
+offset_left = -480.0
+offset_top = 206.0
+offset_right = 480.0
+offset_bottom = 220.0
+color = Color(0.65, 0.63, 0.6, 1)
+mouse_filter = 2
+
+[node name="Camino" type="ColorRect" parent="Pisos"]
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 220.0
+color = Color(0.78, 0.7, 0.55, 1)
+mouse_filter = 2
+
+[node name="Jardin" type="ColorRect" parent="Pisos"]
+offset_left = -252.0
+offset_top = -292.0
+offset_right = 432.0
+offset_bottom = 162.0
+color = Color(0.36, 0.62, 0.3, 1)
+mouse_filter = 2
+
+[node name="Salon" type="ColorRect" parent="Pisos"]
+offset_left = -212.0
+offset_top = -262.0
+offset_right = 226.0
+offset_bottom = 32.0
+color = Color(0.62, 0.45, 0.3, 1)
+mouse_filter = 2
+
+[node name="Alfombra" type="ColorRect" parent="Pisos"]
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -20.0
+color = Color(0.6, 0.15, 0.2, 1)
+mouse_filter = 2
+
+[node name="Despacho" type="ColorRect" parent="Pisos"]
+offset_left = 234.0
+offset_top = -262.0
+offset_right = 392.0
+offset_bottom = 32.0
+color = Color(0.4, 0.3, 0.25, 1)
+mouse_filter = 2
+
+[node name="PuertaCasa" type="ColorRect" parent="Pisos"]
+offset_left = 60.0
+offset_top = 32.0
+offset_right = 100.0
+offset_bottom = 40.0
+color = Color(0.62, 0.45, 0.3, 1)
+mouse_filter = 2
+
+[node name="Paredes" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="BordeN" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(0.0, -328.0)
+shape = SubResource("S_BordeN")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/BordeN"]
+color = Color(0.1, 0.1, 0.1, 1)
+polygon = PackedVector2Array(-496.0, -8.0, 496.0, -8.0, 496.0, 8.0, -496.0, 8.0)
+
+[node name="BordeS" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(0.0, 328.0)
+shape = SubResource("S_BordeS")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/BordeS"]
+color = Color(0.1, 0.1, 0.1, 1)
+polygon = PackedVector2Array(-496.0, -8.0, 496.0, -8.0, 496.0, 8.0, -496.0, 8.0)
+
+[node name="BordeO" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(-488.0, 0.0)
+shape = SubResource("S_BordeO")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/BordeO"]
+color = Color(0.1, 0.1, 0.1, 1)
+polygon = PackedVector2Array(-8.0, -336.0, 8.0, -336.0, 8.0, 336.0, -8.0, 336.0)
+
+[node name="BordeE" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(488.0, 0.0)
+shape = SubResource("S_BordeE")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/BordeE"]
+color = Color(0.1, 0.1, 0.1, 1)
+polygon = PackedVector2Array(-8.0, -336.0, 8.0, -336.0, 8.0, 336.0, -8.0, 336.0)
+
+[node name="MuroN" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(90.0, -296.0)
+shape = SubResource("S_MuroN")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/MuroN"]
+color = Color(0.85, 0.8, 0.72, 1)
+polygon = PackedVector2Array(-350.0, -4.0, 350.0, -4.0, 350.0, 4.0, -350.0, 4.0)
+
+[node name="MuroO" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(-256.0, -65.0)
+shape = SubResource("S_MuroO")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/MuroO"]
+color = Color(0.85, 0.8, 0.72, 1)
+polygon = PackedVector2Array(-4.0, -235.0, 4.0, -235.0, 4.0, 235.0, -4.0, 235.0)
+
+[node name="MuroE" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(436.0, -65.0)
+shape = SubResource("S_MuroE")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/MuroE"]
+color = Color(0.85, 0.8, 0.72, 1)
+polygon = PackedVector2Array(-4.0, -235.0, 4.0, -235.0, 4.0, 235.0, -4.0, 235.0)
+
+[node name="MuroS1" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(-100.0, 166.0)
+shape = SubResource("S_MuroS1")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/MuroS1"]
+color = Color(0.85, 0.8, 0.72, 1)
+polygon = PackedVector2Array(-160.0, -4.0, 160.0, -4.0, 160.0, 4.0, -160.0, 4.0)
+
+[node name="MuroS2" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(270.0, 166.0)
+shape = SubResource("S_MuroS2")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/MuroS2"]
+color = Color(0.85, 0.8, 0.72, 1)
+polygon = PackedVector2Array(-170.0, -4.0, 170.0, -4.0, 170.0, 4.0, -170.0, 4.0)
+
+[node name="CasaN" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(90.0, -266.0)
+shape = SubResource("S_CasaN")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/CasaN"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-310.0, -4.0, 310.0, -4.0, 310.0, 4.0, -310.0, 4.0)
+
+[node name="CasaO" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(-216.0, -115.0)
+shape = SubResource("S_CasaO")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/CasaO"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-4.0, -155.0, 4.0, -155.0, 4.0, 155.0, -4.0, 155.0)
+
+[node name="CasaE" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(396.0, -115.0)
+shape = SubResource("S_CasaE")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/CasaE"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-4.0, -155.0, 4.0, -155.0, 4.0, 155.0, -4.0, 155.0)
+
+[node name="CasaS1" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(-80.0, 36.0)
+shape = SubResource("S_CasaS1")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/CasaS1"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-140.0, -4.0, 140.0, -4.0, 140.0, 4.0, -140.0, 4.0)
+
+[node name="CasaS2" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(250.0, 36.0)
+shape = SubResource("S_CasaS2")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/CasaS2"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-150.0, -4.0, 150.0, -4.0, 150.0, 4.0, -150.0, 4.0)
+
+[node name="Interior1" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(230.0, -206.0)
+shape = SubResource("S_Interior1")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/Interior1"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-4.0, -56.0, 4.0, -56.0, 4.0, 56.0, -4.0, 56.0)
+
+[node name="Interior2" type="CollisionShape2D" parent="Paredes"]
+position = Vector2(230.0, -44.0)
+shape = SubResource("S_Interior2")
+
+[node name="Vista" type="Polygon2D" parent="Paredes/Interior2"]
+color = Color(0.55, 0.3, 0.25, 1)
+polygon = PackedVector2Array(-4.0, -76.0, 4.0, -76.0, 4.0, 76.0, -4.0, 76.0)
+
+[node name="Muebles" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Mesa1" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(-130.0, -170.0)
+shape = SubResource("S_Mesa1")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Mesa1"]
+color = Color(0.45, 0.28, 0.15, 1)
+polygon = PackedVector2Array(-14.0, -7.0, 14.0, -7.0, 14.0, 7.0, -14.0, 7.0)
+
+[node name="Mesa2" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(-20.0, -110.0)
+shape = SubResource("S_Mesa2")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Mesa2"]
+color = Color(0.45, 0.28, 0.15, 1)
+polygon = PackedVector2Array(-14.0, -7.0, 14.0, -7.0, 14.0, 7.0, -14.0, 7.0)
+
+[node name="Mesa3" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(90.0, -170.0)
+shape = SubResource("S_Mesa3")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Mesa3"]
+color = Color(0.45, 0.28, 0.15, 1)
+polygon = PackedVector2Array(-14.0, -7.0, 14.0, -7.0, 14.0, 7.0, -14.0, 7.0)
+
+[node name="Mesa4" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(120.0, -50.0)
+shape = SubResource("S_Mesa4")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Mesa4"]
+color = Color(0.45, 0.28, 0.15, 1)
+polygon = PackedVector2Array(-14.0, -7.0, 14.0, -7.0, 14.0, 7.0, -14.0, 7.0)
+
+[node name="Mesa5" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(-120.0, -50.0)
+shape = SubResource("S_Mesa5")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Mesa5"]
+color = Color(0.45, 0.28, 0.15, 1)
+polygon = PackedVector2Array(-14.0, -7.0, 14.0, -7.0, 14.0, 7.0, -14.0, 7.0)
+
+[node name="PlantaGrande" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(175.0, -185.0)
+shape = SubResource("S_PlantaGrande")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/PlantaGrande"]
+color = Color(0.2, 0.5, 0.25, 1)
+polygon = PackedVector2Array(-8.0, -8.0, 8.0, -8.0, 8.0, 8.0, -8.0, 8.0)
+
+[node name="Escritorio" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(300.0, -230.0)
+shape = SubResource("S_Escritorio")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Escritorio"]
+color = Color(0.45, 0.28, 0.15, 1)
+polygon = PackedVector2Array(-20.0, -8.0, 20.0, -8.0, 20.0, 8.0, -20.0, 8.0)
+
+[node name="Arbusto1" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(-108.0, 128.0)
+shape = SubResource("S_Arbusto1")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Arbusto1"]
+color = Color(0.18, 0.42, 0.2, 1)
+polygon = PackedVector2Array(-12.0, -8.0, 12.0, -8.0, 12.0, 8.0, -12.0, 8.0)
+
+[node name="Arbusto2" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(192.0, 128.0)
+shape = SubResource("S_Arbusto2")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Arbusto2"]
+color = Color(0.18, 0.42, 0.2, 1)
+polygon = PackedVector2Array(-12.0, -8.0, 12.0, -8.0, 12.0, 8.0, -12.0, 8.0)
+
+[node name="Arbusto3" type="CollisionShape2D" parent="Muebles"]
+position = Vector2(312.0, 68.0)
+shape = SubResource("S_Arbusto3")
+
+[node name="Vista" type="Polygon2D" parent="Muebles/Arbusto3"]
+color = Color(0.18, 0.42, 0.2, 1)
+polygon = PackedVector2Array(-12.0, -8.0, 12.0, -8.0, 12.0, 8.0, -12.0, 8.0)
+
+[node name="Reja" type="StaticBody2D" parent="."]
+position = Vector2(80.0, 166.0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reja"]
+shape = SubResource("S_Reja")
+
+[node name="Vista" type="Polygon2D" parent="Reja"]
+color = Color(0.2, 0.2, 0.22, 1)
+polygon = PackedVector2Array(-20.0, -4.0, 20.0, -4.0, 20.0, 4.0, -20.0, 4.0)
+
+[node name="Portero" type="Node2D" parent="."]
+position = Vector2(42, 188)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Portero"]
+position = Vector2(0, 0)
+texture_filter = 1
+modulate = Color(0.22, 0.22, 0.26, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Zona" type="Area2D" parent="Portero"]
+position = Vector2(38, 2)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portero/Zona"]
+shape = SubResource("S_portero")
+
+[node name="Letrero" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 176.0
+offset_right = 140.0
+offset_bottom = 188.0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "FIESTA PRIVADA"
+horizontal_alignment = 1
+
+[node name="InvitadoBorracho" type="AnimatedSprite2D" parent="."]
+position = Vector2(-392, -206)
+texture_filter = 1
+modulate = Color(0.95, 0.6, 0.8, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+rotation = 1.5708
+
+[node name="Hic" type="Label" parent="."]
+offset_left = -410.0
+offset_top = -232.0
+offset_right = -374.0
+offset_bottom = -220.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "hic!"
+horizontal_alignment = 1
+
+[node name="PistaInvitacion" parent="." instance=ExtResource("4_clue")]
+position = Vector2(-366, -214)
+pista_id = "invitacion_fiesta"
+
+[node name="Mansion" type="Node2D" parent="."]
+
+[node name="Invitado1" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(-170, -120)
+texture_filter = 1
+modulate = Color(1, 0.9, 0.6, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Invitado2" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(-60, -200)
+texture_filter = 1
+modulate = Color(0.7, 0.85, 1, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Invitado3" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(30, -70)
+texture_filter = 1
+modulate = Color(1, 0.7, 0.5, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Invitado4" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(-80, -60)
+texture_filter = 1
+modulate = Color(0.9, 0.9, 0.9, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Invitado5" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(10, -150)
+texture_filter = 1
+modulate = Color(1, 0.65, 0.75, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Invitado6" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(140, -130)
+texture_filter = 1
+modulate = Color(0.75, 1, 0.7, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Creston" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(290, -200)
+texture_filter = 1
+modulate = Color(1, 0.82, 0.25, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+scale = Vector2(1.5, 1.5)
+
+[node name="Comandante" type="AnimatedSprite2D" parent="Mansion"]
+position = Vector2(340, -200)
+texture_filter = 1
+modulate = Color(0.45, 0.6, 1, 1)
+sprite_frames = ExtResource("6_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="MicrofonoSpot" type="Area2D" parent="Mansion"]
+position = Vector2(372, -244)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("7_mic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/MicrofonoSpot"]
+shape = SubResource("S_mic")
+
+[node name="Maceta" type="Polygon2D" parent="Mansion/MicrofonoSpot"]
+color = Color(0.25, 0.55, 0.3, 1)
+polygon = PackedVector2Array(-6, -8, 6, -8, 8, 4, 4, 8, -4, 8, -8, 4)
+
+[node name="Bicho" type="Polygon2D" parent="Mansion/MicrofonoSpot"]
+visible = false
+color = Color(1, 0.15, 0.1, 1)
+polygon = PackedVector2Array(-2, -2, 2, -2, 2, 2, -2, 2)
+
+[node name="Barra" type="ProgressBar" parent="Mansion/MicrofonoSpot"]
+visible = false
+offset_left = -16.0
+offset_top = 12.0
+offset_right = 16.0
+offset_bottom = 16.0
+show_percentage = false
+
+[node name="Ayuda" type="Label" parent="Mansion/MicrofonoSpot"]
+offset_left = -80.0
+offset_top = 18.0
+offset_right = 20.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "Mantén E: plantar micrófono"
+horizontal_alignment = 1
+
+[node name="GuardiaJardin" parent="." instance=ExtResource("3_guardia")]
+position = Vector2(-200, 100)
+patrulla = PackedVector2Array(-200, 100, 380, 100)
+alcance_vision = 95.0
+
+[node name="GuardiaSalon" parent="." instance=ExtResource("3_guardia")]
+position = Vector2(-190, -240)
+patrulla = PackedVector2Array(-190, -240, 210, -240, 210, 10, -190, 10)
+alcance_vision = 95.0
+
+[node name="GuardiaDespacho" parent="." instance=ExtResource("3_guardia")]
+position = Vector2(375, 10)
+patrulla = PackedVector2Array(375, 10, 375, -135)
+alcance_vision = 110.0
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_player")]
+position = Vector2(-400, 270)
+
+[node name="SalidaFiesta" type="Marker2D" parent="."]
+position = Vector2(80, 214)
+
+[node name="ExpedienteHUD" parent="." instance=ExtResource("5_hud")]
