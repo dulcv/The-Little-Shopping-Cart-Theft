@@ -64,7 +64,7 @@ func _on_pista(id: String, _texto: String) -> void:
 
 func _abrir_tabla() -> void:
 	tabla.get_node("CollisionShape2D").set_deferred("disabled", true)
-	tabla.get_node("Vista").color = Color(0.35, 0.22, 0.1, 0.35)
+	tabla.get_node("Vista").modulate = Color(0.6, 0.45, 0.3, 0.35)
 
 # --- Sigilo en la granja (antes de la alarma) ------------------------------
 

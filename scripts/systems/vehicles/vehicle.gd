@@ -67,6 +67,9 @@ var _ram_cooldown: float = 0.0
 @onready var siren_sound: AudioStreamPlayer2D = $SirenSound
 @onready var radio: VehicleRadio = $Radio
 @onready var debug_label: Label = $DebugLabel
+## Muestra el texto de depuración (HP, velocidad, radio) encima del coche.
+## Apagado por defecto para el juego final; actívalo en el inspector para probar.
+@export var mostrar_debug: bool = false
 
 ## Teclas de prueba: F1 = simula golpe de 15, F2 = repara 30.
 ## (El daño por choque real se prueba estrellándose contra el muro de test_vehicles.tscn)
@@ -100,6 +103,8 @@ func _is_key(event: InputEvent, code: Key) -> bool:
 func _process(_delta: float) -> void:
 	_update_animation()
 	if debug_label:
+		debug_label.visible = mostrar_debug
+	if debug_label and mostrar_debug:
 		var state_name: String = ["OK", "HUMO", "CRITICO", "DESTRUIDO"][damage_state]
 		var line1 := "HP %d/%d %s | %d px/s" % [current_hp, max_hp, state_name, int(absf(speed))]
 		if vehicle_data == null:

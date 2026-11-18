@@ -1054,15 +1054,15 @@ script = ExtResource("7_edcol")
 z_index = 4
 
 [node name="PistaPluma" parent="Pistas" instance=ExtResource("8_clue")]
-position = Vector2(-162, -330)
+position = Vector2(-1705, 1103)
 pista_id = "pluma_dorada"
 
 [node name="PistaTicket" parent="Pistas" instance=ExtResource("8_clue")]
-position = Vector2(388, 20)
+position = Vector2(98, 618)
 pista_id = "ticket_maiz"
 
 [node name="PistaFoto" parent="Pistas" instance=ExtResource("8_clue")]
-position = Vector2(-226, 634)
+position = Vector2(8, 1462)
 pista_id = "foto_kiko"
 
 [node name="ExpedienteHUD" parent="." instance=ExtResource("9_hud")]

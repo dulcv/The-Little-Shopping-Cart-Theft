@@ -24,11 +24,17 @@ func _fondo() -> void:
 	cielo.color = Color(0.16, 0.13, 0.24)
 	cielo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(cielo)
-	var luna := ColorRect.new()
+	var luna := Polygon2D.new()
 	luna.color = Color(1, 0.93, 0.7)
-	luna.position = Vector2(400, 22)
-	luna.size = Vector2(18, 18)
+	luna.position = Vector2(420, 34)
+	luna.polygon = PackedVector2Array([Vector2(-4, -9), Vector2(4, -9), Vector2(9, -4), Vector2(9, 4),
+		Vector2(4, 9), Vector2(-4, 9), Vector2(-9, 4), Vector2(-9, -4)])
 	add_child(luna)
+	var sombra_luna := Polygon2D.new()  # luna creciente
+	sombra_luna.color = Color(0.16, 0.13, 0.24)
+	sombra_luna.position = Vector2(425, 31)
+	sombra_luna.polygon = luna.polygon
+	add_child(sombra_luna)
 	# Fila de edificios (tu arte del Centro) a lo largo del horizonte.
 	var x := -20.0
 	var i := 0
@@ -62,14 +68,7 @@ func _fondo() -> void:
 	pollo.position = Vector2(90, 190)
 	pollo.play(&"idle")
 	add_child(pollo)
-	var sombrero := Sprite2D.new()
-	var tex_sombrero := "res://assets/sprites/accesorios/sombrero_detective.png"
-	if ResourceLoader.exists(tex_sombrero):
-		sombrero.texture = load(tex_sombrero)
-		sombrero.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		sombrero.scale = Vector2(3, 3)
-		sombrero.position = Vector2(90, 190) + Vector2(2, -8) * 3
-		add_child(sombrero)
+	Accesorio.poner(pollo, "sombrero_detective", Vector2(3, -8))
 
 func _label(texto: String, tam: int, color: Color) -> Label:
 	var l := Label.new()

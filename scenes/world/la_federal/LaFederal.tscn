@@ -12,6 +12,24 @@
 [ext_resource type="Script" path="res://scripts/world/las_lomas/microfono_spot.gd" id="10_spot"]
 [ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="11_font"]
 [ext_resource type="SpriteFrames" path="res://scenes/characters/player/player1_sprite_frames.tres" id="12_frames"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/asfalto.png" id="a1_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/banqueta.png" id="a2_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/mosaico.png" id="a3_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/madera.png" id="a4_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/alfombra_azul.png" id="a5_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/tablero.png" id="a6_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/piedra.png" id="a7_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/muro_azul.png" id="a8_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/recepcion.png" id="a9_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/escritorio_grande.png" id="a10_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/banca.png" id="a11_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/casillero.png" id="a12_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/cafetera.png" id="a13_arte"]
+[ext_resource type="Script" path="res://scripts/characters/accesorio.gd" id="a14_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/mono_rosa.png" id="a15_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/gorra_policia.png" id="a16_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/gorra_jefa.png" id="a17_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/bote.png" id="a18_arte"]
 
 [sub_resource type="RectangleShape2D" id="S_BordeN"]
 size = Vector2(952, 16)
@@ -88,21 +106,29 @@ script = ExtResource("1_lvl")
 [node name="Pisos" type="Node2D" parent="."]
 z_index = -10
 
-[node name="Calle" type="ColorRect" parent="Pisos"]
+[node name="Calle" type="TextureRect" parent="Pisos"]
 offset_left = -460.0
 offset_top = -320.0
 offset_right = 460.0
 offset_bottom = 330.0
-color = Color(0.3, 0.3, 0.32, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a1_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Banqueta" type="ColorRect" parent="Pisos"]
+[node name="Banqueta" type="TextureRect" parent="Pisos"]
 offset_left = -460.0
 offset_top = 170.0
 offset_right = 460.0
 offset_bottom = 190.0
-color = Color(0.65, 0.63, 0.6, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a2_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="Cajon0" type="ColorRect" parent="Pisos"]
 offset_left = -420.0
@@ -224,37 +250,59 @@ offset_bottom = 250.0
 color = Color(0.9, 0.9, 0.9, 0.6)
 mouse_filter = 2
 
-[node name="PisoEdificio" type="ColorRect" parent="Pisos"]
+[node name="PisoEdificio" type="TextureRect" parent="Pisos"]
 offset_left = -432.0
 offset_top = -292.0
 offset_right = 432.0
 offset_bottom = 162.0
-color = Color(0.72, 0.7, 0.62, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a3_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="PisoLobby" type="ColorRect" parent="Pisos"]
+[node name="PisoLobby" type="TextureRect" parent="Pisos"]
 offset_left = -432.0
 offset_top = 40.0
 offset_right = 432.0
 offset_bottom = 162.0
-color = Color(0.6, 0.62, 0.58, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a3_arte")
+expand_mode = 1
+stretch_mode = 1
+modulate = Color(0.85, 0.9, 1, 1)
 
-[node name="Alfombra" type="ColorRect" parent="Pisos"]
+[node name="PisoOficinas" type="TextureRect" parent="Pisos"]
+offset_left = -432.0
+offset_top = -292.0
+offset_right = -154.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a4_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Alfombra" type="TextureRect" parent="Pisos"]
 offset_left = -100.0
 offset_top = -140.0
 offset_right = 100.0
 offset_bottom = 0.0
-color = Color(0.2, 0.3, 0.55, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a5_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Tablero" type="ColorRect" parent="Pisos"]
-offset_left = -100.0
-offset_top = -290.0
-offset_right = 100.0
-offset_bottom = -262.0
-color = Color(0.6, 0.45, 0.25, 1)
-mouse_filter = 2
+[node name="Tablero" type="Sprite2D" parent="."]
+position = Vector2(0, -276)
+texture_filter = 1
+texture = ExtResource("a6_arte")
 
 [node name="TituloTablero" type="Label" parent="."]
 offset_left = -100.0
@@ -318,169 +366,417 @@ collision_mask = 0
 position = Vector2(0.0, -328.0)
 shape = SubResource("S_BordeN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeN"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-476.0, -8.0, 476.0, -8.0, 476.0, 8.0, -476.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeN"]
+offset_left = -476.0
+offset_top = -8.0
+offset_right = 476.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeN/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BordeS" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(0.0, 338.0)
 shape = SubResource("S_BordeS")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeS"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-476.0, -8.0, 476.0, -8.0, 476.0, 8.0, -476.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeS"]
+offset_left = -476.0
+offset_top = -8.0
+offset_right = 476.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeS/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BordeO" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-468.0, 5.0)
 shape = SubResource("S_BordeO")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeO"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-8.0, -341.0, 8.0, -341.0, 8.0, 341.0, -8.0, 341.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeO"]
+offset_left = -8.0
+offset_top = -341.0
+offset_right = 8.0
+offset_bottom = 341.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeO/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BordeE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(468.0, 5.0)
 shape = SubResource("S_BordeE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeE"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-8.0, -341.0, 8.0, -341.0, 8.0, 341.0, -8.0, 341.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeE"]
+offset_left = -8.0
+offset_top = -341.0
+offset_right = 8.0
+offset_bottom = 341.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="MuroN" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(0.0, -296.0)
 shape = SubResource("S_MuroN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/MuroN"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-440.0, -4.0, 440.0, -4.0, 440.0, 4.0, -440.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/MuroN"]
+offset_left = -440.0
+offset_top = -4.0
+offset_right = 440.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/MuroN/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="MuroO" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-436.0, -65.0)
 shape = SubResource("S_MuroO")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/MuroO"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-4.0, -235.0, 4.0, -235.0, 4.0, 235.0, -4.0, 235.0)
+[node name="Vista" type="TextureRect" parent="Paredes/MuroO"]
+offset_left = -4.0
+offset_top = -235.0
+offset_right = 4.0
+offset_bottom = 235.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/MuroO/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="MuroE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(436.0, -65.0)
 shape = SubResource("S_MuroE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/MuroE"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-4.0, -235.0, 4.0, -235.0, 4.0, 235.0, -4.0, 235.0)
+[node name="Vista" type="TextureRect" parent="Paredes/MuroE"]
+offset_left = -4.0
+offset_top = -235.0
+offset_right = 4.0
+offset_bottom = 235.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/MuroE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="MuroS1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-230.0, 166.0)
 shape = SubResource("S_MuroS1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/MuroS1"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-210.0, -4.0, 210.0, -4.0, 210.0, 4.0, -210.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/MuroS1"]
+offset_left = -210.0
+offset_top = -4.0
+offset_right = 210.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/MuroS1/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="MuroS2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(230.0, 166.0)
 shape = SubResource("S_MuroS2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/MuroS2"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-210.0, -4.0, 210.0, -4.0, 210.0, 4.0, -210.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/MuroS2"]
+offset_left = -210.0
+offset_top = -4.0
+offset_right = 210.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/MuroS2/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Lobby1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-371.0, 36.0)
 shape = SubResource("S_Lobby1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Lobby1"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-61.0, -4.0, 61.0, -4.0, 61.0, 4.0, -61.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Lobby1"]
+offset_left = -61.0
+offset_top = -4.0
+offset_right = 61.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/Lobby1/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Lobby2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-150.0, 36.0)
 shape = SubResource("S_Lobby2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Lobby2"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-130.0, -4.0, 130.0, -4.0, 130.0, 4.0, -130.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Lobby2"]
+offset_left = -130.0
+offset_top = -4.0
+offset_right = 130.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/Lobby2/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Lobby3" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(150.0, 36.0)
 shape = SubResource("S_Lobby3")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Lobby3"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-130.0, -4.0, 130.0, -4.0, 130.0, 4.0, -130.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Lobby3"]
+offset_left = -130.0
+offset_top = -4.0
+offset_right = 130.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/Lobby3/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Lobby4" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(371.0, 36.0)
 shape = SubResource("S_Lobby4")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Lobby4"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-61.0, -4.0, 61.0, -4.0, 61.0, 4.0, -61.0, 4.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Lobby4"]
+offset_left = -61.0
+offset_top = -4.0
+offset_right = 61.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/Lobby4/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="DivO" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-150.0, -130.0)
 shape = SubResource("S_DivO")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/DivO"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-4.0, -162.0, 4.0, -162.0, 4.0, 162.0, -4.0, 162.0)
+[node name="Vista" type="TextureRect" parent="Paredes/DivO"]
+offset_left = -4.0
+offset_top = -162.0
+offset_right = 4.0
+offset_bottom = 162.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/DivO/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="DivE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(150.0, -130.0)
 shape = SubResource("S_DivE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/DivE"]
-color = Color(0.45, 0.5, 0.6, 1)
-polygon = PackedVector2Array(-4.0, -162.0, 4.0, -162.0, 4.0, 162.0, -4.0, 162.0)
+[node name="Vista" type="TextureRect" parent="Paredes/DivE"]
+offset_left = -4.0
+offset_top = -162.0
+offset_right = 4.0
+offset_bottom = 162.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/DivE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Recepcion" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(0.0, 109.0)
 shape = SubResource("S_Recepcion")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Recepcion"]
-color = Color(0.42, 0.3, 0.2, 1)
-polygon = PackedVector2Array(-40.0, -5.0, 40.0, -5.0, 40.0, 5.0, -40.0, 5.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Recepcion"]
+texture_filter = 1
+texture = ExtResource("a9_arte")
 
 [node name="EscritorioPlumas" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-300.0, -193.0)
 shape = SubResource("S_EscritorioPlumas")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/EscritorioPlumas"]
-color = Color(0.42, 0.3, 0.2, 1)
-polygon = PackedVector2Array(-40.0, -7.0, 40.0, -7.0, 40.0, 7.0, -40.0, 7.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/EscritorioPlumas"]
+texture_filter = 1
+texture = ExtResource("a10_arte")
 
 [node name="EscritorioJefa" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(0.0, -163.0)
 shape = SubResource("S_EscritorioJefa")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/EscritorioJefa"]
-color = Color(0.42, 0.3, 0.2, 1)
-polygon = PackedVector2Array(-40.0, -7.0, 40.0, -7.0, 40.0, 7.0, -40.0, 7.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/EscritorioJefa"]
+texture_filter = 1
+texture = ExtResource("a10_arte")
 
 [node name="Banca" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(275.0, -145.0)
 shape = SubResource("S_Banca")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Banca"]
-color = Color(0.5, 0.38, 0.25, 1)
-polygon = PackedVector2Array(-55.0, -5.0, 55.0, -5.0, 55.0, 5.0, -55.0, 5.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Banca"]
+texture_filter = 1
+texture = ExtResource("a11_arte")
 
 [node name="Casilleros" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(275.0, -284.0)
 shape = SubResource("S_Casilleros")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Casilleros"]
-color = Color(0.55, 0.6, 0.65, 1)
-polygon = PackedVector2Array(-105.0, -8.0, 105.0, -8.0, 105.0, 8.0, -105.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Casilleros"]
+offset_left = -105.0
+offset_top = -8.0
+offset_right = 105.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a12_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="Cafetera" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-410.0, 60.0)
 shape = SubResource("S_Cafetera")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Cafetera"]
-color = Color(0.42, 0.3, 0.2, 1)
-polygon = PackedVector2Array(-10.0, -10.0, 10.0, -10.0, 10.0, 10.0, -10.0, 10.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Cafetera"]
+texture_filter = 1
+texture = ExtResource("a13_arte")
 
 [node name="Clueca" type="Area2D" parent="."]
 position = Vector2(0, 86)
@@ -502,6 +798,12 @@ modulate = Color(1, 0.75, 0.85, 1)
 sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="MonoRosa" type="Sprite2D" parent="Clueca/Sprite"]
+texture_filter = 1
+texture = ExtResource("a15_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(1, -8)
 
 [node name="Nombre" type="Label" parent="Clueca"]
 offset_left = -50.0
@@ -546,6 +848,12 @@ modulate = Color(0.45, 0.55, 0.95, 1)
 sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="GorraPolicia" type="Sprite2D" parent="Pico/Sprite"]
+texture_filter = 1
+texture = ExtResource("a16_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
 
 [node name="Nombre" type="Label" parent="Pico"]
 offset_left = -50.0
@@ -592,6 +900,12 @@ animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
+[node name="GorraPolicia" type="Sprite2D" parent="Espolon/Sprite"]
+texture_filter = 1
+texture = ExtResource("a16_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
+
 [node name="Nombre" type="Label" parent="Espolon"]
 offset_left = -50.0
 offset_top = -26.0
@@ -635,6 +949,12 @@ modulate = Color(0.45, 0.55, 0.95, 1)
 sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="GorraPolicia" type="Sprite2D" parent="Plumas/Sprite"]
+texture_filter = 1
+texture = ExtResource("a16_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
 
 [node name="Nombre" type="Label" parent="Plumas"]
 offset_left = -50.0
@@ -680,6 +1000,12 @@ sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
 scale = Vector2(1.2, 1.2)
+
+[node name="GorraJefa" type="Sprite2D" parent="Jefa/Sprite"]
+texture_filter = 1
+texture = ExtResource("a17_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
 
 [node name="Nombre" type="Label" parent="Jefa"]
 offset_left = -50.0
@@ -730,6 +1056,12 @@ modulate = Color(0.45, 0.55, 0.95, 1)
 sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="GorraPolicia" type="Sprite2D" parent="DespachoJefa/Acusar_plumas/Retrato"]
+texture_filter = 1
+texture = ExtResource("a16_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
 
 [node name="NombreFoto" type="Label" parent="DespachoJefa/Acusar_plumas"]
 offset_left = -30.0
@@ -793,6 +1125,12 @@ sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="GorraPolicia" type="Sprite2D" parent="DespachoJefa/Acusar_pico/Retrato"]
+texture_filter = 1
+texture = ExtResource("a16_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
+
 [node name="NombreFoto" type="Label" parent="DespachoJefa/Acusar_pico"]
 offset_left = -30.0
 offset_top = -20.0
@@ -855,6 +1193,12 @@ sprite_frames = ExtResource("12_frames")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="GorraPolicia" type="Sprite2D" parent="DespachoJefa/Acusar_espolon/Retrato"]
+texture_filter = 1
+texture = ExtResource("a16_arte")
+script = ExtResource("a14_arte")
+lado = Vector2(3, -7)
+
 [node name="NombreFoto" type="Label" parent="DespachoJefa/Acusar_espolon"]
 offset_left = -30.0
 offset_top = -20.0
@@ -892,10 +1236,10 @@ theme_override_font_sizes/font_size = 8
 text = ""
 horizontal_alignment = 1
 
-[node name="BoteBasura" type="Polygon2D" parent="."]
+[node name="BoteBasura" type="Sprite2D" parent="."]
 position = Vector2(418, -262)
-color = Color(0.3, 0.35, 0.3, 1)
-polygon = PackedVector2Array(-7, -9, 7, -9, 6, 9, -6, 9)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
 [node name="PistaLibreta" parent="." instance=ExtResource("4_clue")]
 position = Vector2(404, -250)
@@ -909,6 +1253,7 @@ pista_id = "placa_policia"
 position = Vector2(180, -60)
 patrulla = PackedVector2Array(180, -60, 410, -60, 410, -190, 180, -190)
 color_pluma = Color(0.35, 0.45, 0.9, 1)
+uniforme = "policia"
 
 [node name="Patrulla1" parent="." instance=ExtResource("6_vehicle")]
 position = Vector2(-270, 225)

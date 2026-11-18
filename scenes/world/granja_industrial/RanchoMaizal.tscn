@@ -11,6 +11,26 @@
 [ext_resource type="Script" path="res://scripts/characters/npc/chaser_driver.gd" id="9_chaser"]
 [ext_resource type="Script" path="res://scripts/world/las_lomas/microfono_spot.gd" id="10_spot"]
 [ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="11_font"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/pasto_seco.png" id="a1_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/asfalto.png" id="a2_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/tierra.png" id="a3_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/madera.png" id="a4_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/surcos.png" id="a5_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/concreto.png" id="a6_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/piedra.png" id="a7_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/cerca_h.png" id="a8_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/cerca_v.png" id="a9_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/granero.png" id="a10_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/silo.png" id="a11_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/caja.png" id="a12_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/caja_chica.png" id="a13_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/tractor.png" id="a14_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/muro_crema.png" id="a15_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/maiz.png" id="a16_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/lamina.png" id="a17_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/costal.png" id="a18_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/placa.png" id="a19_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/sirena.png" id="a20_arte"]
 
 [sub_resource type="RectangleShape2D" id="S_BordeN"]
 size = Vector2(1672, 16)
@@ -123,21 +143,29 @@ script = ExtResource("1_lvl")
 [node name="Pisos" type="Node2D" parent="."]
 z_index = -10
 
-[node name="Campo" type="ColorRect" parent="Pisos"]
+[node name="Campo" type="TextureRect" parent="Pisos"]
 offset_left = -720.0
 offset_top = -460.0
 offset_right = 920.0
 offset_bottom = 460.0
-color = Color(0.45, 0.58, 0.3, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a1_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Carretera" type="ColorRect" parent="Pisos"]
+[node name="Carretera" type="TextureRect" parent="Pisos"]
 offset_left = -720.0
 offset_top = -28.0
 offset_right = -300.0
 offset_bottom = 28.0
-color = Color(0.3, 0.3, 0.32, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a2_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="LineaCarretera" type="ColorRect" parent="Pisos"]
 offset_left = -720.0
@@ -155,37 +183,53 @@ offset_bottom = 28.0
 color = Color(0.9, 0.9, 0.9, 0.35)
 mouse_filter = 2
 
-[node name="PatioGranja" type="ColorRect" parent="Pisos"]
+[node name="PatioGranja" type="TextureRect" parent="Pisos"]
 offset_left = -294.0
 offset_top = -354.0
 offset_right = 194.0
 offset_bottom = 354.0
-color = Color(0.62, 0.55, 0.42, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a3_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="PisoOficina" type="ColorRect" parent="Pisos"]
+[node name="PisoOficina" type="TextureRect" parent="Pisos"]
 offset_left = 46.0
 offset_top = -224.0
 offset_right = 164.0
 offset_bottom = -126.0
-color = Color(0.5, 0.42, 0.35, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a4_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Tierra" type="ColorRect" parent="Pisos"]
+[node name="Tierra" type="TextureRect" parent="Pisos"]
 offset_left = 200.0
 offset_top = -460.0
 offset_right = 920.0
 offset_bottom = 460.0
-color = Color(0.5, 0.38, 0.22, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a5_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="PisoBodega" type="ColorRect" parent="Pisos"]
+[node name="PisoBodega" type="TextureRect" parent="Pisos"]
 offset_left = 686.0
 offset_top = -54.0
 offset_right = 834.0
 offset_bottom = 54.0
-color = Color(0.3, 0.3, 0.32, 1)
 mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a6_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="LetreroGranja" type="Label" parent="."]
 offset_left = -300.0
@@ -227,629 +271,617 @@ collision_mask = 0
 position = Vector2(100.0, -468.0)
 shape = SubResource("S_BordeN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeN"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-836.0, -8.0, 836.0, -8.0, 836.0, 8.0, -836.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeN"]
+offset_left = -836.0
+offset_top = -8.0
+offset_right = 836.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeN/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BordeS" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(100.0, 468.0)
 shape = SubResource("S_BordeS")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeS"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-836.0, -8.0, 836.0, -8.0, 836.0, 8.0, -836.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeS"]
+offset_left = -836.0
+offset_top = -8.0
+offset_right = 836.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeS/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BordeO" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-728.0, 0.0)
 shape = SubResource("S_BordeO")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeO"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-8.0, -476.0, 8.0, -476.0, 8.0, 476.0, -8.0, 476.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeO"]
+offset_left = -8.0
+offset_top = -476.0
+offset_right = 8.0
+offset_bottom = 476.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeO/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BordeE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(928.0, 0.0)
 shape = SubResource("S_BordeE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BordeE"]
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(-8.0, -476.0, 8.0, -476.0, 8.0, 476.0, -8.0, 476.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BordeE"]
+offset_left = -8.0
+offset_top = -476.0
+offset_right = 8.0
+offset_bottom = 476.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a7_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BordeE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="CercaN" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-50.0, -357.0)
 shape = SubResource("S_CercaN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaN"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-250.0, -3.0, 250.0, -3.0, 250.0, 3.0, -250.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaN"]
+offset_left = -250.0
+offset_top = -3.0
+offset_right = 250.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaS" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-50.0, 357.0)
 shape = SubResource("S_CercaS")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaS"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-250.0, -3.0, 250.0, -3.0, 250.0, 3.0, -250.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaS"]
+offset_left = -250.0
+offset_top = -3.0
+offset_right = 250.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a8_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaO1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-297.0, -200.0)
 shape = SubResource("S_CercaO1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaO1"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-3.0, -160.0, 3.0, -160.0, 3.0, 160.0, -3.0, 160.0)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaO1"]
+offset_left = -3.0
+offset_top = -160.0
+offset_right = 3.0
+offset_bottom = 160.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaO2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-297.0, 200.0)
 shape = SubResource("S_CercaO2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaO2"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-3.0, -160.0, 3.0, -160.0, 3.0, 160.0, -3.0, 160.0)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaO2"]
+offset_left = -3.0
+offset_top = -160.0
+offset_right = 3.0
+offset_bottom = 160.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaE1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(197.0, -142.5)
 shape = SubResource("S_CercaE1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaE1"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-3.0, -217.5, 3.0, -217.5, 3.0, 217.5, -3.0, 217.5)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaE1"]
+offset_left = -3.0
+offset_top = -217.5
+offset_right = 3.0
+offset_bottom = 217.5
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaE2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(197.0, 267.5)
 shape = SubResource("S_CercaE2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaE2"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-3.0, -92.5, 3.0, -92.5, 3.0, 92.5, -3.0, 92.5)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaE2"]
+offset_left = -3.0
+offset_top = -92.5
+offset_right = 3.0
+offset_bottom = 92.5
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaE3" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(197.0, -410.0)
 shape = SubResource("S_CercaE3")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaE3"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-3.0, -50.0, 3.0, -50.0, 3.0, 50.0, -3.0, 50.0)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaE3"]
+offset_left = -3.0
+offset_top = -50.0
+offset_right = 3.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="CercaE4" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(197.0, 410.0)
 shape = SubResource("S_CercaE4")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/CercaE4"]
-color = Color(0.55, 0.38, 0.2, 1)
-polygon = PackedVector2Array(-3.0, -50.0, 3.0, -50.0, 3.0, 50.0, -3.0, 50.0)
+[node name="Vista" type="TextureRect" parent="Paredes/CercaE4"]
+offset_left = -3.0
+offset_top = -50.0
+offset_right = 3.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="Granero1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-170.0, -225.0)
 shape = SubResource("S_Granero1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Granero1"]
-color = Color(0.65, 0.18, 0.15, 1)
-polygon = PackedVector2Array(-70.0, -75.0, 70.0, -75.0, 70.0, 75.0, -70.0, 75.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Granero1"]
+texture_filter = 1
+texture = ExtResource("a10_arte")
 
 [node name="Granero2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-170.0, 225.0)
 shape = SubResource("S_Granero2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Granero2"]
-color = Color(0.65, 0.18, 0.15, 1)
-polygon = PackedVector2Array(-70.0, -75.0, 70.0, -75.0, 70.0, 75.0, -70.0, 75.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Granero2"]
+texture_filter = 1
+texture = ExtResource("a10_arte")
 
 [node name="Silo1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-20.0, -310.0)
 shape = SubResource("S_Silo1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Silo1"]
-color = Color(0.7, 0.72, 0.75, 1)
-polygon = PackedVector2Array(-20.0, -20.0, 20.0, -20.0, 20.0, 20.0, -20.0, 20.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Silo1"]
+texture_filter = 1
+texture = ExtResource("a11_arte")
 
 [node name="Silo2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(40.0, -310.0)
 shape = SubResource("S_Silo2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Silo2"]
-color = Color(0.7, 0.72, 0.75, 1)
-polygon = PackedVector2Array(-20.0, -20.0, 20.0, -20.0, 20.0, 20.0, -20.0, 20.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Silo2"]
+texture_filter = 1
+texture = ExtResource("a11_arte")
 
 [node name="Caja1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-40.0, 215.0)
 shape = SubResource("S_Caja1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Caja1"]
-color = Color(0.6, 0.45, 0.25, 1)
-polygon = PackedVector2Array(-20.0, -15.0, 20.0, -15.0, 20.0, 15.0, -20.0, 15.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Caja1"]
+texture_filter = 1
+texture = ExtResource("a12_arte")
 
 [node name="Caja2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(85.0, 215.0)
 shape = SubResource("S_Caja2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Caja2"]
-color = Color(0.6, 0.45, 0.25, 1)
-polygon = PackedVector2Array(-25.0, -15.0, 25.0, -15.0, 25.0, 15.0, -25.0, 15.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Caja2"]
+texture_filter = 1
+texture = ExtResource("a13_arte")
 
 [node name="Tractor" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-40.0, -235.0)
 shape = SubResource("S_Tractor")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Tractor"]
-color = Color(0.2, 0.55, 0.25, 1)
-polygon = PackedVector2Array(-20.0, -15.0, 20.0, -15.0, 20.0, 15.0, -20.0, 15.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Tractor"]
+texture_filter = 1
+texture = ExtResource("a14_arte")
 
 [node name="OficinaN" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(105.0, -227.0)
 shape = SubResource("S_OficinaN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/OficinaN"]
-color = Color(0.75, 0.72, 0.65, 1)
-polygon = PackedVector2Array(-65.0, -3.0, 65.0, -3.0, 65.0, 3.0, -65.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/OficinaN"]
+offset_left = -65.0
+offset_top = -3.0
+offset_right = 65.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a15_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/OficinaN/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="OficinaO" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(43.0, -175.0)
 shape = SubResource("S_OficinaO")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/OficinaO"]
-color = Color(0.75, 0.72, 0.65, 1)
-polygon = PackedVector2Array(-3.0, -55.0, 3.0, -55.0, 3.0, 55.0, -3.0, 55.0)
+[node name="Vista" type="TextureRect" parent="Paredes/OficinaO"]
+offset_left = -3.0
+offset_top = -55.0
+offset_right = 3.0
+offset_bottom = 55.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a15_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/OficinaO/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="OficinaE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(167.0, -175.0)
 shape = SubResource("S_OficinaE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/OficinaE"]
-color = Color(0.75, 0.72, 0.65, 1)
-polygon = PackedVector2Array(-3.0, -55.0, 3.0, -55.0, 3.0, 55.0, -3.0, 55.0)
+[node name="Vista" type="TextureRect" parent="Paredes/OficinaE"]
+offset_left = -3.0
+offset_top = -55.0
+offset_right = 3.0
+offset_bottom = 55.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a15_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/OficinaE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="OficinaS1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(65.0, -123.0)
 shape = SubResource("S_OficinaS1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/OficinaS1"]
-color = Color(0.75, 0.72, 0.65, 1)
-polygon = PackedVector2Array(-25.0, -3.0, 25.0, -3.0, 25.0, 3.0, -25.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/OficinaS1"]
+offset_left = -25.0
+offset_top = -3.0
+offset_right = 25.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a15_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/OficinaS1/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="OficinaS2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(145.0, -123.0)
 shape = SubResource("S_OficinaS2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/OficinaS2"]
-color = Color(0.75, 0.72, 0.65, 1)
-polygon = PackedVector2Array(-25.0, -3.0, 25.0, -3.0, 25.0, 3.0, -25.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/OficinaS2"]
+offset_left = -25.0
+offset_top = -3.0
+offset_right = 25.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a15_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/OficinaS2/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Maiz1a" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(322.0, -185.0)
 shape = SubResource("S_Maiz1a")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.78, 0.72, 0.22, 1)
-polygon = PackedVector2Array(-12.0, -275.0, 12.0, -275.0, 12.0, 275.0, -12.0, 275.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Maiz1a"]
+offset_left = -12.0
+offset_top = -275.0
+offset_right = 12.0
+offset_bottom = 275.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a16_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Surco0" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -270.0, 8, -270.0, 8, -264.0, -8, -264.0)
-
-[node name="Surco1" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -254.0, 8, -254.0, 8, -248.0, -8, -248.0)
-
-[node name="Surco2" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -238.0, 8, -238.0, 8, -232.0, -8, -232.0)
-
-[node name="Surco3" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -222.0, 8, -222.0, 8, -216.0, -8, -216.0)
-
-[node name="Surco4" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -206.0, 8, -206.0, 8, -200.0, -8, -200.0)
-
-[node name="Surco5" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -190.0, 8, -190.0, 8, -184.0, -8, -184.0)
-
-[node name="Surco6" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -174.0, 8, -174.0, 8, -168.0, -8, -168.0)
-
-[node name="Surco7" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -158.0, 8, -158.0, 8, -152.0, -8, -152.0)
-
-[node name="Surco8" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -142.0, 8, -142.0, 8, -136.0, -8, -136.0)
-
-[node name="Surco9" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -126.0, 8, -126.0, 8, -120.0, -8, -120.0)
-
-[node name="Surco10" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -110.0, 8, -110.0, 8, -104.0, -8, -104.0)
-
-[node name="Surco11" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -94.0, 8, -94.0, 8, -88.0, -8, -88.0)
-
-[node name="Surco12" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -78.0, 8, -78.0, 8, -72.0, -8, -72.0)
-
-[node name="Surco13" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -62.0, 8, -62.0, 8, -56.0, -8, -56.0)
-
-[node name="Surco14" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -46.0, 8, -46.0, 8, -40.0, -8, -40.0)
-
-[node name="Surco15" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -30.0, 8, -30.0, 8, -24.0, -8, -24.0)
-
-[node name="Surco16" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -14.0, 8, -14.0, 8, -8.0, -8, -8.0)
-
-[node name="Surco17" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 2.0, 8, 2.0, 8, 8.0, -8, 8.0)
-
-[node name="Surco18" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 18.0, 8, 18.0, 8, 24.0, -8, 24.0)
-
-[node name="Surco19" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 34.0, 8, 34.0, 8, 40.0, -8, 40.0)
-
-[node name="Surco20" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 50.0, 8, 50.0, 8, 56.0, -8, 56.0)
-
-[node name="Surco21" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 66.0, 8, 66.0, 8, 72.0, -8, 72.0)
-
-[node name="Surco22" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 82.0, 8, 82.0, 8, 88.0, -8, 88.0)
-
-[node name="Surco23" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 98.0, 8, 98.0, 8, 104.0, -8, 104.0)
-
-[node name="Surco24" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 114.0, 8, 114.0, 8, 120.0, -8, 120.0)
-
-[node name="Surco25" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 130.0, 8, 130.0, 8, 136.0, -8, 136.0)
-
-[node name="Surco26" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 146.0, 8, 146.0, 8, 152.0, -8, 152.0)
-
-[node name="Surco27" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 162.0, 8, 162.0, 8, 168.0, -8, 168.0)
-
-[node name="Surco28" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 178.0, 8, 178.0, 8, 184.0, -8, 184.0)
-
-[node name="Surco29" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 194.0, 8, 194.0, 8, 200.0, -8, 200.0)
-
-[node name="Surco30" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 210.0, 8, 210.0, 8, 216.0, -8, 216.0)
-
-[node name="Surco31" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 226.0, 8, 226.0, 8, 232.0, -8, 232.0)
-
-[node name="Surco32" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 242.0, 8, 242.0, 8, 248.0, -8, 248.0)
-
-[node name="Surco33" type="Polygon2D" parent="Paredes/Maiz1a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 258.0, 8, 258.0, 8, 264.0, -8, 264.0)
+[node name="Borde" type="ReferenceRect" parent="Paredes/Maiz1a/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Maiz1b" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(322.0, 365.0)
 shape = SubResource("S_Maiz1b")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.78, 0.72, 0.22, 1)
-polygon = PackedVector2Array(-12.0, -95.0, 12.0, -95.0, 12.0, 95.0, -12.0, 95.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Maiz1b"]
+offset_left = -12.0
+offset_top = -95.0
+offset_right = 12.0
+offset_bottom = 95.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a16_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Surco0" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -90.0, 8, -90.0, 8, -84.0, -8, -84.0)
-
-[node name="Surco1" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -74.0, 8, -74.0, 8, -68.0, -8, -68.0)
-
-[node name="Surco2" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -58.0, 8, -58.0, 8, -52.0, -8, -52.0)
-
-[node name="Surco3" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -42.0, 8, -42.0, 8, -36.0, -8, -36.0)
-
-[node name="Surco4" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -26.0, 8, -26.0, 8, -20.0, -8, -20.0)
-
-[node name="Surco5" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -10.0, 8, -10.0, 8, -4.0, -8, -4.0)
-
-[node name="Surco6" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 6.0, 8, 6.0, 8, 12.0, -8, 12.0)
-
-[node name="Surco7" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 22.0, 8, 22.0, 8, 28.0, -8, 28.0)
-
-[node name="Surco8" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 38.0, 8, 38.0, 8, 44.0, -8, 44.0)
-
-[node name="Surco9" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 54.0, 8, 54.0, 8, 60.0, -8, 60.0)
-
-[node name="Surco10" type="Polygon2D" parent="Paredes/Maiz1b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 70.0, 8, 70.0, 8, 76.0, -8, 76.0)
+[node name="Borde" type="ReferenceRect" parent="Paredes/Maiz1b/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Maiz3a" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(602.0, -275.0)
 shape = SubResource("S_Maiz3a")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.78, 0.72, 0.22, 1)
-polygon = PackedVector2Array(-12.0, -185.0, 12.0, -185.0, 12.0, 185.0, -12.0, 185.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Maiz3a"]
+offset_left = -12.0
+offset_top = -185.0
+offset_right = 12.0
+offset_bottom = 185.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a16_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Surco0" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -180.0, 8, -180.0, 8, -174.0, -8, -174.0)
-
-[node name="Surco1" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -164.0, 8, -164.0, 8, -158.0, -8, -158.0)
-
-[node name="Surco2" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -148.0, 8, -148.0, 8, -142.0, -8, -142.0)
-
-[node name="Surco3" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -132.0, 8, -132.0, 8, -126.0, -8, -126.0)
-
-[node name="Surco4" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -116.0, 8, -116.0, 8, -110.0, -8, -110.0)
-
-[node name="Surco5" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -100.0, 8, -100.0, 8, -94.0, -8, -94.0)
-
-[node name="Surco6" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -84.0, 8, -84.0, 8, -78.0, -8, -78.0)
-
-[node name="Surco7" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -68.0, 8, -68.0, 8, -62.0, -8, -62.0)
-
-[node name="Surco8" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -52.0, 8, -52.0, 8, -46.0, -8, -46.0)
-
-[node name="Surco9" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -36.0, 8, -36.0, 8, -30.0, -8, -30.0)
-
-[node name="Surco10" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -20.0, 8, -20.0, 8, -14.0, -8, -14.0)
-
-[node name="Surco11" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -4.0, 8, -4.0, 8, 2.0, -8, 2.0)
-
-[node name="Surco12" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 12.0, 8, 12.0, 8, 18.0, -8, 18.0)
-
-[node name="Surco13" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 28.0, 8, 28.0, 8, 34.0, -8, 34.0)
-
-[node name="Surco14" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 44.0, 8, 44.0, 8, 50.0, -8, 50.0)
-
-[node name="Surco15" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 60.0, 8, 60.0, 8, 66.0, -8, 66.0)
-
-[node name="Surco16" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 76.0, 8, 76.0, 8, 82.0, -8, 82.0)
-
-[node name="Surco17" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 92.0, 8, 92.0, 8, 98.0, -8, 98.0)
-
-[node name="Surco18" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 108.0, 8, 108.0, 8, 114.0, -8, 114.0)
-
-[node name="Surco19" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 124.0, 8, 124.0, 8, 130.0, -8, 130.0)
-
-[node name="Surco20" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 140.0, 8, 140.0, 8, 146.0, -8, 146.0)
-
-[node name="Surco21" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 156.0, 8, 156.0, 8, 162.0, -8, 162.0)
-
-[node name="Surco22" type="Polygon2D" parent="Paredes/Maiz3a"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 172.0, 8, 172.0, 8, 178.0, -8, 178.0)
+[node name="Borde" type="ReferenceRect" parent="Paredes/Maiz3a/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Maiz3b" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(602.0, 275.0)
 shape = SubResource("S_Maiz3b")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.78, 0.72, 0.22, 1)
-polygon = PackedVector2Array(-12.0, -185.0, 12.0, -185.0, 12.0, 185.0, -12.0, 185.0)
+[node name="Vista" type="TextureRect" parent="Paredes/Maiz3b"]
+offset_left = -12.0
+offset_top = -185.0
+offset_right = 12.0
+offset_bottom = 185.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a16_arte")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="Surco0" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -180.0, 8, -180.0, 8, -174.0, -8, -174.0)
-
-[node name="Surco1" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -164.0, 8, -164.0, 8, -158.0, -8, -158.0)
-
-[node name="Surco2" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -148.0, 8, -148.0, 8, -142.0, -8, -142.0)
-
-[node name="Surco3" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -132.0, 8, -132.0, 8, -126.0, -8, -126.0)
-
-[node name="Surco4" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -116.0, 8, -116.0, 8, -110.0, -8, -110.0)
-
-[node name="Surco5" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -100.0, 8, -100.0, 8, -94.0, -8, -94.0)
-
-[node name="Surco6" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -84.0, 8, -84.0, 8, -78.0, -8, -78.0)
-
-[node name="Surco7" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -68.0, 8, -68.0, 8, -62.0, -8, -62.0)
-
-[node name="Surco8" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -52.0, 8, -52.0, 8, -46.0, -8, -46.0)
-
-[node name="Surco9" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -36.0, 8, -36.0, 8, -30.0, -8, -30.0)
-
-[node name="Surco10" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -20.0, 8, -20.0, 8, -14.0, -8, -14.0)
-
-[node name="Surco11" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, -4.0, 8, -4.0, 8, 2.0, -8, 2.0)
-
-[node name="Surco12" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 12.0, 8, 12.0, 8, 18.0, -8, 18.0)
-
-[node name="Surco13" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 28.0, 8, 28.0, 8, 34.0, -8, 34.0)
-
-[node name="Surco14" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 44.0, 8, 44.0, 8, 50.0, -8, 50.0)
-
-[node name="Surco15" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 60.0, 8, 60.0, 8, 66.0, -8, 66.0)
-
-[node name="Surco16" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 76.0, 8, 76.0, 8, 82.0, -8, 82.0)
-
-[node name="Surco17" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 92.0, 8, 92.0, 8, 98.0, -8, 98.0)
-
-[node name="Surco18" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 108.0, 8, 108.0, 8, 114.0, -8, 114.0)
-
-[node name="Surco19" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 124.0, 8, 124.0, 8, 130.0, -8, 130.0)
-
-[node name="Surco20" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 140.0, 8, 140.0, 8, 146.0, -8, 146.0)
-
-[node name="Surco21" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 156.0, 8, 156.0, 8, 162.0, -8, 162.0)
-
-[node name="Surco22" type="Polygon2D" parent="Paredes/Maiz3b"]
-color = Color(0.4, 0.6, 0.15, 1)
-polygon = PackedVector2Array(-8, 172.0, 8, 172.0, 8, 178.0, -8, 178.0)
+[node name="Borde" type="ReferenceRect" parent="Paredes/Maiz3b/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BodegaN" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(760.0, -57.0)
 shape = SubResource("S_BodegaN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BodegaN"]
-color = Color(0.4, 0.4, 0.45, 1)
-polygon = PackedVector2Array(-80.0, -3.0, 80.0, -3.0, 80.0, 3.0, -80.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BodegaN"]
+offset_left = -80.0
+offset_top = -3.0
+offset_right = 80.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a17_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BodegaN/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BodegaS" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(760.0, 57.0)
 shape = SubResource("S_BodegaS")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BodegaS"]
-color = Color(0.4, 0.4, 0.45, 1)
-polygon = PackedVector2Array(-80.0, -3.0, 80.0, -3.0, 80.0, 3.0, -80.0, 3.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BodegaS"]
+offset_left = -80.0
+offset_top = -3.0
+offset_right = 80.0
+offset_bottom = 3.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a17_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BodegaS/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BodegaE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(837.0, 0.0)
 shape = SubResource("S_BodegaE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BodegaE"]
-color = Color(0.4, 0.4, 0.45, 1)
-polygon = PackedVector2Array(-3.0, -60.0, 3.0, -60.0, 3.0, 60.0, -3.0, 60.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BodegaE"]
+offset_left = -3.0
+offset_top = -60.0
+offset_right = 3.0
+offset_bottom = 60.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a17_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BodegaE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BodegaO1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(683.0, -42.0)
 shape = SubResource("S_BodegaO1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BodegaO1"]
-color = Color(0.4, 0.4, 0.45, 1)
-polygon = PackedVector2Array(-3.0, -18.0, 3.0, -18.0, 3.0, 18.0, -3.0, 18.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BodegaO1"]
+offset_left = -3.0
+offset_top = -18.0
+offset_right = 3.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a17_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BodegaO1/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="BodegaO2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(683.0, 42.0)
 shape = SubResource("S_BodegaO2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/BodegaO2"]
-color = Color(0.4, 0.4, 0.45, 1)
-polygon = PackedVector2Array(-3.0, -18.0, 3.0, -18.0, 3.0, 18.0, -3.0, 18.0)
+[node name="Vista" type="TextureRect" parent="Paredes/BodegaO2"]
+offset_left = -3.0
+offset_top = -18.0
+offset_right = 3.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a17_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/BodegaO2/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="TablaSuelta" type="StaticBody2D" parent="."]
 position = Vector2(197, 125)
@@ -858,9 +890,18 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TablaSuelta"]
 shape = SubResource("S_Tabla")
 
-[node name="Vista" type="Polygon2D" parent="TablaSuelta"]
-color = Color(0.7, 0.5, 0.25, 1)
-polygon = PackedVector2Array(-3.0, -50.0, 3.0, -50.0, 3.0, 50.0, -3.0, 50.0)
+[node name="Vista" type="TextureRect" parent="TablaSuelta"]
+offset_left = -3.0
+offset_top = -50.0
+offset_right = 3.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a9_arte")
+expand_mode = 1
+stretch_mode = 1
+modulate = Color(1.35, 1.2, 0.85, 1)
 
 [node name="PistaMapa" parent="." instance=ExtResource("4_clue")]
 position = Vector2(105, -180)
@@ -868,49 +909,50 @@ pista_id = "mapa_rancho"
 
 [node name="Bodega" type="Node2D" parent="."]
 
-[node name="Costal0" type="Polygon2D" parent="Bodega"]
+[node name="Costal0" type="Sprite2D" parent="Bodega"]
 position = Vector2(710, -40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="Costal1" type="Polygon2D" parent="Bodega"]
+[node name="Costal1" type="Sprite2D" parent="Bodega"]
 position = Vector2(730, -40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="Costal2" type="Polygon2D" parent="Bodega"]
+[node name="Costal2" type="Sprite2D" parent="Bodega"]
 position = Vector2(750, -40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="Costal3" type="Polygon2D" parent="Bodega"]
+[node name="Costal3" type="Sprite2D" parent="Bodega"]
 position = Vector2(710, 40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="Costal4" type="Polygon2D" parent="Bodega"]
+[node name="Costal4" type="Sprite2D" parent="Bodega"]
 position = Vector2(730, 40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="Costal5" type="Polygon2D" parent="Bodega"]
+[node name="Costal5" type="Sprite2D" parent="Bodega"]
 position = Vector2(820, -40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="Costal6" type="Polygon2D" parent="Bodega"]
+[node name="Costal6" type="Sprite2D" parent="Bodega"]
 position = Vector2(820, 40)
-color = Color(0.85, 0.78, 0.35, 1)
-polygon = PackedVector2Array(-7, -6, 7, -6, 8, 6, -8, 6)
+texture_filter = 1
+texture = ExtResource("a18_arte")
 
-[node name="PlacaKiko" type="Polygon2D" parent="Bodega"]
+[node name="PlacaKiko" type="Sprite2D" parent="Bodega"]
 position = Vector2(770, 30)
-color = Color(0.85, 0.85, 0.9, 1)
-polygon = PackedVector2Array(0, -4, 4, 0, 0, 4, -4, 0)
+texture_filter = 1
+texture = ExtResource("a19_arte")
 
-[node name="Sirena" type="Polygon2D" parent="Bodega"]
+[node name="Sirena" type="Sprite2D" parent="Bodega"]
 position = Vector2(760, -66)
-polygon = PackedVector2Array(-6, -4, 6, -4, 6, 4, -6, 4)
+texture_filter = 1
+texture = ExtResource("a20_arte")
 
 [node name="FotoSpot" type="Area2D" parent="Bodega"]
 position = Vector2(800, 0)

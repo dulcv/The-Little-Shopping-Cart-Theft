@@ -72,6 +72,8 @@ var _weapon_base_pos: Vector2 = Vector2(6, 2)
 
 func _ready() -> void:
 	add_to_group("player")
+	# El detective siempre trae su sombrero.
+	Accesorio.poner(animated_sprite, "sombrero_detective", Vector2(3, -8))
 	hp = max_hp
 	health_changed.emit.call_deferred(hp, max_hp)
 	# Top-down: sin este modo el CharacterBody trata los laterales como

@@ -48,6 +48,8 @@ func _ready() -> void:
 	add_to_group("boss")
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	hp = max_hp
+	Accesorio.poner(sprite, "sombrero_oro", Vector2(3, -8))
+	Accesorio.poner(sprite, "cadena_oro", Vector2(5, 2), true)
 	_target = get_tree().get_first_node_in_group("player") as Node2D
 	if _target == null and not target_path.is_empty():
 		_target = get_node_or_null(target_path) as Node2D

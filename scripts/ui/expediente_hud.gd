@@ -18,7 +18,12 @@ func _ready() -> void:
 	aviso.text = ""
 	_conectar_jugador.call_deferred()
 	_actualizar()
-	if CaseManager.nivel_actual:
+	# Diferido: el nivel (padre) se sincroniza con CaseManager en su _ready, después del HUD.
+	_intro.call_deferred()
+
+func _intro() -> void:
+	_actualizar()
+	if CaseManager.nivel_actual and aviso.text.is_empty():
 		mostrar("%s\n%s" % [CaseManager.nivel_actual.titulo, CaseManager.nivel_actual.objetivo], 5.0)
 
 func _process(delta: float) -> void:

@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" path="res://scenes/characters/boss/don_creston.tscn" id="3_boss"]
 [ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="4_font"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud/expediente_hud.tscn" id="5_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/arena.png" id="a1_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/piedra.png" id="a2_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/pilar.png" id="a3_arte"]
 
 [sub_resource type="RectangleShape2D" id="Shape_ParedN"]
 size = Vector2(464, 16)
@@ -39,12 +42,17 @@ bg_color = Color(1, 0.75, 0.2, 1)
 [node name="ArenaJefe" type="Node2D"]
 script = ExtResource("1_arena")
 
-[node name="Piso" type="ColorRect" parent="."]
+[node name="Piso" type="TextureRect" parent="."]
 offset_left = -240.0
 offset_top = -136.0
 offset_right = 240.0
 offset_bottom = 136.0
-color = Color(0.36, 0.27, 0.16, 1)
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a1_arte")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="Paredes" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -53,65 +61,129 @@ collision_mask = 0
 position = Vector2(0, -128)
 shape = SubResource("Shape_ParedN")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/ParedN"]
-color = Color(0.22, 0.16, 0.1, 1)
-polygon = PackedVector2Array(-232.0, -8.0, 232.0, -8.0, 232.0, 8.0, -232.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/ParedN"]
+offset_left = -232.0
+offset_top = -8.0
+offset_right = 232.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a2_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/ParedN/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="ParedS" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(0, 128)
 shape = SubResource("Shape_ParedS")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/ParedS"]
-color = Color(0.22, 0.16, 0.1, 1)
-polygon = PackedVector2Array(-232.0, -8.0, 232.0, -8.0, 232.0, 8.0, -232.0, 8.0)
+[node name="Vista" type="TextureRect" parent="Paredes/ParedS"]
+offset_left = -232.0
+offset_top = -8.0
+offset_right = 232.0
+offset_bottom = 8.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a2_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/ParedS/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="ParedO" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-232, 0)
 shape = SubResource("Shape_ParedO")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/ParedO"]
-color = Color(0.22, 0.16, 0.1, 1)
-polygon = PackedVector2Array(-8.0, -136.0, 8.0, -136.0, 8.0, 136.0, -8.0, 136.0)
+[node name="Vista" type="TextureRect" parent="Paredes/ParedO"]
+offset_left = -8.0
+offset_top = -136.0
+offset_right = 8.0
+offset_bottom = 136.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a2_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/ParedO/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="ParedE" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(232, 0)
 shape = SubResource("Shape_ParedE")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/ParedE"]
-color = Color(0.22, 0.16, 0.1, 1)
-polygon = PackedVector2Array(-8.0, -136.0, 8.0, -136.0, 8.0, 136.0, -8.0, 136.0)
+[node name="Vista" type="TextureRect" parent="Paredes/ParedE"]
+offset_left = -8.0
+offset_top = -136.0
+offset_right = 8.0
+offset_bottom = 136.0
+mouse_filter = 2
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("a2_arte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Borde" type="ReferenceRect" parent="Paredes/ParedE/Vista"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+border_color = Color(0.184, 0.169, 0.165, 1)
+editor_only = false
 
 [node name="Pilar1" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-110, -55)
 shape = SubResource("Shape_Pilar1")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Pilar1"]
-color = Color(0.55, 0.45, 0.3, 1)
-polygon = PackedVector2Array(-12.0, -12.0, 12.0, -12.0, 12.0, 12.0, -12.0, 12.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Pilar1"]
+texture_filter = 1
+texture = ExtResource("a3_arte")
 
 [node name="Pilar2" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(110, -55)
 shape = SubResource("Shape_Pilar2")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Pilar2"]
-color = Color(0.55, 0.45, 0.3, 1)
-polygon = PackedVector2Array(-12.0, -12.0, 12.0, -12.0, 12.0, 12.0, -12.0, 12.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Pilar2"]
+texture_filter = 1
+texture = ExtResource("a3_arte")
 
 [node name="Pilar3" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(-110, 55)
 shape = SubResource("Shape_Pilar3")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Pilar3"]
-color = Color(0.55, 0.45, 0.3, 1)
-polygon = PackedVector2Array(-12.0, -12.0, 12.0, -12.0, 12.0, 12.0, -12.0, 12.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Pilar3"]
+texture_filter = 1
+texture = ExtResource("a3_arte")
 
 [node name="Pilar4" type="CollisionShape2D" parent="Paredes"]
 position = Vector2(110, 55)
 shape = SubResource("Shape_Pilar4")
 
-[node name="Vista" type="Polygon2D" parent="Paredes/Pilar4"]
-color = Color(0.55, 0.45, 0.3, 1)
-polygon = PackedVector2Array(-12.0, -12.0, 12.0, -12.0, 12.0, 12.0, -12.0, 12.0)
+[node name="Vista" type="Sprite2D" parent="Paredes/Pilar4"]
+texture_filter = 1
+texture = ExtResource("a3_arte")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_player")]
 position = Vector2(-170, 0)

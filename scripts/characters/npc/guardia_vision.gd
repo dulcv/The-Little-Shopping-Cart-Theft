@@ -15,6 +15,8 @@ signal jugador_detectado(guardia: GuardiaVision)
 @export_range(10.0, 180.0) var angulo_vision: float = 70.0
 @export var tiempo_deteccion: float = 0.6
 @export var color_pluma: Color = Color(0.25, 0.25, 0.3)
+## "gallo_negro" = pañuelo y lentes oscuros; "policia" = gorra azul.
+@export_enum("gallo_negro", "policia") var uniforme: String = "gallo_negro"
 
 var mirando: Vector2 = Vector2.RIGHT
 var sospecha: float = 0.0
@@ -38,6 +40,11 @@ func _ready() -> void:
 	add_to_group("guardias")
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	sprite.modulate = color_pluma
+	if uniforme == "policia":
+		Accesorio.poner(sprite, "gorra_policia", Vector2(3, -7))
+	else:
+		Accesorio.poner(sprite, "panuelo_negro", Vector2(3, -6))
+		Accesorio.poner(sprite, "lentes_oscuros", Vector2(4, -3), true)
 	_jugador = get_tree().get_first_node_in_group("player") as Node2D
 	_construir_cono()
 	alerta.text = ""
