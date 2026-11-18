@@ -23,6 +23,13 @@ El jugador ya tiene vida (`player.gd`: `take_damage`, `heal`, `is_dead`, señale
   de un pollo. Sigue el volteo, las vistas arriba y abajo y el balanceo del cuerpo.
 - Para reemplazar el arte generado por arte hecho a mano, sobrescribe el `.png` con el mismo nombre y tamaño.
 
+## Vida del Centro (nivel 1)
+
+`scenes/world/el_centro/VidaCentro.tscn` (instanciada en `Centro.tscn`) agrega lo que el nivel necesitaba para seguir el mismo
+estándar que los demás: vecinos con los que se habla con E (Doña Pechuga, Don Elotero, Panadero Bolillo, Jardinero Pasto y
+Sra. Cocorota; cada uno guía hacia una pista), peatones con accesorios, macetas, bancas y el puesto de elotes.
+El jugador ahora aparece en la calle de las tiendas, con su coche estacionado al lado.
+
 ## Música
 
 Juhani Junkala, CC0 (ver `CREDITOS_MUSICA.txt`). Archivos en `assets/audio/music/`; el mapeo de escena a pista está en

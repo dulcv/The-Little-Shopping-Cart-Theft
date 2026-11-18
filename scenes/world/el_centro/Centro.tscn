@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/world/centro_colisiones.gd" id="7_edcol"]
 [ext_resource type="PackedScene" path="res://scenes/pickups/clue_pickup.tscn" id="8_clue"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud/expediente_hud.tscn" id="9_hud"]
+[ext_resource type="PackedScene" path="res://scenes/world/el_centro/VidaCentro.tscn" id="10_vida"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_phhli"]
 texture = ExtResource("1_p6ojd")
@@ -1041,10 +1042,10 @@ tile_map_data = PackedByteArray("AABKAPH/AwAAAAAAAABKAPL/AwAAAAEAAABKAPP/AwAAAAI
 tile_set = SubResource("TileSet_enuon")
 
 [node name="Player" parent="." unique_id=411640119 instance=ExtResource("4_2svvc")]
-position = Vector2(-162, 20)
+position = Vector2(-240, 625)
 
 [node name="Vehicle" parent="." unique_id=1483089763 instance=ExtResource("5_7nacd")]
-position = Vector2(307, 22)
+position = Vector2(-60, 672)
 vehicle_data = ExtResource("6_sedan")
 
 [node name="EdificiosColision" type="Node2D" parent="."]
@@ -1064,5 +1065,7 @@ pista_id = "ticket_maiz"
 [node name="PistaFoto" parent="Pistas" instance=ExtResource("8_clue")]
 position = Vector2(8, 1462)
 pista_id = "foto_kiko"
+
+[node name="VidaCentro" parent="." instance=ExtResource("10_vida")]
 
 [node name="ExpedienteHUD" parent="." instance=ExtResource("9_hud")]

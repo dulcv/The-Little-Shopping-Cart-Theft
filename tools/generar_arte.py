@@ -380,7 +380,32 @@ def lupa():
     return contorno(im, OUT2)
 
 
+def puesto_elotes():
+    im = nuevo(30, 26)
+    rect(im, 3, 12, 24, 10, MADERA); rect(im, 3, 12, 24, 2, MADERA_CLARA)
+    rect(im, 6, 15, 18, 5, AMARILLO)                          # elotes
+    for x in range(7, 24, 3):
+        px(im, x, 15, VERDE_CLARO)
+    rect(im, 4, 22, 4, 4, NEGRO); rect(im, 22, 22, 4, 4, NEGRO)  # ruedas
+    d = ImageDraw.Draw(im)
+    d.pieslice([0, 0, 29, 18], 180, 360, fill=ROJO)            # sombrilla
+    for x in range(3, 28, 6):
+        d.line([(15, 1), (x, 9)], fill=BLANCO)
+    rect(im, 14, 9, 2, 4, GRIS)
+    return contorno(im)
+
+
+def banca_corta():
+    im = nuevo(30, 10, MADERA)
+    for y in range(0, 10, 3):
+        rect(im, 0, y, 30, 1, MADERA_CLARA)
+    rect(im, 2, 8, 2, 2, NEGRO); rect(im, 26, 8, 2, 2, NEGRO)
+    return contorno(im)
+
+
 def props():
+    guardar(puesto_elotes(), "props", "puesto_elotes")
+    guardar(banca_corta(), "props", "banca_corta")
     guardar(lupa(), "props", "lupa")
     guardar(casillero(), "tiles", "casillero")  # se usa repetido como fila de casilleros
     for nombre, im in (("mesa", mesa()), ("escritorio", escritorio()), ("planta", planta()),
@@ -460,7 +485,39 @@ def gorrito_fiesta(c1, c2):
     return contorno(im, OUT2)
 
 
+def gorro_chef():
+    im = nuevo(10, 9)
+    ImageDraw.Draw(im).ellipse([0, 0, 9, 6], fill=BLANCO)
+    rect(im, 2, 4, 6, 5, BLANCO); rect(im, 2, 7, 6, 1, GRIS_MUY_CLARO)
+    return contorno(im, OUT2)
+
+
+def sombrero_paja():
+    im = nuevo(16, 7)
+    rect(im, 0, 5, 16, 2, (214, 180, 100, 255))
+    rect(im, 4, 1, 8, 5, (230, 200, 120, 255)); rect(im, 4, 4, 8, 1, ROJO)
+    for x in range(1, 15, 3):
+        px(im, x, 5, (190, 155, 80, 255))
+    return contorno(im, OUT2)
+
+
+def gorra_roja():
+    im = gorra(ROJO, ROJO_OSC, BLANCO)
+    return im
+
+
+def boina():
+    im = nuevo(11, 5)
+    ImageDraw.Draw(im).ellipse([0, 0, 10, 5], fill=MORADO)
+    px(im, 5, 0, MORADO_OSC)
+    return contorno(im, OUT2)
+
+
 def accesorios():
+    guardar(gorro_chef(), "accesorios", "gorro_chef")
+    guardar(sombrero_paja(), "accesorios", "sombrero_paja")
+    guardar(gorra_roja(), "accesorios", "gorra_roja")
+    guardar(boina(), "accesorios", "boina")
     guardar(sombrero_detective(), "accesorios", "sombrero_detective")
     guardar(gorra(AZUL, NEGRO, ORO), "accesorios", "gorra_policia")
     guardar(gorra(BLANCO, NEGRO, ORO), "accesorios", "gorra_jefa")

@@ -1,0 +1,397 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/characters/npc/npc_charla.gd" id="1_charla"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/player/player1_sprite_frames.tres" id="2_frames"]
+[ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="3_font"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/puesto_elotes.png" id="a1_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/planta.png" id="a2_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/props/banca_corta.png" id="a3_arte"]
+[ext_resource type="Script" path="res://scripts/characters/accesorio.gd" id="a4_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/mono_rosa.png" id="a5_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/sombrero_paja.png" id="a6_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/gorro_chef.png" id="a7_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/boina.png" id="a8_arte"]
+[ext_resource type="Texture2D" path="res://assets/sprites/generado/accesorios/gorra_roja.png" id="a9_arte"]
+
+[sub_resource type="CircleShape2D" id="S_charla"]
+radius = 26.0
+
+[node name="VidaCentro" type="Node2D"]
+z_index = 2
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="PuestoElotes" type="Sprite2D" parent="Decoracion"]
+position = Vector2(-215, 653)
+texture_filter = 1
+texture = ExtResource("a1_arte")
+
+[node name="Maceta0" type="Sprite2D" parent="Decoracion"]
+position = Vector2(-320, 604)
+texture_filter = 1
+texture = ExtResource("a2_arte")
+
+[node name="Maceta1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(-40, 604)
+texture_filter = 1
+texture = ExtResource("a2_arte")
+
+[node name="Maceta2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(220, 604)
+texture_filter = 1
+texture = ExtResource("a2_arte")
+
+[node name="Maceta3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(360, 604)
+texture_filter = 1
+texture = ExtResource("a2_arte")
+
+[node name="BancaParque1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(-1750, 1135)
+texture_filter = 1
+texture = ExtResource("a3_arte")
+
+[node name="BancaParque2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(-1660, 1135)
+texture_filter = 1
+texture = ExtResource("a3_arte")
+
+[node name="MacetaTiendas1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(-60, 1445)
+texture_filter = 1
+texture = ExtResource("a2_arte")
+
+[node name="MacetaTiendas2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(80, 1445)
+texture_filter = 1
+texture = ExtResource("a2_arte")
+
+[node name="Vecinos" type="Node2D" parent="."]
+
+[node name="DonaPechuga" type="Area2D" parent="Vecinos"]
+position = Vector2(-170, 618)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "pechuga"
+nombre = "Doña Pechuga"
+lineas = PackedStringArray("¡Detective! Qué bueno que llegó.", "El agente Kiko Cacareña lleva tres días sin aparecer.", "Pregúntele al elotero y al panadero: ellos ven todo lo que pasa en esta calle.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/DonaPechuga"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/DonaPechuga"]
+position = Vector2(0, 0)
+texture_filter = 1
+modulate = Color(1, 0.85, 0.9, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="MonoRosa" type="Sprite2D" parent="Vecinos/DonaPechuga/Sprite"]
+texture_filter = 1
+texture = ExtResource("a5_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(1, -8)
+
+[node name="Nombre" type="Label" parent="Vecinos/DonaPechuga"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Doña Pechuga"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/DonaPechuga"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="DonElotero" type="Area2D" parent="Vecinos"]
+position = Vector2(-178, 662)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "elotero"
+nombre = "Don Elotero"
+lineas = PackedStringArray("¡Elotes, esquites! ¿Uno, detective?", "Qué raro... alguien está comprando TODO el maíz de la ciudad.", "Ya ni yo consigo. El panadero dice que le dejaron un ticket rarísimo.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/DonElotero"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/DonElotero"]
+position = Vector2(0, 0)
+texture_filter = 1
+modulate = Color(0.95, 0.85, 0.6, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="SombreroPaja" type="Sprite2D" parent="Vecinos/DonElotero/Sprite"]
+texture_filter = 1
+texture = ExtResource("a6_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(3, -8)
+
+[node name="Nombre" type="Label" parent="Vecinos/DonElotero"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Don Elotero"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/DonElotero"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Panadero" type="Area2D" parent="Vecinos"]
+position = Vector2(145, 618)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "panadero"
+nombre = "Panadero Bolillo"
+lineas = PackedStringArray("Buenos días, detective. ¿Un bolillo calientito?", "Ayer un gallo de lentes oscuros pagó una fortuna en maíz... ¡y tiró el ticket aquí afuera!", "Y dicen que anoche brillaba algo dorado en la plaza del parque, al oeste.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Panadero"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Panadero"]
+position = Vector2(0, 0)
+texture_filter = 1
+modulate = Color(1, 0.95, 0.85, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="GorroChef" type="Sprite2D" parent="Vecinos/Panadero/Sprite"]
+texture_filter = 1
+texture = ExtResource("a7_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(3, -10)
+
+[node name="Nombre" type="Label" parent="Vecinos/Panadero"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Panadero Bolillo"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Panadero"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Jardinero" type="Area2D" parent="Vecinos"]
+position = Vector2(-1660, 1103)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "jardinero"
+nombre = "Jardinero Pasto"
+lineas = PackedStringArray("Anoche pasó por aquí un gallo con plumas DORADAS.", "Se le cayó una pluma junto a la plaza. ¡Brillaba como oro!", "Por cierto, en la calle de las tiendas, al sur, una señora preguntaba por Kiko.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Jardinero"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Jardinero"]
+position = Vector2(0, 0)
+texture_filter = 1
+modulate = Color(0.8, 1, 0.75, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="SombreroPaja" type="Sprite2D" parent="Vecinos/Jardinero/Sprite"]
+texture_filter = 1
+texture = ExtResource("a6_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(3, -8)
+
+[node name="Nombre" type="Label" parent="Vecinos/Jardinero"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Jardinero Pasto"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Jardinero"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="SraCocorota" type="Area2D" parent="Vecinos"]
+position = Vector2(55, 1462)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "cocorota"
+nombre = "Sra. Cocorota"
+lineas = PackedStringArray("¿Usted busca a Kiko? Era mi vecino.", "Me enseñó una foto suya antes de irse: iba a una fiesta elegante en Las Lomas.", "Creo que se le cayó la foto por aquí cerca.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/SraCocorota"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/SraCocorota"]
+position = Vector2(0, 0)
+texture_filter = 1
+modulate = Color(0.85, 0.8, 1, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Boina" type="Sprite2D" parent="Vecinos/SraCocorota/Sprite"]
+texture_filter = 1
+texture = ExtResource("a8_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(2, -7)
+
+[node name="Nombre" type="Label" parent="Vecinos/SraCocorota"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Sra. Cocorota"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/SraCocorota"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Peatones" type="Node2D" parent="."]
+
+[node name="Pollito" type="AnimatedSprite2D" parent="Peatones"]
+position = Vector2(-110, 620)
+texture_filter = 1
+modulate = Color(1, 1, 0.75, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="GorraRoja" type="Sprite2D" parent="Peatones/Pollito"]
+texture_filter = 1
+texture = ExtResource("a9_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(3, -7)
+
+[node name="Vecina" type="AnimatedSprite2D" parent="Peatones"]
+position = Vector2(260, 618)
+texture_filter = 1
+modulate = Color(1, 0.8, 0.7, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="MonoRosa" type="Sprite2D" parent="Peatones/Vecina"]
+texture_filter = 1
+texture = ExtResource("a5_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(1, -8)
+
+[node name="Paseante1" type="AnimatedSprite2D" parent="Peatones"]
+position = Vector2(-1760, 1120)
+texture_filter = 1
+modulate = Color(0.9, 0.9, 1, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Boina" type="Sprite2D" parent="Peatones/Paseante1"]
+texture_filter = 1
+texture = ExtResource("a8_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(2, -7)
+
+[node name="Paseante2" type="AnimatedSprite2D" parent="Peatones"]
+position = Vector2(-1580, 1065)
+texture_filter = 1
+modulate = Color(1, 0.9, 0.8, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="GorraRoja" type="Sprite2D" parent="Peatones/Paseante2"]
+texture_filter = 1
+texture = ExtResource("a9_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(3, -7)
+
+[node name="Cliente" type="AnimatedSprite2D" parent="Peatones"]
+position = Vector2(-30, 1462)
+texture_filter = 1
+modulate = Color(0.95, 0.95, 0.95, 1)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="SombreroPaja" type="Sprite2D" parent="Peatones/Cliente"]
+texture_filter = 1
+texture = ExtResource("a6_arte")
+script = ExtResource("a4_arte")
+lado = Vector2(3, -8)
