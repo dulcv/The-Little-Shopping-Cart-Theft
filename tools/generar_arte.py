@@ -403,7 +403,44 @@ def banca_corta():
     return contorno(im)
 
 
+def lanzahuevos():
+    im = nuevo(16, 8)
+    rect(im, 0, 3, 4, 4, CAFE)                     # culata
+    rect(im, 3, 2, 10, 4, GRIS_CLARO)              # cuerpo
+    rect(im, 12, 1, 4, 6, AMARILLO)                # boca de la canasta
+    rect(im, 5, 0, 5, 2, (240, 235, 220, 255))     # huevo en la recámara
+    rect(im, 5, 6, 2, 2, NEGRO)                    # gatillo
+    return contorno(im, OUT2)
+
+
+def huevo():
+    im = nuevo(6, 5)
+    ImageDraw.Draw(im).ellipse([0, 0, 5, 4], fill=(245, 240, 225, 255))
+    px(im, 1, 1, BLANCO)
+    return contorno(im, (150, 130, 100, 255))
+
+
+def tablero_grande(w=230, h=76):
+    im = nuevo(w, h, (190, 140, 80, 255))
+    ruido(im, [(170, 120, 65, 255), (205, 155, 95, 255)], 500)
+    rect(im, 0, 0, w, 3, MADERA); rect(im, 0, h - 3, w, 3, MADERA)
+    rect(im, 0, 0, 3, h, MADERA); rect(im, w - 3, 0, 3, h, MADERA)
+    # foto de Kiko (pollo con gorra) a la izquierda y mapa a la derecha
+    rect(im, 8, 8, 26, 30, BLANCO); rect(im, 10, 10, 22, 20, AZUL_CLARO)
+    ImageDraw.Draw(im).ellipse([15, 15, 27, 27], fill=BLANCO); rect(im, 17, 13, 8, 3, AZUL)
+    px(im, 20, 9, ROJO)
+    rect(im, w - 40, 8, 32, 24, (230, 220, 180, 255))
+    ImageDraw.Draw(im).line([(w - 36, 26), (w - 26, 14), (w - 16, 22)], fill=VERDE, width=2)
+    px(im, w - 16, 22, ROJO); px(im, w - 15, 22, ROJO)
+    d = ImageDraw.Draw(im)
+    d.line([(21, 38), (40, h - 8), (w - 40, h - 8), (w - 24, 32)], fill=ROJO)   # estambre rojo (abajo)
+    return contorno(im)
+
+
 def props():
+    guardar(tablero_grande(), "props", "tablero_grande")
+    guardar(lanzahuevos(), "armas", "lanzahuevos")
+    guardar(huevo(), "armas", "huevo")
     guardar(puesto_elotes(), "props", "puesto_elotes")
     guardar(banca_corta(), "props", "banca_corta")
     guardar(lupa(), "props", "lupa")

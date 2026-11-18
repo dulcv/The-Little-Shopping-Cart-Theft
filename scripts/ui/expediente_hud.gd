@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var contador: Label = $Contador
 @onready var aviso: Label = $Aviso
 @onready var vida: ProgressBar = $Vida
+@onready var radio_label: Label = $Radio
 
 var _aviso_timer: float = 0.0
 ## Diálogos en cola: [texto, segundos]. Se muestran uno tras otro.
@@ -27,6 +28,7 @@ func _intro() -> void:
 		mostrar("%s\n%s" % [CaseManager.nivel_actual.titulo, CaseManager.nivel_actual.objetivo], 5.0)
 
 func _process(delta: float) -> void:
+	_actualizar_radio()
 	if _aviso_timer > 0.0:
 		_aviso_timer -= delta
 		if _aviso_timer <= 0.0:
@@ -35,6 +37,17 @@ func _process(delta: float) -> void:
 				var sig: Array = _cola.pop_front()
 				aviso.text = sig[0]
 				_aviso_timer = sig[1]
+
+## Letrero chico con la radio del coche mientras el jugador maneja.
+func _actualizar_radio() -> void:
+	var p := get_tree().get_first_node_in_group("player")
+	var v = p.get("current_vehicle") if p else null
+	if v == null or not is_instance_valid(v) or v.get("radio") == null:
+		radio_label.visible = false
+		return
+	var r = v.radio
+	radio_label.visible = true
+	radio_label.text = "Radio %s\n%s   |   Coche %d/%d" % [r.get_station_name(), r.get_track_name(), v.current_hp, v.max_hp]
 
 func _conectar_jugador() -> void:
 	var p := get_tree().get_first_node_in_group("player")

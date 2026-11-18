@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/core/character_data.gd" id="1_cd"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/player/player1_sprite_frames.tres" id="2_fr"]
+[ext_resource type="Resource" path="res://resources/weapons/pistol.tres" id="3_arma"]
+
+[resource]
+script = ExtResource("1_cd")
+id = "jess"
+display_name = "Jess"
+alias_llamado = "Jess"
+sprite_frames = ExtResource("2_fr")
+color = Color(0.85, 0.95, 1, 1)
+accesorio = "gorra_roja"
+accesorio_lado = Vector2(3, -7)
+max_hp = 100
+speed_mult = 1.05
+starting_weapon = ExtResource("3_arma")
+description = "Ágil y certera con la pistola. (Arte propio pendiente)"

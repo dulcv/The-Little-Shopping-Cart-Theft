@@ -129,8 +129,7 @@ func _menu() -> void:
 	(nuevo if cont.disabled else cont).grab_focus.call_deferred()
 
 func _on_nuevo() -> void:
-	CaseManager.borrar_partida()
-	CaseManager.reiniciar_caso()
+	get_node("/root/Juego").ir_a_escena(get_node("/root/Juego").SELECCION)
 
 func _on_continuar() -> void:
 	CaseManager.continuar()

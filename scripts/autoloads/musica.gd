@@ -7,6 +7,8 @@ const CARPETA := "res://assets/audio/music/"
 ## Escena -> pista (nombre del .ogg sin extensión)
 const POR_ESCENA := {
 	"res://scenes/ui/menus/menu_principal.tscn": "menu",
+	"res://scenes/ui/menus/seleccion_personaje.tscn": "menu",
+	"res://scenes/world/cochera/Cochera.tscn": "cochera",
 	"res://scenes/main/escena_principal.tscn": "centro",
 	"res://scenes/world/las_lomas/LasLomas.tscn": "lomas",
 	"res://scenes/world/granja_industrial/RanchoMaizal.tscn": "rancho",

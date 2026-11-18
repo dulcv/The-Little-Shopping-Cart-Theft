@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" path="res://scenes/characters/player/player1_sprite_frames.tres" id="6_frames"]
 [ext_resource type="Script" path="res://scripts/world/las_lomas/microfono_spot.gd" id="7_mic"]
 [ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="8_font"]
+[ext_resource type="Script" path="res://scripts/characters/npc/npc_charla.gd" id="9_charla"]
 [ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/pasto_jardin.png" id="a1_arte"]
 [ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/asfalto.png" id="a2_arte"]
 [ext_resource type="Texture2D" path="res://assets/sprites/generado/tiles/banqueta.png" id="a3_arte"]
@@ -120,6 +121,9 @@ radius = 30.0
 
 [sub_resource type="CircleShape2D" id="S_mic"]
 radius = 22.0
+
+[sub_resource type="CircleShape2D" id="S_charla"]
+radius = 24.0
 
 [node name="LasLomas" type="Node2D"]
 script = ExtResource("1_lvl")
@@ -773,8 +777,21 @@ theme_override_font_sizes/font_size = 8
 text = "FIESTA PRIVADA"
 horizontal_alignment = 1
 
-[node name="InvitadoBorracho" type="AnimatedSprite2D" parent="."]
+[node name="InvitadoBorracho" type="Area2D" parent="."]
 position = Vector2(-392, -206)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitadoborracho"
+nombre = "Invitado Mareado"
+lineas = PackedStringArray("Hic... perdí mi invitación... hic.", "Si la encuentras... hic... quédatela. Yo ya me voy a dormir.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvitadoBorracho"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="InvitadoBorracho"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(0.95, 0.6, 0.8, 1)
 sprite_frames = ExtResource("6_frames")
@@ -782,11 +799,22 @@ animation = &"idle"
 autoplay = "idle"
 rotation = 1.5708
 
-[node name="GorritoFiesta2" type="Sprite2D" parent="InvitadoBorracho"]
+[node name="GorritoFiesta2" type="Sprite2D" parent="InvitadoBorracho/Sprite"]
 texture_filter = 1
 texture = ExtResource("a18_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(3, -10)
+
+[node name="Ayuda" type="Label" parent="InvitadoBorracho"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
 
 [node name="Hic" type="Label" parent="."]
 offset_left = -410.0
@@ -805,22 +833,59 @@ pista_id = "invitacion_fiesta"
 
 [node name="Mansion" type="Node2D" parent="."]
 
-[node name="Invitado1" type="AnimatedSprite2D" parent="Mansion"]
+[node name="Invitado1" type="Area2D" parent="Mansion"]
 position = Vector2(-170, -120)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitado1"
+nombre = "Sra. Plumífera"
+lineas = PackedStringArray("¡Qué fiesta! Don Crestón no repara en gastos.", "Dicen que todo su dinero viene del maíz...")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/Invitado1"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mansion/Invitado1"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(1, 0.9, 0.6, 1)
 sprite_frames = ExtResource("6_frames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="GorritoFiesta1" type="Sprite2D" parent="Mansion/Invitado1"]
+[node name="GorritoFiesta1" type="Sprite2D" parent="Mansion/Invitado1/Sprite"]
 texture_filter = 1
 texture = ExtResource("a19_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(3, -10)
 
-[node name="Invitado2" type="AnimatedSprite2D" parent="Mansion"]
+[node name="Ayuda" type="Label" parent="Mansion/Invitado1"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Invitado2" type="Area2D" parent="Mansion"]
 position = Vector2(-60, -200)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitado2"
+nombre = "Doña Cresta"
+lineas = PackedStringArray("¿Usted no es de por aquí, verdad?", "Cuidado con los guardias de lentes: no les gustan los curiosos.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/Invitado2"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mansion/Invitado2"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(0.7, 0.85, 1, 1)
 sprite_frames = ExtResource("6_frames")
@@ -828,28 +893,76 @@ animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
-[node name="MonoRosa" type="Sprite2D" parent="Mansion/Invitado2"]
+[node name="MonoRosa" type="Sprite2D" parent="Mansion/Invitado2/Sprite"]
 texture_filter = 1
 texture = ExtResource("a20_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(1, -8)
 
-[node name="Invitado3" type="AnimatedSprite2D" parent="Mansion"]
+[node name="Ayuda" type="Label" parent="Mansion/Invitado2"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Invitado3" type="Area2D" parent="Mansion"]
 position = Vector2(30, -70)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitado3"
+nombre = "Gallo Bailarín"
+lineas = PackedStringArray("¿Bailamos? ¿No? Bueno...", "Tip: las mesas son buen lugar para esconderse de los guardias.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/Invitado3"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mansion/Invitado3"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(1, 0.7, 0.5, 1)
 sprite_frames = ExtResource("6_frames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="GorritoFiesta3" type="Sprite2D" parent="Mansion/Invitado3"]
+[node name="GorritoFiesta3" type="Sprite2D" parent="Mansion/Invitado3/Sprite"]
 texture_filter = 1
 texture = ExtResource("a21_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(3, -10)
 
-[node name="Invitado4" type="AnimatedSprite2D" parent="Mansion"]
+[node name="Ayuda" type="Label" parent="Mansion/Invitado3"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Invitado4" type="Area2D" parent="Mansion"]
 position = Vector2(-80, -60)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitado4"
+nombre = "Primo Pío"
+lineas = PackedStringArray("Psst... el comandante de la policía también vino.", "Seguro está por el despacho del fondo.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/Invitado4"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mansion/Invitado4"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(0.9, 0.9, 0.9, 1)
 sprite_frames = ExtResource("6_frames")
@@ -857,28 +970,76 @@ animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
-[node name="GorritoFiesta2" type="Sprite2D" parent="Mansion/Invitado4"]
+[node name="GorritoFiesta2" type="Sprite2D" parent="Mansion/Invitado4/Sprite"]
 texture_filter = 1
 texture = ExtResource("a18_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(3, -10)
 
-[node name="Invitado5" type="AnimatedSprite2D" parent="Mansion"]
+[node name="Ayuda" type="Label" parent="Mansion/Invitado4"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Invitado5" type="Area2D" parent="Mansion"]
 position = Vector2(10, -150)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitado5"
+nombre = "Gallina Fina"
+lineas = PackedStringArray("¡Me encanta este pastel de elote!", "El despacho del fondo está prohibido para los invitados.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/Invitado5"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mansion/Invitado5"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(1, 0.65, 0.75, 1)
 sprite_frames = ExtResource("6_frames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="MonoRosa" type="Sprite2D" parent="Mansion/Invitado5"]
+[node name="MonoRosa" type="Sprite2D" parent="Mansion/Invitado5/Sprite"]
 texture_filter = 1
 texture = ExtResource("a20_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(1, -8)
 
-[node name="Invitado6" type="AnimatedSprite2D" parent="Mansion"]
+[node name="Ayuda" type="Label" parent="Mansion/Invitado5"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Invitado6" type="Area2D" parent="Mansion"]
 position = Vector2(140, -130)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_charla")
+npc_id = "invitado6"
+nombre = "Don Cacareo"
+lineas = PackedStringArray("Hoy Don Crestón anda de muy buen humor.", "Le llegó un 'paquete especial' del Rancho Maizal.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mansion/Invitado6"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mansion/Invitado6"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(0.75, 1, 0.7, 1)
 sprite_frames = ExtResource("6_frames")
@@ -886,11 +1047,22 @@ animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
-[node name="GorritoFiesta1" type="Sprite2D" parent="Mansion/Invitado6"]
+[node name="GorritoFiesta1" type="Sprite2D" parent="Mansion/Invitado6/Sprite"]
 texture_filter = 1
 texture = ExtResource("a19_arte")
 script = ExtResource("a15_arte")
 lado = Vector2(3, -10)
+
+[node name="Ayuda" type="Label" parent="Mansion/Invitado6"]
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("8_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
 
 [node name="Creston" type="AnimatedSprite2D" parent="Mansion"]
 position = Vector2(290, -200)

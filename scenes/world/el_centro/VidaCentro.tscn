@@ -76,7 +76,7 @@ monitorable = false
 script = ExtResource("1_charla")
 npc_id = "pechuga"
 nombre = "Doña Pechuga"
-lineas = PackedStringArray("¡Detective! Qué bueno que llegó.", "El agente Kiko Cacareña lleva tres días sin aparecer.", "Pregúntele al elotero y al panadero: ellos ven todo lo que pasa en esta calle.")
+lineas = PackedStringArray("¡{alias}! Qué bueno que llegó.", "El agente Kiko Cacareña lleva tres días sin aparecer.", "Pregúntele al elotero y al panadero: ellos ven todo lo que pasa en esta calle.")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/DonaPechuga"]
 shape = SubResource("S_charla")
@@ -322,24 +322,71 @@ theme_override_font_sizes/font_size = 8
 text = "E: hablar"
 horizontal_alignment = 1
 
-[node name="Peatones" type="Node2D" parent="."]
-
-[node name="Pollito" type="AnimatedSprite2D" parent="Peatones"]
+[node name="Pollito" type="Area2D" parent="Vecinos"]
 position = Vector2(-110, 620)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "pollito"
+nombre = "Pollito Pío"
+lineas = PackedStringArray("¡Usted es {alias}! ¿Me da su autógrafo?", "Mi mamá dice que no hable con gallos de lentes oscuros.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Pollito"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Pollito"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(1, 1, 0.75, 1)
 sprite_frames = ExtResource("2_frames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="GorraRoja" type="Sprite2D" parent="Peatones/Pollito"]
+[node name="GorraRoja" type="Sprite2D" parent="Vecinos/Pollito/Sprite"]
 texture_filter = 1
 texture = ExtResource("a9_arte")
 script = ExtResource("a4_arte")
 lado = Vector2(3, -7)
 
-[node name="Vecina" type="AnimatedSprite2D" parent="Peatones"]
+[node name="Nombre" type="Label" parent="Vecinos/Pollito"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Pollito Pío"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Pollito"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Vecina" type="Area2D" parent="Vecinos"]
 position = Vector2(260, 618)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "vecina"
+nombre = "Vecina Clotilde"
+lineas = PackedStringArray("Últimamente hay camionetas negras por todos lados.", "Yo mejor ni salgo de noche, {alias}.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Vecina"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Vecina"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(1, 0.8, 0.7, 1)
 sprite_frames = ExtResource("2_frames")
@@ -347,28 +394,100 @@ animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
-[node name="MonoRosa" type="Sprite2D" parent="Peatones/Vecina"]
+[node name="MonoRosa" type="Sprite2D" parent="Vecinos/Vecina/Sprite"]
 texture_filter = 1
 texture = ExtResource("a5_arte")
 script = ExtResource("a4_arte")
 lado = Vector2(1, -8)
 
-[node name="Paseante1" type="AnimatedSprite2D" parent="Peatones"]
+[node name="Nombre" type="Label" parent="Vecinos/Vecina"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Vecina Clotilde"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Vecina"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Paseante1" type="Area2D" parent="Vecinos"]
 position = Vector2(-1760, 1120)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "paseante1"
+nombre = "Don Plumón"
+lineas = PackedStringArray("Qué bonita tarde para pasear por el parque.", "Aunque anoche hubo mucho ruido cerca de la plaza...")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Paseante1"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Paseante1"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(0.9, 0.9, 1, 1)
 sprite_frames = ExtResource("2_frames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="Boina" type="Sprite2D" parent="Peatones/Paseante1"]
+[node name="Boina" type="Sprite2D" parent="Vecinos/Paseante1/Sprite"]
 texture_filter = 1
 texture = ExtResource("a8_arte")
 script = ExtResource("a4_arte")
 lado = Vector2(2, -7)
 
-[node name="Paseante2" type="AnimatedSprite2D" parent="Peatones"]
+[node name="Nombre" type="Label" parent="Vecinos/Paseante1"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Don Plumón"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Paseante1"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Paseante2" type="Area2D" parent="Vecinos"]
 position = Vector2(-1580, 1065)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "paseante2"
+nombre = "Chava Cresta"
+lineas = PackedStringArray("¿Ya probó los elotes de Don Elotero?", "Dicen que ya casi no consigue maíz. ¡Qué tragedia!")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Paseante2"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Paseante2"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(1, 0.9, 0.8, 1)
 sprite_frames = ExtResource("2_frames")
@@ -376,22 +495,81 @@ animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
-[node name="GorraRoja" type="Sprite2D" parent="Peatones/Paseante2"]
+[node name="GorraRoja" type="Sprite2D" parent="Vecinos/Paseante2/Sprite"]
 texture_filter = 1
 texture = ExtResource("a9_arte")
 script = ExtResource("a4_arte")
 lado = Vector2(3, -7)
 
-[node name="Cliente" type="AnimatedSprite2D" parent="Peatones"]
+[node name="Nombre" type="Label" parent="Vecinos/Paseante2"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Chava Cresta"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Paseante2"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1
+
+[node name="Cliente" type="Area2D" parent="Vecinos"]
 position = Vector2(-30, 1462)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_charla")
+npc_id = "cliente"
+nombre = "Señor Mollejas"
+lineas = PackedStringArray("Vine por pan y me encontré con todo este misterio.", "Suerte con el caso, {alias}.")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecinos/Cliente"]
+shape = SubResource("S_charla")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Vecinos/Cliente"]
+position = Vector2(0, 0)
 texture_filter = 1
 modulate = Color(0.95, 0.95, 0.95, 1)
 sprite_frames = ExtResource("2_frames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="SombreroPaja" type="Sprite2D" parent="Peatones/Cliente"]
+[node name="SombreroPaja" type="Sprite2D" parent="Vecinos/Cliente/Sprite"]
 texture_filter = 1
 texture = ExtResource("a6_arte")
 script = ExtResource("a4_arte")
 lado = Vector2(3, -8)
+
+[node name="Nombre" type="Label" parent="Vecinos/Cliente"]
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "Señor Mollejas"
+horizontal_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Vecinos/Cliente"]
+visible = false
+offset_left = -40.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "E: hablar"
+horizontal_alignment = 1

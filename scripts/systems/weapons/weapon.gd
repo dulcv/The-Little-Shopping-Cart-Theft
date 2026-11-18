@@ -141,6 +141,13 @@ func shoot() -> bool:
 				
 				bullet_instance.global_position = muzzle.global_position
 				bullet_instance.setup(final_dir, weapon_data.bullet_speed, weapon_data.damage, is_enemy, ignore_root)
+				bullet_instance.max_lifetime = weapon_data.bullet_lifetime
+				# Textura propia del proyectil (p. ej. el huevo del lanzahuevos).
+				if weapon_data.bullet_texture:
+					var spr := bullet_instance.get_node_or_null("Sprite2D") as Sprite2D
+					if spr:
+						spr.texture = weapon_data.bullet_texture
+						spr.region_enabled = false
 				
 				# Agregar la bala al árbol principal para que su movimiento sea independiente del arma
 				var spawn_root: Node = get_tree().current_scene

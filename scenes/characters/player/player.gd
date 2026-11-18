@@ -47,6 +47,8 @@ signal died(who: Node2D, killer: Node)
 
 var hp: int = 100
 var dead: bool = false
+## Multiplicador de velocidad del personaje elegido.
+var _vel_mult: float = 1.0
 var _invuln: float = 0.0
 
 @export_group("Equipamiento")
@@ -72,8 +74,7 @@ var _weapon_base_pos: Vector2 = Vector2(6, 2)
 
 func _ready() -> void:
 	add_to_group("player")
-	# El detective siempre trae su sombrero.
-	Accesorio.poner(animated_sprite, "sombrero_detective", Vector2(3, -8))
+	_aplicar_personaje()
 	hp = max_hp
 	health_changed.emit.call_deferred(hp, max_hp)
 	# Top-down: sin este modo el CharacterBody trata los laterales como
@@ -86,6 +87,28 @@ func _ready() -> void:
 		_update_weapon_visual_depth()
 		if starting_weapon:
 			equip_weapon(starting_weapon)
+
+## Aplica el personaje elegido (Juego.personaje): sprite, tinte, accesorio,
+## vida, velocidad y arma inicial. Sin selección = Detective Pollo.
+func _aplicar_personaje() -> void:
+	var pj: CharacterData = null
+	var juego := get_node_or_null("/root/Juego")
+	if juego and juego.get("personaje"):
+		pj = juego.personaje
+	if pj == null:
+		pj = load("res://resources/characters/detective.tres") as CharacterData
+	if pj == null:
+		return
+	if pj.sprite_frames:
+		animated_sprite.sprite_frames = pj.sprite_frames
+	# self_modulate: el parpadeo de daño usa modulate y el accesorio no se tiñe.
+	animated_sprite.self_modulate = pj.color
+	if not pj.accesorio.is_empty():
+		Accesorio.poner(animated_sprite, pj.accesorio, pj.accesorio_lado)
+	max_hp = pj.max_hp
+	_vel_mult = pj.speed_mult
+	if pj.starting_weapon:
+		starting_weapon = pj.starting_weapon
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Detectar doble toque en cualquier dirección (WASD o flechas)
@@ -102,12 +125,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				last_pressed_dir = dir
 				last_dir_press_time = current_time
 		
-		# Teclas rápidas de prueba (1: Pistola, 2: Rifle, 3: Ametralladora, 0: Desarmar)
+		# Cambio de arma: 1 Pistola, 2 Rifle, 3 Ametralladora, 4 Lanzahuevos, 0 Desarmar
 		match key:
 			KEY_1:
 				equip_weapon(load("res://resources/weapons/pistol.tres"))
 			KEY_2:
 				equip_weapon(load("res://resources/weapons/assault_rifle.tres"))
+			KEY_4:
+				equip_weapon(load("res://resources/weapons/lanzahuevos.tres"))
 			KEY_3:
 				equip_weapon(load("res://resources/weapons/machine_gun.tres"))
 			KEY_0:
@@ -212,10 +237,10 @@ func _physics_process(_delta: float) -> void:
 
 	if direction:
 		if is_running:
-			velocity = direction * RUN_SPEED
+			velocity = direction * RUN_SPEED * _vel_mult
 			animated_sprite.play(_get_vertical_anim(&"run_up", &"run_down", &"run"))
 		else:
-			velocity = direction * SPEED
+			velocity = direction * SPEED * _vel_mult
 			animated_sprite.play(_get_vertical_anim(&"walk_up", &"walk_down", &"walk"))
 
 		# Vista lateral: volteo horizontal. Vista vertical (up/down): se

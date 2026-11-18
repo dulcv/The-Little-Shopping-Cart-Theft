@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/core/character_data.gd" id="1_cd"]
+[ext_resource type="SpriteFrames" path="res://resources/characters/edgar_sprite_frames.tres" id="2_fr"]
+[ext_resource type="Resource" path="res://resources/weapons/assault_rifle.tres" id="3_arma"]
+
+[resource]
+script = ExtResource("1_cd")
+id = "edgar"
+display_name = "Edgar"
+alias_llamado = "Edgar"
+sprite_frames = ExtResource("2_fr")
+color = Color(1, 1, 1, 1)
+accesorio = ""
+accesorio_lado = Vector2(3, -8)
+max_hp = 120
+speed_mult = 0.95
+starting_weapon = ExtResource("3_arma")
+description = "Resistente y bien armado: aguanta más golpes, pero es un poco más lento."

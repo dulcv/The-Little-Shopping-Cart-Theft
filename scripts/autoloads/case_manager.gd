@@ -67,7 +67,21 @@ func completar_nivel() -> void:
 	if nivel_index >= NIVELES.size() - 1:
 		caso_resuelto.emit()
 		return
-	ir_a_nivel(nivel_index + 1)
+	# Entre nivel y nivel, el detective vuelve a su cochera a ordenar el caso.
+	nivel_index += 1
+	nivel_actual = _cargar(nivel_index)
+	guardar()
+	nivel_iniciado.emit(nivel_actual)
+	ir_a_cochera()
+
+## La cochera secreta del detective: cuartel entre niveles.
+func ir_a_cochera() -> void:
+	var juego := get_node_or_null("/root/Juego")
+	if juego == null:
+		ir_a_nivel(nivel_index)
+		return
+	var sub := "Siguiente: Nivel %d - %s" % [nivel_index + 1, nivel_actual.titulo] if nivel_actual else ""
+	juego.ir_a_escena(juego.COCHERA, "La Cochera", sub)
 
 func ir_a_nivel(index: int) -> void:
 	var data := _cargar(index)
@@ -88,7 +102,10 @@ func ir_a_nivel(index: int) -> void:
 
 func reiniciar_caso() -> void:
 	pistas.clear()
-	ir_a_nivel(0)
+	nivel_index = 0
+	nivel_actual = _cargar(0)
+	guardar()
+	ir_a_cochera()
 
 # --- Guardado (user://partida.json) -------------------------------------------
 
@@ -97,7 +114,9 @@ const RUTA_GUARDADO := "user://partida.json"
 func guardar() -> void:
 	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
 	if f:
-		f.store_string(JSON.stringify({"nivel_index": nivel_index, "pistas": pistas}))
+		var juego := get_node_or_null("/root/Juego")
+		var pj_id: String = juego.personaje.id if juego and juego.personaje else "detective"
+		f.store_string(JSON.stringify({"nivel_index": nivel_index, "pistas": pistas, "personaje": pj_id}))
 
 func hay_partida() -> bool:
 	return FileAccess.file_exists(RUTA_GUARDADO)
@@ -112,7 +131,12 @@ func continuar() -> bool:
 	pistas.clear()
 	for p in datos.get("pistas", []):
 		pistas.append(str(p))
-	ir_a_nivel(int(datos.get("nivel_index", 0)))
+	var juego := get_node_or_null("/root/Juego")
+	if juego:
+		juego.set_personaje_por_id(str(datos.get("personaje", "detective")))
+	nivel_index = clampi(int(datos.get("nivel_index", 0)), 0, NIVELES.size() - 1)
+	nivel_actual = _cargar(nivel_index)
+	ir_a_cochera()
 	return true
 
 func borrar_partida() -> void:

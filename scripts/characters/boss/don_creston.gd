@@ -28,6 +28,10 @@ const BULLET_SCENE := preload("res://scenes/weapons/bullet.tscn")
 @export var contact_damage: int = 20
 @export var stun_time: float = 2.5
 @export var multiplicador_debilidad: int = 2
+## Daño máximo por cada vez que se aturde (fracción de la vida total).
+## Así ninguna arma lo mata en un solo aturdimiento: hay que estrellarlo
+## al menos 4 veces (más en la fase 2 si fallas tiros).
+@export_range(0.05, 1.0) var dano_max_por_aturdimiento: float = 0.25
 ## Si no hay nodo en el grupo "player", se usa esta ruta.
 @export var target_path: NodePath
 
@@ -37,6 +41,7 @@ var estado: Estado = Estado.PERSEGUIR
 var _timer: float = 0.0
 var _charge_dir: Vector2 = Vector2.RIGHT
 var _target: Node2D = null
+var _dano_ventana: int = 0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -128,6 +133,7 @@ func _cambiar_estado(nuevo: Estado) -> void:
 			_mirar(_charge_dir)
 		Estado.ATURDIDO:
 			_timer = stun_time
+			_dano_ventana = 0
 			sprite.modulate = COLOR_VULNERABLE
 			sprite.play(&"idle")
 			aviso.emit("¡AHORA! ¡Su armadura se abrió!")
@@ -150,7 +156,13 @@ func take_damage(amount: int) -> void:
 	if not es_vulnerable():
 		aviso.emit("¡TINK! La armadura de oro lo protege")
 		return
-	hp = max(hp - amount * multiplicador_debilidad, 0)
+	var tope := int(max_hp * dano_max_por_aturdimiento)
+	if _dano_ventana >= tope:
+		aviso.emit("¡Se cubrió con las alas! Haz que se estrelle otra vez")
+		return
+	var dano: int = mini(amount * multiplicador_debilidad, tope - _dano_ventana)
+	_dano_ventana += dano
+	hp = max(hp - dano, 0)
 	health_changed.emit(hp, max_hp)
 	_flash()
 	if fase == 1 and hp <= max_hp / 2:

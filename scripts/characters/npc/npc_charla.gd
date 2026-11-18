@@ -30,9 +30,14 @@ func _hablar() -> void:
 	var hud := get_tree().get_first_node_in_group("expediente_hud")
 	if hud == null:
 		return
+	# {alias} = cómo te llaman según el personaje elegido (Edgar, Dulce, detective...).
+	var alias := "detective"
+	var juego := get_node_or_null("/root/Juego")
+	if juego and juego.get("personaje"):
+		alias = juego.personaje.alias_llamado
 	var texto := PackedStringArray()
 	for l in lineas:
-		texto.append("%s: %s" % [nombre, l])
+		texto.append("%s: %s" % [nombre, l.replace("{alias}", alias)])
 	hud.mostrar_lineas(texto, segundos_por_linea)
 	ya_hablo = true
 	hablado.emit(npc_id)

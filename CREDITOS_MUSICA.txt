@@ -6,7 +6,7 @@ https://juhanijunkala.com/
 
 - "4 Chiptunes (Adventure)" / Chiptune Adventures
   https://opengameart.org/content/4-chiptunes-adventure
-  centro.ogg = Stage 1, lomas.ogg = Stage 2, jefe.ogg = Boss Fight
+  centro.ogg = Stage 1, lomas.ogg = Stage 2, jefe.ogg = Boss Fight, cochera.ogg = Stage Select
 - "5 Chiptunes (Action)" / Retro Game Music Pack
   https://opengameart.org/content/5-chiptunes-action
   menu.ogg = Title Screen, federal.ogg = Level 2, rancho.ogg = Level 3, final.ogg = Ending

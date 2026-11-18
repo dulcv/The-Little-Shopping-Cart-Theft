@@ -7,6 +7,9 @@ extends CanvasLayer
 ## La UI se construye por código para no depender de escenas extra.
 
 const MENU := "res://scenes/ui/menus/menu_principal.tscn"
+const SELECCION := "res://scenes/ui/menus/seleccion_personaje.tscn"
+const COCHERA := "res://scenes/world/cochera/Cochera.tscn"
+const PERSONAJE_DEFAULT := "res://resources/characters/detective.tres"
 const FINAL := "res://scenes/ui/menus/final.tscn"
 const FUENTE := preload("res://assets/fonts/BoldPixels.ttf")
 
@@ -16,12 +19,16 @@ var _subcartel: Label
 var _pausa: Control
 var _game_over: Control
 var _escena_vista: Node = null
+## Personaje elegido en la selección (lo aplica player.gd).
+var personaje: CharacterData
 var _cambiando: bool = false
 ## Cambio pedido durante otra transición: se hace al terminar (no se pierde).
 var _pendiente: Array = []
 
 func _ready() -> void:
 	layer = 100
+	if personaje == null:
+		personaje = load(PERSONAJE_DEFAULT)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_construir_ui()
 	CaseManager.caso_resuelto.connect(_on_caso_resuelto)
@@ -54,9 +61,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _es_nivel() -> bool:
 	var s := get_tree().current_scene
-	return s != null and s.scene_file_path != MENU and s.scene_file_path != FINAL
+	return s != null and not s.scene_file_path in [MENU, FINAL, SELECCION]
 
 # --- API ---------------------------------------------------------------------
+
+func set_personaje_por_id(id: String) -> void:
+	var ruta := "res://resources/characters/%s.tres" % id
+	if ResourceLoader.exists(ruta):
+		personaje = load(ruta)
 
 ## Cambia de escena con fundido a negro y, opcional, un cartel de título.
 func ir_a_escena(ruta: String, titulo: String = "", subtitulo: String = "") -> void:

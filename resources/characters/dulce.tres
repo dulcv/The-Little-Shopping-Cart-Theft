@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/core/character_data.gd" id="1_cd"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/player/player1_sprite_frames.tres" id="2_fr"]
+[ext_resource type="Resource" path="res://resources/weapons/lanzahuevos.tres" id="3_arma"]
+
+[resource]
+script = ExtResource("1_cd")
+id = "dulce"
+display_name = "Dulce"
+alias_llamado = "Dulce"
+sprite_frames = ExtResource("2_fr")
+color = Color(1, 0.82, 0.9, 1)
+accesorio = "mono_rosa"
+accesorio_lado = Vector2(1, -8)
+max_hp = 90
+speed_mult = 1.12
+starting_weapon = ExtResource("3_arma")
+description = "La más veloz del equipo. Menos vida, pero nadie la alcanza. (Arte propio pendiente)"
