@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @onready var contador: Label = $Contador
 @onready var aviso: Label = $Aviso
+@onready var vida: ProgressBar = $Vida
 
 var _aviso_timer: float = 0.0
 ## Diálogos en cola: [texto, segundos]. Se muestran uno tras otro.
@@ -15,6 +16,7 @@ func _ready() -> void:
 	CaseManager.nivel_iniciado.connect(func(_n): _actualizar())
 	CaseManager.nivel_completado.connect(_on_nivel_completado)
 	aviso.text = ""
+	_conectar_jugador.call_deferred()
 	_actualizar()
 	if CaseManager.nivel_actual:
 		mostrar("%s\n%s" % [CaseManager.nivel_actual.titulo, CaseManager.nivel_actual.objetivo], 5.0)
@@ -29,13 +31,25 @@ func _process(delta: float) -> void:
 				aviso.text = sig[0]
 				_aviso_timer = sig[1]
 
+func _conectar_jugador() -> void:
+	var p := get_tree().get_first_node_in_group("player")
+	if p and p.has_signal("health_changed"):
+		p.health_changed.connect(_on_vida)
+		_on_vida(p.hp, p.max_hp)
+
+func _on_vida(actual: int, maximo: int) -> void:
+	vida.max_value = maximo
+	vida.value = actual
+
 func _actualizar() -> void:
 	var n := CaseManager.nivel_actual
 	if n == null or n.pistas_requeridas.is_empty():
 		contador.text = ""
+		contador.visible = false
 		return
 	var total := n.pistas_requeridas.size()
 	var tengo := total - CaseManager.pistas_faltantes().size()
+	contador.visible = true
 	contador.text = "Pistas: %d/%d" % [tengo, total]
 
 func _on_pista(_id: String, texto: String) -> void:

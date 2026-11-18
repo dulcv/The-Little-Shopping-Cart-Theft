@@ -46,6 +46,7 @@ func agregar_pista(pista_id: String) -> void:
 	if tiene_pista(pista_id):
 		return
 	pistas.append(pista_id)
+	guardar()
 	pista_obtenida.emit(pista_id, TEXTO_PISTAS.get(pista_id, pista_id))
 	if _nivel_cumplido():
 		completar_nivel()
@@ -74,15 +75,49 @@ func ir_a_nivel(index: int) -> void:
 		return
 	nivel_index = index
 	nivel_actual = data
+	guardar()
 	nivel_iniciado.emit(data)
 	if data.escena.is_empty() or not ResourceLoader.exists(data.escena):
 		push_warning("CaseManager: el nivel '%s' aún no tiene escena (%s)" % [data.id, data.escena])
 		return
-	get_tree().call_deferred("change_scene_to_file", data.escena)
+	var juego := get_node_or_null("/root/Juego")
+	if juego:
+		juego.ir_a_escena(data.escena, "Nivel %d: %s" % [index + 1, data.titulo], data.objetivo)
+	else:
+		get_tree().call_deferred("change_scene_to_file", data.escena)
 
 func reiniciar_caso() -> void:
 	pistas.clear()
 	ir_a_nivel(0)
+
+# --- Guardado (user://partida.json) -------------------------------------------
+
+const RUTA_GUARDADO := "user://partida.json"
+
+func guardar() -> void:
+	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
+	if f:
+		f.store_string(JSON.stringify({"nivel_index": nivel_index, "pistas": pistas}))
+
+func hay_partida() -> bool:
+	return FileAccess.file_exists(RUTA_GUARDADO)
+
+## Carga la partida guardada y abre su nivel. Devuelve false si no había.
+func continuar() -> bool:
+	if not hay_partida():
+		return false
+	var datos = JSON.parse_string(FileAccess.get_file_as_string(RUTA_GUARDADO))
+	if typeof(datos) != TYPE_DICTIONARY:
+		return false
+	pistas.clear()
+	for p in datos.get("pistas", []):
+		pistas.append(str(p))
+	ir_a_nivel(int(datos.get("nivel_index", 0)))
+	return true
+
+func borrar_partida() -> void:
+	if hay_partida():
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 
 func _nivel_cumplido() -> bool:
 	return nivel_actual != null and not nivel_actual.pistas_requeridas.is_empty() \

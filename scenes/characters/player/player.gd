@@ -37,6 +37,18 @@ const BODY_BOB := {
 	&"run_down": [0, 1, 0, 1],
 }
 
+## Salud (contrato de docs/09-contratos-interfaces.md)
+signal health_changed(current: int, maximum: int)
+signal died(who: Node2D, killer: Node)
+
+@export var max_hp: int = 100
+## Segundos de invulnerabilidad tras recibir un golpe.
+@export var invuln_time: float = 0.7
+
+var hp: int = 100
+var dead: bool = false
+var _invuln: float = 0.0
+
 @export_group("Equipamiento")
 ## Arma inicial equipada al iniciar la escena (opcional)
 @export var starting_weapon: WeaponData
@@ -59,6 +71,9 @@ var nearby_vehicle: Vehicle = null
 var _weapon_base_pos: Vector2 = Vector2(6, 2)
 
 func _ready() -> void:
+	add_to_group("player")
+	hp = max_hp
+	health_changed.emit.call_deferred(hp, max_hp)
 	# Top-down: sin este modo el CharacterBody trata los laterales como
 	# suelo/techo y se queda pegado al deslizar por muros y coches.
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -98,6 +113,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if _invuln > 0.0:
+		_invuln -= _delta
+	if dead:
+		return
 	# Si va conduciendo: sigue al coche, E para salir, Espacio/Click dispara
 	# en drive-by desde la ventanilla izquierda (jugador y arma ocultos).
 	if current_vehicle != null:
@@ -365,9 +384,43 @@ func _play_melee_sound() -> void:
 	melee_sound.play()
 
 ## Receptor de daño para proyectiles y ataques
-func take_damage(_amount: int) -> void:
-	# Hook para sistema de salud y animaciones de impacto (Fase 6)
-	pass
+func take_damage(amount: int) -> void:
+	if dead or _invuln > 0.0 or amount <= 0:
+		return
+	# Conduciendo, el golpe se lo lleva el coche (vehicle.gd ya lo gestiona).
+	if current_vehicle != null:
+		return
+	hp = maxi(hp - amount, 0)
+	_invuln = invuln_time
+	health_changed.emit(hp, max_hp)
+	_flash_dano()
+	if hp == 0:
+		_morir()
+
+func heal(amount: int) -> void:
+	if dead:
+		return
+	hp = mini(hp + amount, max_hp)
+	health_changed.emit(hp, max_hp)
+
+func is_dead() -> bool:
+	return dead
+
+func _flash_dano() -> void:
+	var tw := create_tween()
+	for i in 3:
+		tw.tween_property(animated_sprite, "modulate", Color(1, 0.35, 0.35), 0.06)
+		tw.tween_property(animated_sprite, "modulate", Color.WHITE, 0.06)
+
+func _morir() -> void:
+	dead = true
+	velocity = Vector2.ZERO
+	is_attacking = false
+	if weapon:
+		weapon.visible = false
+	animated_sprite.play(&"die")
+	$CollisionShape2D.set_deferred("disabled", true)
+	died.emit(self, null)
 
 # ------------------------------------------------------------------
 # API de vehículos (la llama Vehicle.enter/exit)

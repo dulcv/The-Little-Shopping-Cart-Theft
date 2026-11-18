@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/characters/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/characters/boss/don_creston.tscn" id="3_boss"]
 [ext_resource type="FontFile" path="res://assets/fonts/BoldPixels.ttf" id="4_font"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud/expediente_hud.tscn" id="5_hud"]
 
 [sub_resource type="RectangleShape2D" id="Shape_ParedN"]
 size = Vector2(464, 16)
@@ -161,3 +162,5 @@ theme_override_font_sizes/font_size = 16
 text = "¡CASO CERRADO!
 Don Crestón confesó todo."
 horizontal_alignment = 1
+
+[node name="ExpedienteHUD" parent="." instance=ExtResource("5_hud")]
