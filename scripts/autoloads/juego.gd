@@ -17,6 +17,8 @@ var _pausa: Control
 var _game_over: Control
 var _escena_vista: Node = null
 var _cambiando: bool = false
+## Cambio pedido durante otra transición: se hace al terminar (no se pierde).
+var _pendiente: Array = []
 
 func _ready() -> void:
 	layer = 100
@@ -59,6 +61,7 @@ func _es_nivel() -> bool:
 ## Cambia de escena con fundido a negro y, opcional, un cartel de título.
 func ir_a_escena(ruta: String, titulo: String = "", subtitulo: String = "") -> void:
 	if _cambiando:
+		_pendiente = [ruta, titulo, subtitulo]
 		return
 	_cambiando = true
 	get_tree().paused = false
@@ -80,6 +83,10 @@ func ir_a_escena(ruta: String, titulo: String = "", subtitulo: String = "") -> v
 	_cartel.text = ""
 	_subcartel.text = ""
 	_cambiando = false
+	if not _pendiente.is_empty():
+		var p: Array = _pendiente
+		_pendiente = []
+		ir_a_escena(p[0], p[1], p[2])
 
 func reintentar() -> void:
 	var s := get_tree().current_scene

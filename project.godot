@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CaseManager="*res://scripts/autoloads/case_manager.gd"
 Juego="*res://scripts/autoloads/juego.gd"
+Musica="*res://scripts/autoloads/musica.gd"
 
 [display]
 

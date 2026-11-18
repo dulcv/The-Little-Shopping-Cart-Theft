@@ -1,0 +1,15 @@
+Música de Operación Mazorca
+===========================
+
+Todas las pistas son de Juhani Junkala, publicadas con licencia CC0 (dominio público).
+https://juhanijunkala.com/
+
+- "4 Chiptunes (Adventure)" / Chiptune Adventures
+  https://opengameart.org/content/4-chiptunes-adventure
+  centro.ogg = Stage 1, lomas.ogg = Stage 2, jefe.ogg = Boss Fight
+- "5 Chiptunes (Action)" / Retro Game Music Pack
+  https://opengameart.org/content/5-chiptunes-action
+  menu.ogg = Title Screen, federal.ogg = Level 2, rancho.ogg = Level 3, final.ogg = Ending
+  (convertidas de WAV a OGG Vorbis)
+
+CC0 no exige atribución, pero damos crédito al autor en los créditos del juego.
