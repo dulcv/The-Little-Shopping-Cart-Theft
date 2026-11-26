@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="VehicleData" format=3]
+[gd_resource type="Resource" script_class="VehicleData" format=3 uid="uid://r78g83cvmrno"]
 
-[ext_resource type="Script" path="res://scripts/systems/vehicles/vehicle_data.gd" id="1_vehicle"]
-[ext_resource type="SpriteFrames" path="res://resources/vehicles/coche_azul_sprite_frames.tres" id="2_frames"]
+[ext_resource type="Script" uid="uid://cdcfl5vebcq2a" path="res://scripts/systems/vehicles/vehicle_data.gd" id="1_vehicle"]
+[ext_resource type="SpriteFrames" uid="uid://4lal3icr37my" path="res://resources/vehicles/coche_azul_sprite_frames.tres" id="2_frames"]
 [ext_resource type="AudioStream" uid="uid://b456ilh7bmem6" path="res://assets/audio/sfx/auto/choque.mp3" id="3_crash"]
 [ext_resource type="AudioStream" uid="uid://bacymgry2pb3m" path="res://assets/audio/sfx/auto/abrir_puerta.mp3" id="4_door"]
 [ext_resource type="AudioStream" uid="uid://calxl4n6m0twb" path="res://assets/audio/sfx/auto/claxon.mp3" id="5_horn"]
@@ -12,21 +12,8 @@
 
 [resource]
 script = ExtResource("1_vehicle")
-id = "sedan"
-vehicle_name = "Sedán"
 description = "Coche equilibrado de calle. Buen giro y resistencia media."
-max_speed = 220.0
-reverse_speed = 90.0
-accel = 260.0
-brake = 320.0
-turn_speed = 2.6
-grip = 6.0
-max_hp = 100
-ram_damage = 25
-crash_min_speed = 120.0
-crash_factor = 12.0
 sprite_frames = ExtResource("2_frames")
-paint_color = Color(0.3, 0.55, 0.9, 1)
 use_random_paint = true
 paint_palette = Array[Color]([Color(0.3, 0.55, 0.9, 1), Color(0.9, 0.16, 0.16, 1), Color(0.95, 0.75, 0.15, 1), Color(0.2, 0.7, 0.3, 1), Color(0.6, 0.3, 0.85, 1), Color(0.9, 0.45, 0.15, 1), Color(0.85, 0.85, 0.88, 1), Color(0.5, 0.5, 0.55, 1)])
 crash_sound = ExtResource("3_crash")
